@@ -19,10 +19,12 @@ description: ""
 [Python01. Python基础](#PythonBase)
 
 [Python02. Python数据容器](#PythonDataContainers)
-  *[可变与不可变类型](#VariableAndInvariable)
+  
+  * [可变与不可变类型](#VariableAndInvariable)
 
 [Python03. Python函数与异常处理](#PythonFunctionError)
-  *[默认参数为空时有坑！！！](#DefaultParameterBug)
+ 
+  * [默认参数为空时有坑！！！](#DefaultParameterBug)
 
 [Python04. Python面向对象与模块](#PythonObjectAndModuel)
 

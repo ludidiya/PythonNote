@@ -1,4 +1,4 @@
-# Python03-函数与异常处理{#PythonFunctionError}
+# 函数与异常处理{#PythonFunctionError}
 
 ## 函数定义和调用
 

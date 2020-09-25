@@ -1,4 +1,4 @@
-# Python04-面向对象与模块{#PythonObjectAndModuel}
+# 面向对象与模块{#PythonObjectAndModuel}
 
 ## 面向过程和面向对象
 
