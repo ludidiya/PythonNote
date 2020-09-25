@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Python数据容器 | Python学习笔记</title>
+  <meta name="description" content="Chapter 3 Python数据容器 | Python学习笔记" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Python数据容器 | Python学习笔记" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Python数据容器 | Python学习笔记" />
+  
+  
+  
+
+<meta name="author" content="LUDI Ling" />
+
+
+<meta name="date" content="2020-09-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="PythonBase.html"/>
+<link rel="next" href="PythonFunctionError.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Python学习笔记</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 目录</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#python基础"><i class="fa fa-check"></i><b>1.1</b> python基础</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#python-cheat-sheet"><i class="fa fa-check"></i><b>1.2</b> Python Cheat Sheet</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="PythonBase.html"><a href="PythonBase.html"><i class="fa fa-check"></i><b>2</b> Python基础</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="PythonBase.html"><a href="PythonBase.html#anaconda与jupyter"><i class="fa fa-check"></i><b>2.1</b> Anaconda与Jupyter</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="PythonBase.html"><a href="PythonBase.html#anaconda"><i class="fa fa-check"></i><b>2.1.1</b> Anaconda</a></li>
+<li class="chapter" data-level="2.1.2" data-path="PythonBase.html"><a href="PythonBase.html#jupyter"><i class="fa fa-check"></i><b>2.1.2</b> Jupyter</a></li>
+<li class="chapter" data-level="2.1.3" data-path="PythonBase.html"><a href="PythonBase.html#安装jupyter-notebook拓展"><i class="fa fa-check"></i><b>2.1.3</b> 安装Jupyter Notebook拓展</a></li>
+<li class="chapter" data-level="2.1.4" data-path="PythonBase.html"><a href="PythonBase.html#jupyter中常用操作"><i class="fa fa-check"></i><b>2.1.4</b> Jupyter中常用操作</a></li>
+<li class="chapter" data-level="2.1.5" data-path="PythonBase.html"><a href="PythonBase.html#注意事项"><i class="fa fa-check"></i><b>2.1.5</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="PythonBase.html"><a href="PythonBase.html#语句与注释"><i class="fa fa-check"></i><b>2.2</b> 语句与注释</a></li>
+<li class="chapter" data-level="2.3" data-path="PythonBase.html"><a href="PythonBase.html#变量与赋值"><i class="fa fa-check"></i><b>2.3</b> 变量与赋值</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="PythonBase.html"><a href="PythonBase.html#变量的定义"><i class="fa fa-check"></i><b>2.3.1</b> 变量的定义</a></li>
+<li class="chapter" data-level="2.3.2" data-path="PythonBase.html"><a href="PythonBase.html#变量的命名规则"><i class="fa fa-check"></i><b>2.3.2</b> 变量的命名规则</a></li>
+<li class="chapter" data-level="2.3.3" data-path="PythonBase.html"><a href="PythonBase.html#关键字"><i class="fa fa-check"></i><b>2.3.3</b> 关键字</a></li>
+<li class="chapter" data-level="2.3.4" data-path="PythonBase.html"><a href="PythonBase.html#PythonDataType"><i class="fa fa-check"></i><b>2.3.4</b> 常用的数据类型转换</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="PythonBase.html"><a href="PythonBase.html#输入和输出"><i class="fa fa-check"></i><b>2.4</b> 输入和输出</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="PythonBase.html"><a href="PythonBase.html#python中的输出"><i class="fa fa-check"></i><b>2.4.1</b> Python中的输出</a></li>
+<li class="chapter" data-level="2.4.2" data-path="PythonBase.html"><a href="PythonBase.html#FormattingOutPut"><i class="fa fa-check"></i><b>2.4.2</b> 格式化输出</a></li>
+<li class="chapter" data-level="2.4.3" data-path="PythonBase.html"><a href="PythonBase.html#python中的输入"><i class="fa fa-check"></i><b>2.4.3</b> Python中的输入</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="PythonBase.html"><a href="PythonBase.html#PythonMathOperator"><i class="fa fa-check"></i><b>2.5</b> 运算符</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="PythonBase.html"><a href="PythonBase.html#算数运算符拓展"><i class="fa fa-check"></i><b>2.5.1</b> 算数运算符（拓展）</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="PythonBase.html"><a href="PythonBase.html#ifelifelse"><i class="fa fa-check"></i><b>2.6</b> if…elif…else</a></li>
+<li class="chapter" data-level="2.7" data-path="PythonBase.html"><a href="PythonBase.html#循环语句"><i class="fa fa-check"></i><b>2.7</b> 循环语句</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="PythonBase.html"><a href="PythonBase.html#while循环"><i class="fa fa-check"></i><b>2.7.1</b> while循环</a></li>
+<li class="chapter" data-level="2.7.2" data-path="PythonBase.html"><a href="PythonBase.html#for循环"><i class="fa fa-check"></i><b>2.7.2</b> for循环</a></li>
+<li class="chapter" data-level="2.7.3" data-path="PythonBase.html"><a href="PythonBase.html#break"><i class="fa fa-check"></i><b>2.7.3</b> break</a></li>
+<li class="chapter" data-level="2.7.4" data-path="PythonBase.html"><a href="PythonBase.html#continue"><i class="fa fa-check"></i><b>2.7.4</b> continue</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="PythonBase.html"><a href="PythonBase.html#练习"><i class="fa fa-check"></i><b>2.8</b> 练习</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="PythonBase.html"><a href="PythonBase.html#打印10以内的奇数"><i class="fa fa-check"></i><b>2.8.1</b> 打印10以内的奇数</a></li>
+<li class="chapter" data-level="2.8.2" data-path="PythonBase.html"><a href="PythonBase.html#程序输出随机数"><i class="fa fa-check"></i><b>2.8.2</b> 程序输出随机数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html"><i class="fa fa-check"></i><b>3</b> Python数据容器</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#字符串str"><i class="fa fa-check"></i><b>3.1</b> 字符串（str）</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#下标和切片"><i class="fa fa-check"></i><b>3.1.1</b> 下标和切片</a></li>
+<li class="chapter" data-level="3.1.2" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#StrBuildInFunctions"><i class="fa fa-check"></i><b>3.1.2</b> 字符串常见内置函数</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#列表list"><i class="fa fa-check"></i><b>3.2</b> 列表（list）</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#ListBuildInFunctions"><i class="fa fa-check"></i><b>3.2.1</b> 列表常用操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#元组tuple"><i class="fa fa-check"></i><b>3.3</b> 元组（tuple）</a></li>
+<li class="chapter" data-level="3.4" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#字典dict"><i class="fa fa-check"></i><b>3.4</b> 字典（dict）</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#DicBuildInFunctions"><i class="fa fa-check"></i><b>3.4.1</b> 字典常见操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#集合set"><i class="fa fa-check"></i><b>3.5</b> 集合（set）</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#交集并集"><i class="fa fa-check"></i><b>3.5.1</b> 交集/并集</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#拓展可变类型不可变类型"><i class="fa fa-check"></i><b>3.6</b> 拓展：可变类型&amp;不可变类型</a></li>
+<li class="chapter" data-level="3.7" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#练习-1"><i class="fa fa-check"></i><b>3.7</b> 练习</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#字符串遍历"><i class="fa fa-check"></i><b>3.7.1</b> 字符串遍历</a></li>
+<li class="chapter" data-level="3.7.2" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#获取列表中相同元素对应的索引并保存到字典中"><i class="fa fa-check"></i><b>3.7.2</b> 获取列表中相同元素对应的索引，并保存到字典中</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html"><i class="fa fa-check"></i><b>4</b> Python03-函数与异常处理</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数"><i class="fa fa-check"></i><b>4.1</b> 函数</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数定义"><i class="fa fa-check"></i><b>4.1.1</b> 函数定义</a></li>
+<li class="chapter" data-level="4.1.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数调用顺序"><i class="fa fa-check"></i><b>4.1.2</b> 函数调用顺序</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数的参数"><i class="fa fa-check"></i><b>4.2</b> 函数的参数</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#位置参数"><i class="fa fa-check"></i><b>4.2.1</b> 位置参数</a></li>
+<li class="chapter" data-level="4.2.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#默认参数"><i class="fa fa-check"></i><b>4.2.2</b> 默认参数</a></li>
+<li class="chapter" data-level="4.2.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#可变参数"><i class="fa fa-check"></i><b>4.2.3</b> 可变参数</a></li>
+<li class="chapter" data-level="4.2.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#命名关键字参数"><i class="fa fa-check"></i><b>4.2.4</b> 命名关键字参数</a></li>
+<li class="chapter" data-level="4.2.5" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#参数组合"><i class="fa fa-check"></i><b>4.2.5</b> 参数组合</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数返回值"><i class="fa fa-check"></i><b>4.3</b> 函数返回值</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#返回值介绍"><i class="fa fa-check"></i><b>4.3.1</b> ‘返回值’介绍</a></li>
+<li class="chapter" data-level="4.3.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#带有返回值的函数"><i class="fa fa-check"></i><b>4.3.2</b> 带有返回值的函数</a></li>
+<li class="chapter" data-level="4.3.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#保存函数的返回值"><i class="fa fa-check"></i><b>4.3.3</b> 保存函数的返回值</a></li>
+<li class="chapter" data-level="4.3.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#多个返回值"><i class="fa fa-check"></i><b>4.3.4</b> 多个返回值</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#递归函数"><i class="fa fa-check"></i><b>4.4</b> 递归函数</a></li>
+<li class="chapter" data-level="4.5" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#局部变量与全局变量"><i class="fa fa-check"></i><b>4.5</b> 局部变量与全局变量</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#局部变量"><i class="fa fa-check"></i><b>4.5.1</b> 局部变量</a></li>
+<li class="chapter" data-level="4.5.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#全局变量"><i class="fa fa-check"></i><b>4.5.2</b> 全局变量</a></li>
+<li class="chapter" data-level="4.5.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#全局变量和局部变量冲突问题"><i class="fa fa-check"></i><b>4.5.3</b> 全局变量和局部变量冲突问题</a></li>
+<li class="chapter" data-level="4.5.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#修改全局变量"><i class="fa fa-check"></i><b>4.5.4</b> 修改全局变量</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#捕获异常"><i class="fa fa-check"></i><b>4.6</b> 捕获异常</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html"><i class="fa fa-check"></i><b>5</b> Python04-面向对象与模块</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#面向过程和面向对象"><i class="fa fa-check"></i><b>5.1</b> 面向过程和面向对象</a></li>
+<li class="chapter" data-level="5.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#类和对象"><i class="fa fa-check"></i><b>5.2</b> 类和对象</a></li>
+<li class="chapter" data-level="5.3" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#类的定义"><i class="fa fa-check"></i><b>5.3</b> 类的定义</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#基本语法"><i class="fa fa-check"></i><b>5.3.1</b> 基本语法</a></li>
+<li class="chapter" data-level="5.3.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#多个对象的self"><i class="fa fa-check"></i><b>5.3.2</b> 多个对象的self</a></li>
+<li class="chapter" data-level="5.3.3" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#初始化方法"><i class="fa fa-check"></i><b>5.3.3</b> 初始化方法</a></li>
+<li class="chapter" data-level="5.3.4" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#私有属性和私有方法"><i class="fa fa-check"></i><b>5.3.4</b> 私有属性和私有方法</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#继承"><i class="fa fa-check"></i><b>5.4</b> 继承</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#单继承"><i class="fa fa-check"></i><b>5.4.1</b> 单继承</a></li>
+<li class="chapter" data-level="5.4.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#多继承"><i class="fa fa-check"></i><b>5.4.2</b> 多继承</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#OverwriteAndPolymorphic"><i class="fa fa-check"></i><b>5.5</b> 重写和多态</a></li>
+<li class="chapter" data-level="5.6" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#Module"><i class="fa fa-check"></i><b>5.6</b> 模块</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#自定义模块及导入"><i class="fa fa-check"></i><b>5.6.1</b> 自定义模块及导入</a></li>
+<li class="chapter" data-level="5.6.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#模块的导入方法"><i class="fa fa-check"></i><b>5.6.2</b> 模块的导入方法</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#练习题"><i class="fa fa-check"></i><b>5.7</b> 练习题</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html"><i class="fa fa-check"></i><b>6</b> Python05-文件操作Excel/World</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#openpyxl简介"><i class="fa fa-check"></i><b>6.1</b> OpenPyXL简介</a></li>
+<li class="chapter" data-level="6.2" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#创建工作簿和表"><i class="fa fa-check"></i><b>6.2</b> 创建工作簿和表</a></li>
+<li class="chapter" data-level="6.3" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#读取文件和表达内容"><i class="fa fa-check"></i><b>6.3</b> 读取文件和表达内容</a></li>
+<li class="chapter" data-level="6.4" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#openpyxl案例"><i class="fa fa-check"></i><b>6.4</b> OpenPyXL案例</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#添加列数据"><i class="fa fa-check"></i><b>6.4.1</b> 添加列数据</a></li>
+<li class="chapter" data-level="6.4.2" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#绘制图形"><i class="fa fa-check"></i><b>6.4.2</b> 绘制图形</a></li>
+<li class="chapter" data-level="6.4.3" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#添加图片"><i class="fa fa-check"></i><b>6.4.3</b> 添加图片</a></li>
+<li class="chapter" data-level="6.4.4" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#修改单元格样式"><i class="fa fa-check"></i><b>6.4.4</b> 修改单元格样式</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Python学习笔记</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="PythonDataContainers" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Python数据容器</h1>
+<div id="字符串str" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> 字符串（str）</h2>
+<p>定义： 只要使用引号(‘xx’, “xx”, ""“jjj”"", ’‘’xxx’’’) 引起来的数据就叫做字符串</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="PythonDataContainers.html#cb1-1"></a>my_str <span class="op">=</span> <span class="st">&#39;hello&#39;</span> </span>
+<span id="cb1-2"><a href="PythonDataContainers.html#cb1-2"></a><span class="bu">print</span>(<span class="bu">type</span>(my_str))</span>
+<span id="cb1-3"><a href="PythonDataContainers.html#cb1-3"></a><span class="co"># &lt;class &#39;str&#39;&gt;</span></span></code></pre></div>
+<p><strong>单双引号嵌套</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="PythonDataContainers.html#cb2-1"></a><span class="bu">print</span>(<span class="st">&quot;fadf&#39;af&#39;&quot;</span>)</span>
+<span id="cb2-2"><a href="PythonDataContainers.html#cb2-2"></a><span class="bu">print</span>(<span class="st">&#39;&quot;文字&quot;&#39;</span>)</span></code></pre></div>
+<div id="下标和切片" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> 下标和切片</h3>
+<p><strong>字符串索引</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="PythonDataContainers.html#cb3-1"></a>my_str <span class="op">=</span> <span class="st">&#39;hello&#39;</span>   </span>
+<span id="cb3-2"><a href="PythonDataContainers.html#cb3-2"></a><span class="bu">print</span>(my_str[<span class="dv">0</span>])</span>
+<span id="cb3-3"><a href="PythonDataContainers.html#cb3-3"></a><span class="bu">print</span>(my_str[<span class="dv">4</span>])</span>
+<span id="cb3-4"><a href="PythonDataContainers.html#cb3-4"></a><span class="bu">print</span>(my_str[<span class="op">-</span><span class="dv">1</span>]) <span class="co"># 取字符串倒数第一个</span></span>
+<span id="cb3-5"><a href="PythonDataContainers.html#cb3-5"></a><span class="bu">print</span>(my_str[<span class="op">-</span><span class="dv">2</span>]) <span class="co"># 取字符串倒数第二个</span></span>
+<span id="cb3-6"><a href="PythonDataContainers.html#cb3-6"></a><span class="co"># h</span></span>
+<span id="cb3-7"><a href="PythonDataContainers.html#cb3-7"></a><span class="co"># o</span></span>
+<span id="cb3-8"><a href="PythonDataContainers.html#cb3-8"></a><span class="co"># o</span></span>
+<span id="cb3-9"><a href="PythonDataContainers.html#cb3-9"></a><span class="co"># l</span></span>
+<span id="cb3-10"><a href="PythonDataContainers.html#cb3-10"></a></span>
+<span id="cb3-11"><a href="PythonDataContainers.html#cb3-11"></a><span class="bu">len</span>(my_str) <span class="co"># 判断字符长度</span></span>
+<span id="cb3-12"><a href="PythonDataContainers.html#cb3-12"></a><span class="bu">print</span>(my_str[<span class="bu">len</span>(my_str) <span class="op">-</span> <span class="dv">1</span>])</span></code></pre></div>
+<p><strong>切片</strong></p>
+<p>切片: 根据下标的范围获取一部分数据，比如: 列表，字符串可以使用切片</p>
+<p>切片的使用格式：数据[起始下标:结束下标:步长]，e.g. <code>my_str[0:1]</code></p>
+<p>提示： 起始下标默认0， 结束下标是不包含（python下标左闭右开）， 步长默认是1。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="PythonDataContainers.html#cb4-1"></a><span class="bu">str</span> <span class="op">=</span> <span class="st">&#39;Hello&#39;</span></span>
+<span id="cb4-2"><a href="PythonDataContainers.html#cb4-2"></a><span class="bu">str</span>[<span class="dv">0</span>:<span class="dv">2</span>]</span>
+<span id="cb4-3"><a href="PythonDataContainers.html#cb4-3"></a><span class="co"># &#39;He&#39;</span></span>
+<span id="cb4-4"><a href="PythonDataContainers.html#cb4-4"></a><span class="bu">str</span>[:<span class="dv">2</span>]  <span class="co"># 起始为0可以省略</span></span>
+<span id="cb4-5"><a href="PythonDataContainers.html#cb4-5"></a><span class="co"># &#39;He&#39;</span></span>
+<span id="cb4-6"><a href="PythonDataContainers.html#cb4-6"></a>my_str[<span class="op">-</span><span class="dv">5</span>:<span class="op">-</span><span class="dv">3</span>]</span>
+<span id="cb4-7"><a href="PythonDataContainers.html#cb4-7"></a><span class="co"># &#39;He&#39;</span></span>
+<span id="cb4-8"><a href="PythonDataContainers.html#cb4-8"></a>my_str[<span class="op">-</span><span class="dv">1</span>:<span class="op">-</span><span class="dv">6</span>:<span class="op">-</span><span class="dv">1</span>] <span class="co"># 把字符串倒序输出</span></span>
+<span id="cb4-9"><a href="PythonDataContainers.html#cb4-9"></a><span class="co"># &#39;olleh&#39;</span></span></code></pre></div>
+</div>
+<div id="StrBuildInFunctions" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> 字符串常见内置函数</h3>
+<ul>
+<li><strong>增/字符串连结</strong>
+<ul>
+<li>str.join(mystr)</li>
+<li>‘%s%s%s’%(‘hello’,’ ‘,’world’)</li>
+<li>‘{}{}{}’.format(‘hello’,’ ‘,’world’)</li>
+<li>f“{‘hello’}{’ ‘}{’world’}”</li>
+<li>‘hello’ + ’ ’ + ‘world’</li>
+</ul></li>
+<li><strong>删</strong>
+<ul>
+<li>mystr.strip() 默认删除两边空格</li>
+<li>mystr.lstrip()</li>
+<li>mystr.rstrip()</li>
+</ul></li>
+<li><strong>改</strong>
+<ul>
+<li>mystr.replace(str1, str2, mystr.count(str1))</li>
+<li>mystr.split(str = ’ ’, 2)</li>
+<li>mystr.splitlines()</li>
+<li>mystr.capitalize()</li>
+<li>mystr.title()</li>
+<li>mystr.lower()</li>
+<li>mystr.upper()</li>
+<li>mystr.ljust()</li>
+<li>mystr.rjust()</li>
+<li>mystr.center(width)</li>
+<li>mystr.partition(str)</li>
+<li>mystr.rpartition(str)</li>
+</ul></li>
+<li><strong>查</strong>
+<ul>
+<li>mystr.find(str, start, end)</li>
+<li>mystr.rfind(str, start, end)</li>
+<li>mystr.index(str, start, end)</li>
+<li>mystr.rindex(str, start, end)</li>
+<li>mystr.count(str)</li>
+<li>mystr.startswith(str)</li>
+<li>mystr.endswith(str)</li>
+</ul></li>
+</ul>
+<table>
+<caption><span id="tab:unnamed-chunk-1">Table 3.1: </span>Python字符串内置函数（str = “hello”）</caption>
+<thead>
+<tr class="header">
+<th align="left">函数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">str.index(‘l’)</td>
+<td align="left">从左查找字符串中第一次出现的某个字符的下标，结果是2</td>
+</tr>
+<tr class="even">
+<td align="left">str.rindex(‘l’)</td>
+<td align="left">从右查找字符串中第一次出现的某个字符的下标，结果是3</td>
+</tr>
+<tr class="odd">
+<td align="left">str.find(‘h’)</td>
+<td align="left">根据指定字符查找对应的下标，结果是2。find 和 index的区别, find如果没有找到数据那么返回的结果是-1</td>
+</tr>
+<tr class="even">
+<td align="left">len(str)</td>
+<td align="left">统计字符串长度</td>
+</tr>
+<tr class="odd">
+<td align="left">str.count(‘l’)</td>
+<td align="left">统计某个字符在字符串中出现次数，结果是2</td>
+</tr>
+<tr class="even">
+<td align="left">str.replace(‘l’, ‘x’)</td>
+<td align="left">替换字符串中指定数据（原字符串不变)，新的结果可赋值给新的变量</td>
+</tr>
+<tr class="odd">
+<td align="left">str.split(‘e’)</td>
+<td align="left">分隔符，默认为所有的空字符，包括空格、换行<code>\n</code>、制表符<code>\t</code> 等</td>
+</tr>
+<tr class="even">
+<td align="left">str.capitalize()</td>
+<td align="left">如果str = ‘hello world’, 结果为’Hello world’，只有首个单词首字母大写</td>
+</tr>
+<tr class="odd">
+<td align="left">str.title()</td>
+<td align="left">如果str = ‘hello world’, 结果为’Hello World’，每个单词首字母都大写</td>
+</tr>
+<tr class="even">
+<td align="left">str.upper()</td>
+<td align="left">把所有字符中的小写字母转换成大写字母</td>
+</tr>
+<tr class="odd">
+<td align="left">str.lower()</td>
+<td align="left">把所有字符中的大写字母转换成小写字母</td>
+</tr>
+<tr class="even">
+<td align="left">str.startswith(‘h’)</td>
+<td align="left">判断是否以指定数据开头</td>
+</tr>
+<tr class="odd">
+<td align="left">str.endswith(‘h’)</td>
+<td align="left">判断是否以指定数据结尾</td>
+</tr>
+<tr class="even">
+<td align="left">str.strip(‘h’)</td>
+<td align="left">去除两边指定数据，不填默认去除两边空格</td>
+</tr>
+<tr class="odd">
+<td align="left">str.lstrip()</td>
+<td align="left">去除左边空格</td>
+</tr>
+<tr class="even">
+<td align="left">str.rstrip()</td>
+<td align="left">去除右边空格</td>
+</tr>
+<tr class="odd">
+<td align="left">‘abc’.isalpha()</td>
+<td align="left">判断是不是全是字母</td>
+</tr>
+<tr class="even">
+<td align="left">‘123’.isdigit()</td>
+<td align="left">判断是不是全是数字</td>
+</tr>
+<tr class="odd">
+<td align="left">‘abc’.isalnum()</td>
+<td align="left">判断有数字或字母或都有</td>
+</tr>
+<tr class="even">
+<td align="left">‘12’.join(‘abc’)</td>
+<td align="left">向abc每个元素后面都插入12，构造一个新字符串，结果为<code>a12b12c</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="列表list" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> 列表（list）</h2>
+<div id="ListBuildInFunctions" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> 列表常用操作</h3>
+<p>列表： 以中括号表现形式的数据集合， 比如: [1, 1.2, ‘bac’, True]</p>
+<p>python列表里面可以放入任意类型数据，c语言中的数组必须是同一个类型</p>
+<ul>
+<li>查
+<ul>
+<li>mylist.len() 列表长度</li>
+<li>mylist[下标] 当下标/索引超出范围会报错，索引<code>-1</code>表示获取最后一个元素</li>
+<li>mylist[起始：终止：步长]</li>
+<li>mylist.index(‘objext’,start,end) 查看元素index</li>
+<li>mylist.count(‘objext’)</li>
+</ul></li>
+<li>增
+<ul>
+<li>mylist.append(object)</li>
+<li>mylist.append(OtherList) 将另一个集合中的元素逐一添加到列表中</li>
+<li>mylist.insert(index, object) 在指定位置<code>index</code><strong>前</strong>插入元素object</li>
+</ul></li>
+<li>改
+<ul>
+<li>mylist[1] = ‘zhangsan’ 确定要修改的元素索引，直接重新赋值，覆盖原来的即可</li>
+<li>mylist.reverse() 将list倒序</li>
+<li>mylist.sort(reverse=TRUE) 重新排序，默认小到大，reverse参数设定为true后可改为倒序</li>
+</ul></li>
+<li>删
+<ul>
+<li>del mylist[2] 根据下标进行删除</li>
+<li>mylist.pop() 删除最后一个元素</li>
+<li>mylist.remove(‘a’) 根据元素的值进行删除</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="元组tuple" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> 元组（tuple）</h2>
+<p>python有另一种有序列表叫元组<code>tuple</code>。<code>tuple</code>和<code>list</code>类似，但是<code>tuple</code>一旦初始化就<strong>不能被修改</strong>。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="PythonDataContainers.html#cb5-1"></a>classmates <span class="op">=</span> (<span class="st">&quot;Micheal&quot;</span>,<span class="st">&quot;Bob&quot;</span>,<span class="st">&quot;Tracy&quot;</span>)</span></code></pre></div>
+<p>现在classmates这个tuple就不能变了，不能像列表那样使用<code>append()</code>, <code>insert()</code>这样的方法。其他获取元素的方法和list是一样的。</p>
+<p>不可变的tuple有什么意义？因为tuple不可变，所以代码更安全。如果可能，能用tuple代替list就尽量使用tuple。</p>
+<p>如果要指定一个空tuple，写成<code>t = ()</code>即可。</p>
+<p>但是，要定义一个只有一个元素的tuple，尤其是当这仅有的一个元素是数字的时候，如果写成<code>t = (1)</code>就会有歧义。这样写并不是创建了一个只含一个元素的tuple，而是创建了数字1。因为，python会把括号当作运算中的括号。为了消除歧义，当创建一个元素的tuple时可以写成：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="PythonDataContainers.html#cb6-1"></a>t <span class="op">=</span> (<span class="dv">1</span>,)</span>
+<span id="cb6-2"><a href="PythonDataContainers.html#cb6-2"></a>t</span>
+<span id="cb6-3"><a href="PythonDataContainers.html#cb6-3"></a><span class="co"># (1,)</span></span></code></pre></div>
+<p><strong>“可变的”tuple:</strong></p>
+<p>当tuple元素内部有列表时，列表可以更改</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="PythonDataContainers.html#cb7-1"></a>t <span class="op">=</span> (<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,[<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>])</span>
+<span id="cb7-2"><a href="PythonDataContainers.html#cb7-2"></a>t[<span class="dv">2</span>][<span class="dv">0</span>] <span class="op">=</span> <span class="st">&quot;X&quot;</span></span>
+<span id="cb7-3"><a href="PythonDataContainers.html#cb7-3"></a>t[<span class="dv">2</span>][<span class="dv">1</span>] <span class="op">=</span> <span class="st">&quot;Y&quot;</span></span>
+<span id="cb7-4"><a href="PythonDataContainers.html#cb7-4"></a>t</span>
+<span id="cb7-5"><a href="PythonDataContainers.html#cb7-5"></a><span class="co"># (&quot;a&quot;,&quot;b&quot;,[&quot;X&quot;,&quot;Y&quot;])</span></span></code></pre></div>
+</div>
+<div id="字典dict" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> 字典（dict）</h2>
+<p>字典可以存储任意类型对象。</p>
+<p>字典的每个键值对<code>key:value</code>用冒号分割，每个对之间用逗号<code>,</code>分割，整个字典包含在花括号<code>{}</code>中。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="PythonDataContainers.html#cb8-1"></a>dic <span class="op">=</span> {<span class="st">&quot;Michael&quot;</span>:<span class="dv">97</span>, <span class="st">&quot;Bob&quot;</span>:<span class="dv">89</span>, <span class="st">&quot;Tracy&quot;</span>:<span class="dv">92</span>}</span>
+<span id="cb8-2"><a href="PythonDataContainers.html#cb8-2"></a>dic[<span class="st">&quot;Michael&quot;</span>]</span>
+<span id="cb8-3"><a href="PythonDataContainers.html#cb8-3"></a><span class="co"># 95</span></span></code></pre></div>
+<div id="DicBuildInFunctions" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> 字典常见操作</h3>
+<ul>
+<li>修改元素
+<ul>
+<li>mydic[‘id’] = int(1245) 若原来就有id这个键，则覆盖掉原来的id对应的value</li>
+</ul></li>
+<li>添加元素
+<ul>
+<li>mydic[‘id’] = int(1245) 若原来字典里没有id这个键，则新增</li>
+</ul></li>
+<li>删除元素
+<ul>
+<li>del mydic[“id”]</li>
+<li>del mydic 删除整个字典</li>
+<li>mydic.clear() 清空整个字典</li>
+</ul></li>
+<li>查询
+<ul>
+<li>len(mydic)</li>
+<li>list(mydic.keys()) 返回一个字典所有的key的列表</li>
+<li>list(mydic.values()) 返回一个字典包含的所有value的列表</li>
+<li>list(mydic.items()) 返回一个包含所有键值对的元组的列表</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="集合set" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> 集合（set）</h2>
+<p><code>set</code>是一个无序的不重复元素序列。</p>
+<p>可以使用大括号<code>{}</code>或者<code>set()</code>函数来创建集合；而创建一个空的集合<strong>必须</strong>使用<code>set()</code>函数，因为<code>{}</code>是用来创建空的字典的。</p>
+<ul>
+<li><p>集合不支持下标赋值和取值</p></li>
+<li><p>可以通过遍历获取数据</p></li>
+<li><p>集合函数<code>set()</code>可以对容器类型数据去重</p></li>
+<li><p>列表、元组、结合三者之间可以相互转换</p></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="PythonDataContainers.html#cb9-1"></a><span class="co"># 创建集合</span></span>
+<span id="cb9-2"><a href="PythonDataContainers.html#cb9-2"></a>myset <span class="op">=</span> {<span class="dv">1</span>,<span class="dv">4</span>,<span class="st">&quot;abc&quot;</span>,<span class="st">&quot;hello&quot;</span>}</span>
+<span id="cb9-3"><a href="PythonDataContainers.html#cb9-3"></a></span>
+<span id="cb9-4"><a href="PythonDataContainers.html#cb9-4"></a><span class="co"># 对容器类型数据去重</span></span>
+<span id="cb9-5"><a href="PythonDataContainers.html#cb9-5"></a>mylist <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb9-6"><a href="PythonDataContainers.html#cb9-6"></a>myset <span class="op">=</span> <span class="bu">set</span>(mylist)</span>
+<span id="cb9-7"><a href="PythonDataContainers.html#cb9-7"></a><span class="bu">print</span>(myset)</span>
+<span id="cb9-8"><a href="PythonDataContainers.html#cb9-8"></a><span class="co"># [1, 2, 3]</span></span></code></pre></div>
+<div id="交集并集" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> 交集/并集</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="PythonDataContainers.html#cb10-1"></a>set1 <span class="op">=</span> {<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>}</span>
+<span id="cb10-2"><a href="PythonDataContainers.html#cb10-2"></a>set2 <span class="op">=</span> {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>}</span>
+<span id="cb10-3"><a href="PythonDataContainers.html#cb10-3"></a></span>
+<span id="cb10-4"><a href="PythonDataContainers.html#cb10-4"></a><span class="co"># #交集</span></span>
+<span id="cb10-5"><a href="PythonDataContainers.html#cb10-5"></a><span class="bu">print</span>(set1 <span class="op">&amp;</span> set2)</span>
+<span id="cb10-6"><a href="PythonDataContainers.html#cb10-6"></a><span class="bu">print</span>(set1.intersection(set2))</span>
+<span id="cb10-7"><a href="PythonDataContainers.html#cb10-7"></a></span>
+<span id="cb10-8"><a href="PythonDataContainers.html#cb10-8"></a><span class="co"># #并集</span></span>
+<span id="cb10-9"><a href="PythonDataContainers.html#cb10-9"></a><span class="bu">print</span>(set1 <span class="op">|</span> set2)</span>
+<span id="cb10-10"><a href="PythonDataContainers.html#cb10-10"></a><span class="bu">print</span>(set1.union(set2))</span>
+<span id="cb10-11"><a href="PythonDataContainers.html#cb10-11"></a></span>
+<span id="cb10-12"><a href="PythonDataContainers.html#cb10-12"></a><span class="co"># #差集A－B＝{x|x∈A，且x不属于B}</span></span>
+<span id="cb10-13"><a href="PythonDataContainers.html#cb10-13"></a><span class="bu">print</span>(set1<span class="op">-</span>set2)</span>
+<span id="cb10-14"><a href="PythonDataContainers.html#cb10-14"></a><span class="bu">print</span>(set1.difference(set2))</span>
+<span id="cb10-15"><a href="PythonDataContainers.html#cb10-15"></a></span>
+<span id="cb10-16"><a href="PythonDataContainers.html#cb10-16"></a><span class="bu">print</span>(set2<span class="op">-</span>set1)</span>
+<span id="cb10-17"><a href="PythonDataContainers.html#cb10-17"></a><span class="bu">print</span>(set2.difference(set1))</span>
+<span id="cb10-18"><a href="PythonDataContainers.html#cb10-18"></a></span>
+<span id="cb10-19"><a href="PythonDataContainers.html#cb10-19"></a><span class="co"># #是否是子集</span></span>
+<span id="cb10-20"><a href="PythonDataContainers.html#cb10-20"></a>set1 <span class="op">=</span> {<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">4</span>}</span>
+<span id="cb10-21"><a href="PythonDataContainers.html#cb10-21"></a>set2 <span class="op">=</span> {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>}</span>
+<span id="cb10-22"><a href="PythonDataContainers.html#cb10-22"></a><span class="bu">print</span>(set1.issubset(set2)) <span class="co">#set1是set2的子集</span></span></code></pre></div>
+</div>
+</div>
+<div id="拓展可变类型不可变类型" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> 拓展：可变类型&amp;不可变类型</h2>
+<p><strong>可变类型</strong>：可以在原有数据的基础上对数据进行修改(添加或者删除或者修改数据)，修改后内存地址不变。列表，集合，字典，对数据进行修改后内存地址不变。</p>
+<p><strong>不可变类型</strong>: 不能在原有数据的基础上对数据进行修改，当然直接赋值一个新值，那么内存地址会发生改变。字符串，数字，元组，不能再原有数据的基础上对数据进行修改。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="PythonDataContainers.html#cb11-1"></a><span class="co"># # 列表的可变演练</span></span>
+<span id="cb11-2"><a href="PythonDataContainers.html#cb11-2"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
+<span id="cb11-3"><a href="PythonDataContainers.html#cb11-3"></a><span class="bu">print</span>(my_list, <span class="bu">id</span>(my_list)) <span class="co"># 查看内存地址</span></span>
+<span id="cb11-4"><a href="PythonDataContainers.html#cb11-4"></a><span class="co"># [1, 5, 6] 4475084304</span></span>
+<span id="cb11-5"><a href="PythonDataContainers.html#cb11-5"></a>my_list.append(<span class="dv">7</span>)</span>
+<span id="cb11-6"><a href="PythonDataContainers.html#cb11-6"></a><span class="bu">print</span>(my_list, <span class="bu">id</span>(my_list))</span>
+<span id="cb11-7"><a href="PythonDataContainers.html#cb11-7"></a><span class="co"># [1, 5, 6, 7] 4475053152</span></span>
+<span id="cb11-8"><a href="PythonDataContainers.html#cb11-8"></a></span>
+<span id="cb11-9"><a href="PythonDataContainers.html#cb11-9"></a><span class="co"># # 字符串的不可变演示</span></span>
+<span id="cb11-10"><a href="PythonDataContainers.html#cb11-10"></a>my_str <span class="op">=</span> <span class="st">&quot;hello&quot;</span></span>
+<span id="cb11-11"><a href="PythonDataContainers.html#cb11-11"></a><span class="bu">print</span>(my_str, <span class="bu">id</span>(my_str))</span>
+<span id="cb11-12"><a href="PythonDataContainers.html#cb11-12"></a><span class="co"># hello 4477091504</span></span>
+<span id="cb11-13"><a href="PythonDataContainers.html#cb11-13"></a>result <span class="op">=</span> my_str.replace(<span class="st">&#39;e&#39;</span>,<span class="st">&#39;a&#39;</span>)</span>
+<span id="cb11-14"><a href="PythonDataContainers.html#cb11-14"></a><span class="bu">print</span>(my_str, <span class="bu">id</span>(result))</span>
+<span id="cb11-15"><a href="PythonDataContainers.html#cb11-15"></a><span class="co"># hello 4477635888</span></span>
+<span id="cb11-16"><a href="PythonDataContainers.html#cb11-16"></a></span></code></pre></div>
+</div>
+<div id="练习-1" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> 练习</h2>
+<div id="字符串遍历" class="section level3" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> 字符串遍历</h3>
+<p><strong>1. 单个元素一行输出整个字符串</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="PythonDataContainers.html#cb12-1"></a>mystr <span class="op">=</span> <span class="st">&#39;My name is Python&#39;</span></span>
+<span id="cb12-2"><a href="PythonDataContainers.html#cb12-2"></a></span>
+<span id="cb12-3"><a href="PythonDataContainers.html#cb12-3"></a><span class="co"># enumerate(mystr) 会直接生成一个字符串下标和元素对应的字典</span></span>
+<span id="cb12-4"><a href="PythonDataContainers.html#cb12-4"></a><span class="cf">for</span> index, value <span class="kw">in</span> <span class="bu">enumerate</span>(mystr):</span>
+<span id="cb12-5"><a href="PythonDataContainers.html#cb12-5"></a>    <span class="bu">print</span>(value)</span></code></pre></div>
+<p><strong>2. 倒序输出字符串</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="PythonDataContainers.html#cb13-1"></a>mystr <span class="op">=</span> <span class="bu">input</span>(<span class="st">&quot;Please type a string: &quot;</span>)</span>
+<span id="cb13-2"><a href="PythonDataContainers.html#cb13-2"></a><span class="co"># 方法一： 切片</span></span>
+<span id="cb13-3"><a href="PythonDataContainers.html#cb13-3"></a><span class="bu">print</span>(<span class="st">&quot;切片：&quot;</span><span class="op">+</span>mystr[::<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb13-4"><a href="PythonDataContainers.html#cb13-4"></a></span>
+<span id="cb13-5"><a href="PythonDataContainers.html#cb13-5"></a><span class="co"># 方法二： reverse()函数，现转化为list再reverse</span></span>
+<span id="cb13-6"><a href="PythonDataContainers.html#cb13-6"></a>lst <span class="op">=</span> <span class="bu">list</span>(mystr)</span>
+<span id="cb13-7"><a href="PythonDataContainers.html#cb13-7"></a>lst.reverse()</span>
+<span id="cb13-8"><a href="PythonDataContainers.html#cb13-8"></a><span class="bu">print</span>(<span class="st">&#39;&#39;</span>.join(lst))</span>
+<span id="cb13-9"><a href="PythonDataContainers.html#cb13-9"></a></span>
+<span id="cb13-10"><a href="PythonDataContainers.html#cb13-10"></a><span class="co"># 方法三：字符串的倒序遍历</span></span>
+<span id="cb13-11"><a href="PythonDataContainers.html#cb13-11"></a>i <span class="op">=</span> <span class="bu">len</span>(mystr) <span class="dv">-1</span></span>
+<span id="cb13-12"><a href="PythonDataContainers.html#cb13-12"></a>str_list <span class="op">=</span> []</span>
+<span id="cb13-13"><a href="PythonDataContainers.html#cb13-13"></a><span class="cf">while</span>(i<span class="op">&gt;=</span><span class="dv">0</span>):</span>
+<span id="cb13-14"><a href="PythonDataContainers.html#cb13-14"></a>    str_list.append(mystr[i])</span>
+<span id="cb13-15"><a href="PythonDataContainers.html#cb13-15"></a>    i <span class="op">=</span> i <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb13-16"><a href="PythonDataContainers.html#cb13-16"></a><span class="bu">print</span>(<span class="st">&#39;&#39;</span>.join(str_list))</span></code></pre></div>
+</div>
+<div id="获取列表中相同元素对应的索引并保存到字典中" class="section level3" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> 获取列表中相同元素对应的索引，并保存到字典中</h3>
+<p>例如：[1, 2, 3, 3, 2, 1] -&gt; {1:[0,5], 2:[1,4], 3:[2,3]}</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="PythonDataContainers.html#cb14-1"></a><span class="bu">list</span> <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>]</span>
+<span id="cb14-2"><a href="PythonDataContainers.html#cb14-2"></a>dic <span class="op">=</span> {}</span>
+<span id="cb14-3"><a href="PythonDataContainers.html#cb14-3"></a>myset <span class="op">=</span> <span class="bu">set</span>(<span class="bu">list</span>) <span class="co"># 去重</span></span>
+<span id="cb14-4"><a href="PythonDataContainers.html#cb14-4"></a><span class="co"># {1, 2, 3}</span></span>
+<span id="cb14-5"><a href="PythonDataContainers.html#cb14-5"></a></span>
+<span id="cb14-6"><a href="PythonDataContainers.html#cb14-6"></a><span class="cf">for</span> key <span class="kw">in</span> myset:</span>
+<span id="cb14-7"><a href="PythonDataContainers.html#cb14-7"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-8"><a href="PythonDataContainers.html#cb14-8"></a>    value <span class="op">=</span> []</span>
+<span id="cb14-9"><a href="PythonDataContainers.html#cb14-9"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(<span class="bu">list</span>)):</span>
+<span id="cb14-10"><a href="PythonDataContainers.html#cb14-10"></a>        <span class="cf">if</span> <span class="bu">list</span>[i] <span class="op">==</span> key:</span>
+<span id="cb14-11"><a href="PythonDataContainers.html#cb14-11"></a>            value.append(i)</span>
+<span id="cb14-12"><a href="PythonDataContainers.html#cb14-12"></a>        i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb14-13"><a href="PythonDataContainers.html#cb14-13"></a>    dic[key] <span class="op">=</span> value</span>
+<span id="cb14-14"><a href="PythonDataContainers.html#cb14-14"></a></span>
+<span id="cb14-15"><a href="PythonDataContainers.html#cb14-15"></a><span class="bu">print</span>(dic)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="PythonBase.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="PythonFunctionError.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-PythonDataContainers.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

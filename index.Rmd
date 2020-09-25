@@ -1,0 +1,43 @@
+--- 
+title: "Python学习笔记"
+author: "LUDI Ling"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: ""
+---
+
+# 目录
+
+## python基础
+
+[Python01. Python基础](#PythonBase)
+
+[Python02. Python数据容器](#PythonDataContainers)
+  *[可变与不可变类型](#VariableAndInvariable)
+
+[Python03. Python函数与异常处理](#PythonFunctionError)
+  *[默认参数为空时有坑！！！](#DefaultParameterBug)
+
+[Python04. Python面向对象与模块](#PythonObjectAndModuel)
+
+
+## Python Cheat Sheet
+
+[Python变量类型和类型转变](#PythonDataType)
+
+[Python格式化输出](#FormattingOutPut)
+
+[Python运算符](#PythonMathOperator)
+
+[Python字符串常见函数](#StrBuildInFunctions)
+
+[Python列表常见函数](#ListBuildInFunctions)
+
+[Python字典常见函数](#DicBuildInFunctions)
+

@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Python基础 | Python学习笔记</title>
+  <meta name="description" content="Chapter 2 Python基础 | Python学习笔记" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Python基础 | Python学习笔记" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Python基础 | Python学习笔记" />
+  
+  
+  
+
+<meta name="author" content="LUDI Ling" />
+
+
+<meta name="date" content="2020-09-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="PythonDataContainers.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Python学习笔记</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 目录</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#python基础"><i class="fa fa-check"></i><b>1.1</b> python基础</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#python-cheat-sheet"><i class="fa fa-check"></i><b>1.2</b> Python Cheat Sheet</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="PythonBase.html"><a href="PythonBase.html"><i class="fa fa-check"></i><b>2</b> Python基础</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="PythonBase.html"><a href="PythonBase.html#anaconda与jupyter"><i class="fa fa-check"></i><b>2.1</b> Anaconda与Jupyter</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="PythonBase.html"><a href="PythonBase.html#anaconda"><i class="fa fa-check"></i><b>2.1.1</b> Anaconda</a></li>
+<li class="chapter" data-level="2.1.2" data-path="PythonBase.html"><a href="PythonBase.html#jupyter"><i class="fa fa-check"></i><b>2.1.2</b> Jupyter</a></li>
+<li class="chapter" data-level="2.1.3" data-path="PythonBase.html"><a href="PythonBase.html#安装jupyter-notebook拓展"><i class="fa fa-check"></i><b>2.1.3</b> 安装Jupyter Notebook拓展</a></li>
+<li class="chapter" data-level="2.1.4" data-path="PythonBase.html"><a href="PythonBase.html#jupyter中常用操作"><i class="fa fa-check"></i><b>2.1.4</b> Jupyter中常用操作</a></li>
+<li class="chapter" data-level="2.1.5" data-path="PythonBase.html"><a href="PythonBase.html#注意事项"><i class="fa fa-check"></i><b>2.1.5</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="PythonBase.html"><a href="PythonBase.html#语句与注释"><i class="fa fa-check"></i><b>2.2</b> 语句与注释</a></li>
+<li class="chapter" data-level="2.3" data-path="PythonBase.html"><a href="PythonBase.html#变量与赋值"><i class="fa fa-check"></i><b>2.3</b> 变量与赋值</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="PythonBase.html"><a href="PythonBase.html#变量的定义"><i class="fa fa-check"></i><b>2.3.1</b> 变量的定义</a></li>
+<li class="chapter" data-level="2.3.2" data-path="PythonBase.html"><a href="PythonBase.html#变量的命名规则"><i class="fa fa-check"></i><b>2.3.2</b> 变量的命名规则</a></li>
+<li class="chapter" data-level="2.3.3" data-path="PythonBase.html"><a href="PythonBase.html#关键字"><i class="fa fa-check"></i><b>2.3.3</b> 关键字</a></li>
+<li class="chapter" data-level="2.3.4" data-path="PythonBase.html"><a href="PythonBase.html#PythonDataType"><i class="fa fa-check"></i><b>2.3.4</b> 常用的数据类型转换</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="PythonBase.html"><a href="PythonBase.html#输入和输出"><i class="fa fa-check"></i><b>2.4</b> 输入和输出</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="PythonBase.html"><a href="PythonBase.html#python中的输出"><i class="fa fa-check"></i><b>2.4.1</b> Python中的输出</a></li>
+<li class="chapter" data-level="2.4.2" data-path="PythonBase.html"><a href="PythonBase.html#FormattingOutPut"><i class="fa fa-check"></i><b>2.4.2</b> 格式化输出</a></li>
+<li class="chapter" data-level="2.4.3" data-path="PythonBase.html"><a href="PythonBase.html#python中的输入"><i class="fa fa-check"></i><b>2.4.3</b> Python中的输入</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="PythonBase.html"><a href="PythonBase.html#PythonMathOperator"><i class="fa fa-check"></i><b>2.5</b> 运算符</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="PythonBase.html"><a href="PythonBase.html#算数运算符拓展"><i class="fa fa-check"></i><b>2.5.1</b> 算数运算符（拓展）</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="PythonBase.html"><a href="PythonBase.html#ifelifelse"><i class="fa fa-check"></i><b>2.6</b> if…elif…else</a></li>
+<li class="chapter" data-level="2.7" data-path="PythonBase.html"><a href="PythonBase.html#循环语句"><i class="fa fa-check"></i><b>2.7</b> 循环语句</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="PythonBase.html"><a href="PythonBase.html#while循环"><i class="fa fa-check"></i><b>2.7.1</b> while循环</a></li>
+<li class="chapter" data-level="2.7.2" data-path="PythonBase.html"><a href="PythonBase.html#for循环"><i class="fa fa-check"></i><b>2.7.2</b> for循环</a></li>
+<li class="chapter" data-level="2.7.3" data-path="PythonBase.html"><a href="PythonBase.html#break"><i class="fa fa-check"></i><b>2.7.3</b> break</a></li>
+<li class="chapter" data-level="2.7.4" data-path="PythonBase.html"><a href="PythonBase.html#continue"><i class="fa fa-check"></i><b>2.7.4</b> continue</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="PythonBase.html"><a href="PythonBase.html#练习"><i class="fa fa-check"></i><b>2.8</b> 练习</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="PythonBase.html"><a href="PythonBase.html#打印10以内的奇数"><i class="fa fa-check"></i><b>2.8.1</b> 打印10以内的奇数</a></li>
+<li class="chapter" data-level="2.8.2" data-path="PythonBase.html"><a href="PythonBase.html#程序输出随机数"><i class="fa fa-check"></i><b>2.8.2</b> 程序输出随机数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html"><i class="fa fa-check"></i><b>3</b> Python数据容器</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#字符串str"><i class="fa fa-check"></i><b>3.1</b> 字符串（str）</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#下标和切片"><i class="fa fa-check"></i><b>3.1.1</b> 下标和切片</a></li>
+<li class="chapter" data-level="3.1.2" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#StrBuildInFunctions"><i class="fa fa-check"></i><b>3.1.2</b> 字符串常见内置函数</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#列表list"><i class="fa fa-check"></i><b>3.2</b> 列表（list）</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#ListBuildInFunctions"><i class="fa fa-check"></i><b>3.2.1</b> 列表常用操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#元组tuple"><i class="fa fa-check"></i><b>3.3</b> 元组（tuple）</a></li>
+<li class="chapter" data-level="3.4" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#字典dict"><i class="fa fa-check"></i><b>3.4</b> 字典（dict）</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#DicBuildInFunctions"><i class="fa fa-check"></i><b>3.4.1</b> 字典常见操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#集合set"><i class="fa fa-check"></i><b>3.5</b> 集合（set）</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#交集并集"><i class="fa fa-check"></i><b>3.5.1</b> 交集/并集</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#拓展可变类型不可变类型"><i class="fa fa-check"></i><b>3.6</b> 拓展：可变类型&amp;不可变类型</a></li>
+<li class="chapter" data-level="3.7" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#练习-1"><i class="fa fa-check"></i><b>3.7</b> 练习</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#字符串遍历"><i class="fa fa-check"></i><b>3.7.1</b> 字符串遍历</a></li>
+<li class="chapter" data-level="3.7.2" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#获取列表中相同元素对应的索引并保存到字典中"><i class="fa fa-check"></i><b>3.7.2</b> 获取列表中相同元素对应的索引，并保存到字典中</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html"><i class="fa fa-check"></i><b>4</b> Python03-函数与异常处理</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数"><i class="fa fa-check"></i><b>4.1</b> 函数</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数定义"><i class="fa fa-check"></i><b>4.1.1</b> 函数定义</a></li>
+<li class="chapter" data-level="4.1.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数调用顺序"><i class="fa fa-check"></i><b>4.1.2</b> 函数调用顺序</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数的参数"><i class="fa fa-check"></i><b>4.2</b> 函数的参数</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#位置参数"><i class="fa fa-check"></i><b>4.2.1</b> 位置参数</a></li>
+<li class="chapter" data-level="4.2.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#默认参数"><i class="fa fa-check"></i><b>4.2.2</b> 默认参数</a></li>
+<li class="chapter" data-level="4.2.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#可变参数"><i class="fa fa-check"></i><b>4.2.3</b> 可变参数</a></li>
+<li class="chapter" data-level="4.2.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#命名关键字参数"><i class="fa fa-check"></i><b>4.2.4</b> 命名关键字参数</a></li>
+<li class="chapter" data-level="4.2.5" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#参数组合"><i class="fa fa-check"></i><b>4.2.5</b> 参数组合</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数返回值"><i class="fa fa-check"></i><b>4.3</b> 函数返回值</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#返回值介绍"><i class="fa fa-check"></i><b>4.3.1</b> ‘返回值’介绍</a></li>
+<li class="chapter" data-level="4.3.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#带有返回值的函数"><i class="fa fa-check"></i><b>4.3.2</b> 带有返回值的函数</a></li>
+<li class="chapter" data-level="4.3.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#保存函数的返回值"><i class="fa fa-check"></i><b>4.3.3</b> 保存函数的返回值</a></li>
+<li class="chapter" data-level="4.3.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#多个返回值"><i class="fa fa-check"></i><b>4.3.4</b> 多个返回值</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#递归函数"><i class="fa fa-check"></i><b>4.4</b> 递归函数</a></li>
+<li class="chapter" data-level="4.5" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#局部变量与全局变量"><i class="fa fa-check"></i><b>4.5</b> 局部变量与全局变量</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#局部变量"><i class="fa fa-check"></i><b>4.5.1</b> 局部变量</a></li>
+<li class="chapter" data-level="4.5.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#全局变量"><i class="fa fa-check"></i><b>4.5.2</b> 全局变量</a></li>
+<li class="chapter" data-level="4.5.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#全局变量和局部变量冲突问题"><i class="fa fa-check"></i><b>4.5.3</b> 全局变量和局部变量冲突问题</a></li>
+<li class="chapter" data-level="4.5.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#修改全局变量"><i class="fa fa-check"></i><b>4.5.4</b> 修改全局变量</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#捕获异常"><i class="fa fa-check"></i><b>4.6</b> 捕获异常</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html"><i class="fa fa-check"></i><b>5</b> Python04-面向对象与模块</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#面向过程和面向对象"><i class="fa fa-check"></i><b>5.1</b> 面向过程和面向对象</a></li>
+<li class="chapter" data-level="5.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#类和对象"><i class="fa fa-check"></i><b>5.2</b> 类和对象</a></li>
+<li class="chapter" data-level="5.3" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#类的定义"><i class="fa fa-check"></i><b>5.3</b> 类的定义</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#基本语法"><i class="fa fa-check"></i><b>5.3.1</b> 基本语法</a></li>
+<li class="chapter" data-level="5.3.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#多个对象的self"><i class="fa fa-check"></i><b>5.3.2</b> 多个对象的self</a></li>
+<li class="chapter" data-level="5.3.3" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#初始化方法"><i class="fa fa-check"></i><b>5.3.3</b> 初始化方法</a></li>
+<li class="chapter" data-level="5.3.4" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#私有属性和私有方法"><i class="fa fa-check"></i><b>5.3.4</b> 私有属性和私有方法</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#继承"><i class="fa fa-check"></i><b>5.4</b> 继承</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#单继承"><i class="fa fa-check"></i><b>5.4.1</b> 单继承</a></li>
+<li class="chapter" data-level="5.4.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#多继承"><i class="fa fa-check"></i><b>5.4.2</b> 多继承</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#OverwriteAndPolymorphic"><i class="fa fa-check"></i><b>5.5</b> 重写和多态</a></li>
+<li class="chapter" data-level="5.6" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#Module"><i class="fa fa-check"></i><b>5.6</b> 模块</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#自定义模块及导入"><i class="fa fa-check"></i><b>5.6.1</b> 自定义模块及导入</a></li>
+<li class="chapter" data-level="5.6.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#模块的导入方法"><i class="fa fa-check"></i><b>5.6.2</b> 模块的导入方法</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#练习题"><i class="fa fa-check"></i><b>5.7</b> 练习题</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html"><i class="fa fa-check"></i><b>6</b> Python05-文件操作Excel/World</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#openpyxl简介"><i class="fa fa-check"></i><b>6.1</b> OpenPyXL简介</a></li>
+<li class="chapter" data-level="6.2" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#创建工作簿和表"><i class="fa fa-check"></i><b>6.2</b> 创建工作簿和表</a></li>
+<li class="chapter" data-level="6.3" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#读取文件和表达内容"><i class="fa fa-check"></i><b>6.3</b> 读取文件和表达内容</a></li>
+<li class="chapter" data-level="6.4" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#openpyxl案例"><i class="fa fa-check"></i><b>6.4</b> OpenPyXL案例</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#添加列数据"><i class="fa fa-check"></i><b>6.4.1</b> 添加列数据</a></li>
+<li class="chapter" data-level="6.4.2" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#绘制图形"><i class="fa fa-check"></i><b>6.4.2</b> 绘制图形</a></li>
+<li class="chapter" data-level="6.4.3" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#添加图片"><i class="fa fa-check"></i><b>6.4.3</b> 添加图片</a></li>
+<li class="chapter" data-level="6.4.4" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#修改单元格样式"><i class="fa fa-check"></i><b>6.4.4</b> 修改单元格样式</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Python学习笔记</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="PythonBase" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Python基础</h1>
+<div id="anaconda与jupyter" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Anaconda与Jupyter</h2>
+<div id="anaconda" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Anaconda</h3>
+<p><code>Anaconda</code>指的是一个开源的Python发行版本，其中包含里conda、Python等180多个科学包及其依赖项。</p>
+</div>
+<div id="jupyter" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Jupyter</h3>
+<p><code>Jupyter Notebook</code>的本质是一个web应用程序，便于创建和共享文档，支持实时代码、数学方程、可视化和markdown。用途包括：数据清理和转化、数值模拟、统计建模、机器学习等等。</p>
+</div>
+<div id="安装jupyter-notebook拓展" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> 安装Jupyter Notebook拓展</h3>
+<p>第一：在终端输入以下代码</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="PythonBase.html#cb1-1"></a><span class="co"># 终端输入</span></span>
+<span id="cb1-2"><a href="PythonBase.html#cb1-2"></a><span class="ex">pip</span> install jupyter_contrib_nbextensions</span>
+<span id="cb1-3"><a href="PythonBase.html#cb1-3"></a><span class="ex">jupyter</span> contrib nbextension install --user</span>
+<span id="cb1-4"><a href="PythonBase.html#cb1-4"></a><span class="ex">pip</span> install jupyter_nbextensions_configurator</span></code></pre></div>
+<p>第二：重启jupyter</p>
+<p>关于插件的介绍<a href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/code_prettify/README_code_prettify.html">点击</a></p>
+<p>例如：Hinterland拓展会在用户使用jupyter写python代码时提供代码提示</p>
+<p>如果安装不成功，卸载拓展包，重新安装。卸载代码如下：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="PythonBase.html#cb2-1"></a><span class="ex">pip</span> uninstall jupyter_contrib_nbextensions</span>
+<span id="cb2-2"><a href="PythonBase.html#cb2-2"></a><span class="ex">pip</span> uninstall jupyter_nbextensions_configurator</span></code></pre></div>
+</div>
+<div id="jupyter中常用操作" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Jupyter中常用操作</h3>
+<p>1）jupyter notebook启动</p>
+<p>2）jupyter创建文件和文件夹</p>
+<p>3）修改文件名</p>
+<p>4）运行单元格</p>
+<p>5）单元格的添加和删除单元格</p>
+</div>
+<div id="注意事项" class="section level3" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> 注意事项</h3>
+<p>1）不需要{}作为作用域，以缩进确定层级关系；</p>
+<p>2）代码的执行顺序：从上到下，从右到左。但是要注意优先级；</p>
+<p>3）代码中使用符号的时候，要用英文状态下的标点符号。</p>
+</div>
+</div>
+<div id="语句与注释" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> 语句与注释</h2>
+<p><strong>语句</strong>：程序进行编写，执行的每一行代码叫做语句。</p>
+<p><strong>注释</strong>：对代码的解释和说明。可以提供代码的可读性。</p>
+<p>注释分为多行注释和单行注释</p>
+<p>  1）单行注释是以<code>#</code>开始</p>
+<p>  2）多行注释可以使用三对双引号<code>""" """</code>或者三对单引号<code>''' '''</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="PythonBase.html#cb3-1"></a><span class="co"># 我是单行注释</span></span>
+<span id="cb3-2"><a href="PythonBase.html#cb3-2"></a><span class="bu">print</span>(<span class="dv">123</span>)</span>
+<span id="cb3-3"><a href="PythonBase.html#cb3-3"></a><span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb3-4"><a href="PythonBase.html#cb3-4"></a><span class="co">    我是多行注释</span></span>
+<span id="cb3-5"><a href="PythonBase.html#cb3-5"></a><span class="co">    我是多行注释</span></span>
+<span id="cb3-6"><a href="PythonBase.html#cb3-6"></a><span class="co">    我是多行注释</span></span>
+<span id="cb3-7"><a href="PythonBase.html#cb3-7"></a><span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb3-8"><a href="PythonBase.html#cb3-8"></a><span class="bu">print</span>(<span class="dv">123</span>)</span>
+<span id="cb3-9"><a href="PythonBase.html#cb3-9"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb3-10"><a href="PythonBase.html#cb3-10"></a><span class="co">    我也是多行注释</span></span>
+<span id="cb3-11"><a href="PythonBase.html#cb3-11"></a><span class="co">    我也是多行注释</span></span>
+<span id="cb3-12"><a href="PythonBase.html#cb3-12"></a><span class="co">    我也是多行注释</span></span>
+<span id="cb3-13"><a href="PythonBase.html#cb3-13"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb3-14"><a href="PythonBase.html#cb3-14"></a><span class="bu">print</span>(<span class="dv">123</span>)</span></code></pre></div>
+</div>
+<div id="变量与赋值" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> 变量与赋值</h2>
+<div id="变量的定义" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> 变量的定义</h3>
+<p><strong>变量</strong>：通俗理解就是存储程序数据的容器。</p>
+<p><strong>变量定义的格式</strong>：<code>变量名 = 数据</code> （变量名尽量有含义，方便理解）</p>
+<p><strong>变量类型</strong>：int, str, float, bool</p>
+</div>
+<div id="变量的命名规则" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> 变量的命名规则</h3>
+<p><strong>变量名</strong>：是由字母、数字、下划线组成,注意是只有这三种，但是不能以数字开头</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="PythonBase.html#cb4-1"></a>name <span class="op">=</span> <span class="st">&#39;Theshy&#39;</span></span>
+<span id="cb4-2"><a href="PythonBase.html#cb4-2"></a>name1 <span class="op">=</span> <span class="st">&#39;Ning&#39;</span></span>
+<span id="cb4-3"><a href="PythonBase.html#cb4-3"></a>name_ <span class="op">=</span> <span class="st">&#39;UZi&#39;</span></span>
+<span id="cb4-4"><a href="PythonBase.html#cb4-4"></a>name_2 <span class="op">=</span> <span class="st">&#39;Ming&#39;</span></span>
+<span id="cb4-5"><a href="PythonBase.html#cb4-5"></a>_name <span class="op">=</span> <span class="st">&#39;doinb&#39;</span></span>
+<span id="cb4-6"><a href="PythonBase.html#cb4-6"></a></span>
+<span id="cb4-7"><a href="PythonBase.html#cb4-7"></a><span class="co"># 虽然中文作为变量名仍然能运行，但是不建议这样使用</span></span>
+<span id="cb4-8"><a href="PythonBase.html#cb4-8"></a>名字 <span class="op">=</span> <span class="st">&quot;Xiaoming&quot;</span></span>
+<span id="cb4-9"><a href="PythonBase.html#cb4-9"></a><span class="bu">print</span>(名字)</span></code></pre></div>
+<p><strong>命名方法</strong>：下划线、小驼峰、大驼峰</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="PythonBase.html#cb5-1"></a>hero_name <span class="op">=</span> <span class="st">&#39;鲁班&#39;</span> <span class="co"># 下划线命名法</span></span>
+<span id="cb5-2"><a href="PythonBase.html#cb5-2"></a>heroName <span class="op">=</span> <span class="st">&#39;刘备&#39;</span> <span class="co"># 小驼峰 第一个单词首字母要小写，其它单词首字母都大写</span></span>
+<span id="cb5-3"><a href="PythonBase.html#cb5-3"></a>HeroName <span class="op">=</span> <span class="st">&#39;元芳&#39;</span> <span class="co"># 大驼峰 每个单词首字母都大写</span></span></code></pre></div>
+</div>
+<div id="关键字" class="section level3" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> 关键字</h3>
+<p>在python里面具有特殊功能的标识符（理解成变量名、函数名）， 关键字不能作为变量名使用，如：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="PythonBase.html#cb6-1"></a>[<span class="st">&#39;False&#39;</span>, <span class="st">&#39;None&#39;</span>, <span class="st">&#39;True&#39;</span>, <span class="st">&#39;and&#39;</span>, <span class="st">&#39;as&#39;</span>, <span class="st">&#39;assert&#39;</span>, <span class="st">&#39;async&#39;</span>, <span class="st">&#39;await&#39;</span>, <span class="st">&#39;break&#39;</span>, <span class="st">&#39;class&#39;</span>, <span class="st">&#39;continue&#39;</span>, <span class="st">&#39;def&#39;</span>, <span class="st">&#39;del&#39;</span>, <span class="st">&#39;elif&#39;</span>, <span class="st">&#39;else&#39;</span>, <span class="st">&#39;except&#39;</span>, <span class="st">&#39;finally&#39;</span>, <span class="st">&#39;for&#39;</span>, <span class="st">&#39;from&#39;</span>, <span class="st">&#39;global&#39;</span>, <span class="st">&#39;if&#39;</span>, <span class="st">&#39;import&#39;</span>, <span class="st">&#39;in&#39;</span>, <span class="st">&#39;is&#39;</span>, <span class="st">&#39;lambda&#39;</span>, <span class="st">&#39;nonlocal&#39;</span>, <span class="st">&#39;not&#39;</span>, <span class="st">&#39;or&#39;</span>, <span class="st">&#39;pass&#39;</span>, <span class="st">&#39;raise&#39;</span>, <span class="st">&#39;return&#39;</span>, <span class="st">&#39;try&#39;</span>, <span class="st">&#39;while&#39;</span>, <span class="st">&#39;with&#39;</span>, <span class="st">&#39;yield&#39;</span>]</span></code></pre></div>
+<p>查看python中有哪些关键字：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="PythonBase.html#cb7-1"></a><span class="im">import</span> keyword</span>
+<span id="cb7-2"><a href="PythonBase.html#cb7-2"></a><span class="bu">print</span>(keyword.kwlist)</span></code></pre></div>
+</div>
+<div id="PythonDataType" class="section level3" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> 常用的数据类型转换</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="PythonBase.html#cb8-1"></a>name <span class="op">=</span> <span class="st">&quot;马超&quot;</span>  <span class="co"># 字符串</span></span>
+<span id="cb8-2"><a href="PythonBase.html#cb8-2"></a><span class="bu">print</span>(name)</span>
+<span id="cb8-3"><a href="PythonBase.html#cb8-3"></a></span>
+<span id="cb8-4"><a href="PythonBase.html#cb8-4"></a>skill <span class="op">=</span> <span class="dv">450</span>    <span class="co"># int</span></span>
+<span id="cb8-5"><a href="PythonBase.html#cb8-5"></a><span class="bu">print</span>(skill)</span>
+<span id="cb8-6"><a href="PythonBase.html#cb8-6"></a></span>
+<span id="cb8-7"><a href="PythonBase.html#cb8-7"></a>money <span class="op">=</span> <span class="fl">1.98</span>   <span class="co"># float</span></span>
+<span id="cb8-8"><a href="PythonBase.html#cb8-8"></a><span class="bu">print</span>(money)</span>
+<span id="cb8-9"><a href="PythonBase.html#cb8-9"></a></span>
+<span id="cb8-10"><a href="PythonBase.html#cb8-10"></a>is_ok <span class="op">=</span> <span class="va">True</span>   <span class="co"># bool类型  True / False</span></span>
+<span id="cb8-11"><a href="PythonBase.html#cb8-11"></a><span class="bu">print</span>(is_ok)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-1">Table 2.1: </span>数据类型之间强制转换常用的函数</caption>
+<thead>
+<tr class="header">
+<th align="left">函数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">int(x[,base])</td>
+<td align="left">将x转换为一个整数</td>
+</tr>
+<tr class="even">
+<td align="left">float(x)</td>
+<td align="left">将x转换为一个浮点数</td>
+</tr>
+<tr class="odd">
+<td align="left">complex(real[,imag])</td>
+<td align="left">创建一个复数，real为实部，imag为虚部</td>
+</tr>
+<tr class="even">
+<td align="left">str(x)</td>
+<td align="left">将对象x转换为字符串</td>
+</tr>
+<tr class="odd">
+<td align="left">repr(x)</td>
+<td align="left">将对象x转换为表达式字符串</td>
+</tr>
+<tr class="even">
+<td align="left">eval(str)</td>
+<td align="left">用来计算在字符串中的有效Python表达式，并返回一个对象</td>
+</tr>
+<tr class="odd">
+<td align="left">tuple(s)</td>
+<td align="left">将序列s转换为一个元组</td>
+</tr>
+<tr class="even">
+<td align="left">list(s)</td>
+<td align="left">将序列s转换为一个列表</td>
+</tr>
+<tr class="odd">
+<td align="left">chr(x)</td>
+<td align="left">讲一个整数转换为一个Unicode字符</td>
+</tr>
+<tr class="even">
+<td align="left">ord(x)</td>
+<td align="left">将一个字符转换为它的ASCII整数值</td>
+</tr>
+<tr class="odd">
+<td align="left">hex(x)</td>
+<td align="left">将一个整数转换为一个十六进制字符串</td>
+</tr>
+<tr class="even">
+<td align="left">oct(x)</td>
+<td align="left">将一个整数转换为一个八进制字符串</td>
+</tr>
+<tr class="odd">
+<td align="left">bin(x)</td>
+<td align="left">将一个整数转换为一个二进制字符串</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="输入和输出" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> 输入和输出</h2>
+<div id="python中的输出" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Python中的输出</h3>
+<p>指在控制台中输出，或者是将准备要输出的内容输出到相应的设备上，如手机上看到的文字、图片、视频等数据。其实本质上也是程序员敲代码输出到手机上的。</p>
+<p>认识<code>print()</code>函数中两个重要的参数：</p>
+<p>1）end = ‘’ (默认有换行符)</p>
+<p>2）sep = ’ ’ (默认字符串间分隔符是空格)</p>
+<p>3）jupyter快捷键：光标放在函数处，键盘<code>shift + Tab</code>查看函数文档</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="PythonBase.html#cb9-1"></a><span class="bu">print</span>(<span class="st">&#39;Hello world!&#39;</span>)</span>
+<span id="cb9-2"><a href="PythonBase.html#cb9-2"></a></span>
+<span id="cb9-3"><a href="PythonBase.html#cb9-3"></a><span class="bu">print</span>(<span class="dv">100</span> <span class="op">+</span> <span class="dv">200</span>)</span>
+<span id="cb9-4"><a href="PythonBase.html#cb9-4"></a></span>
+<span id="cb9-5"><a href="PythonBase.html#cb9-5"></a>str1 <span class="op">=</span> <span class="st">&#39;Hello&#39;</span></span>
+<span id="cb9-6"><a href="PythonBase.html#cb9-6"></a>str2 <span class="op">=</span> <span class="st">&#39;World&#39;</span></span>
+<span id="cb9-7"><a href="PythonBase.html#cb9-7"></a></span>
+<span id="cb9-8"><a href="PythonBase.html#cb9-8"></a><span class="co"># 认识print函数里两个重要的参数</span></span>
+<span id="cb9-9"><a href="PythonBase.html#cb9-9"></a><span class="co"># 1）end = &#39;\n&#39; 默认有个换行符</span></span>
+<span id="cb9-10"><a href="PythonBase.html#cb9-10"></a><span class="bu">print</span>(str1)  <span class="co"># 默认有个换行符</span></span>
+<span id="cb9-11"><a href="PythonBase.html#cb9-11"></a><span class="bu">print</span>(str2)</span>
+<span id="cb9-12"><a href="PythonBase.html#cb9-12"></a><span class="co">## Hello</span></span>
+<span id="cb9-13"><a href="PythonBase.html#cb9-13"></a><span class="co">## World</span></span>
+<span id="cb9-14"><a href="PythonBase.html#cb9-14"></a></span>
+<span id="cb9-15"><a href="PythonBase.html#cb9-15"></a><span class="bu">print</span>(str1,end<span class="op">=</span><span class="st">&#39;---&#39;</span>)</span>
+<span id="cb9-16"><a href="PythonBase.html#cb9-16"></a><span class="bu">print</span>(str2)</span>
+<span id="cb9-17"><a href="PythonBase.html#cb9-17"></a><span class="co">## Hello---World</span></span>
+<span id="cb9-18"><a href="PythonBase.html#cb9-18"></a></span>
+<span id="cb9-19"><a href="PythonBase.html#cb9-19"></a><span class="co"># 2) sep = &#39; &#39;, 字符串间的分隔符，默认是个空格</span></span>
+<span id="cb9-20"><a href="PythonBase.html#cb9-20"></a><span class="bu">print</span>(str1,str2)</span>
+<span id="cb9-21"><a href="PythonBase.html#cb9-21"></a><span class="co">## Hello World</span></span>
+<span id="cb9-22"><a href="PythonBase.html#cb9-22"></a><span class="bu">print</span>(str1,str2,sep<span class="op">=</span><span class="st">&#39;**&#39;</span>)</span>
+<span id="cb9-23"><a href="PythonBase.html#cb9-23"></a><span class="co">## Hello**World</span></span></code></pre></div>
+</div>
+<div id="FormattingOutPut" class="section level3" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> 格式化输出</h3>
+<table>
+<caption><span id="tab:unnamed-chunk-2">Table 2.2: </span>格式化输出符号</caption>
+<thead>
+<tr class="header">
+<th align="left">格式化符号</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">%s</td>
+<td align="left">输出字符串</td>
+</tr>
+<tr class="even">
+<td align="left">%d</td>
+<td align="left">输出int类型数字</td>
+</tr>
+<tr class="odd">
+<td align="left">%f</td>
+<td align="left">输出浮点数</td>
+</tr>
+<tr class="even">
+<td align="left">%x</td>
+<td align="left">输出16进制数据</td>
+</tr>
+</tbody>
+</table>
+<p>比如：其中字符串内的%叫做占位符</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="PythonBase.html#cb10-1"></a>PI <span class="op">=</span> <span class="fl">3.1415926</span></span>
+<span id="cb10-2"><a href="PythonBase.html#cb10-2"></a><span class="bu">print</span>(<span class="st">&quot;PI的值是</span><span class="sc">%.2f</span><span class="st">&quot;</span> <span class="op">%</span>PI) <span class="co"># 保留两位小数</span></span>
+<span id="cb10-3"><a href="PythonBase.html#cb10-3"></a><span class="co">## PI的值是3.14</span></span>
+<span id="cb10-4"><a href="PythonBase.html#cb10-4"></a></span>
+<span id="cb10-5"><a href="PythonBase.html#cb10-5"></a>job <span class="op">=</span> <span class="st">&quot;数据分析师&quot;</span></span>
+<span id="cb10-6"><a href="PythonBase.html#cb10-6"></a>money <span class="op">=</span> <span class="dv">25000</span></span>
+<span id="cb10-7"><a href="PythonBase.html#cb10-7"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="sc">%s</span><span class="st">的月薪是：</span><span class="sc">%d</span><span class="st">&quot;</span> <span class="op">%</span>(job,money))</span>
+<span id="cb10-8"><a href="PythonBase.html#cb10-8"></a><span class="co">## 数据分析师的月薪是：25000</span></span>
+<span id="cb10-9"><a href="PythonBase.html#cb10-9"></a></span>
+<span id="cb10-10"><a href="PythonBase.html#cb10-10"></a><span class="co"># 或者使用format()，其中{}内可以设置数字</span></span>
+<span id="cb10-11"><a href="PythonBase.html#cb10-11"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="sc">{}</span><span class="st">的月薪是：</span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(job,money))</span>
+<span id="cb10-12"><a href="PythonBase.html#cb10-12"></a><span class="co">## 数据分析师的月薪是：25000</span></span>
+<span id="cb10-13"><a href="PythonBase.html#cb10-13"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="sc">{1}</span><span class="st">的月薪是：</span><span class="sc">{0}</span><span class="st">&quot;</span>.<span class="bu">format</span>(job,money))</span>
+<span id="cb10-14"><a href="PythonBase.html#cb10-14"></a><span class="co">## 25000的月薪是：数据分析师</span></span></code></pre></div>
+</div>
+<div id="python中的输入" class="section level3" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Python中的输入</h3>
+<p>利用<code>input()</code>函数可以实现用户交互，并接收用户输入传递给变量，以供后续使用。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="PythonBase.html#cb11-1"></a>fileName <span class="op">=</span> <span class="bu">input</span>(<span class="st">&#39;请输入文件名字：&#39;</span>)</span>
+<span id="cb11-2"><a href="PythonBase.html#cb11-2"></a><span class="bu">print</span>(fileName)</span></code></pre></div>
+</div>
+</div>
+<div id="PythonMathOperator" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> 运算符</h2>
+<table>
+<caption><span id="tab:unnamed-chunk-3">Table 2.3: </span>算数运算符（x=10, y=20, z=25）</caption>
+<thead>
+<tr class="header">
+<th align="left">运算符</th>
+<th align="left">说明</th>
+<th align="left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">+</td>
+<td align="left">加</td>
+<td align="left">x+y = 30</td>
+</tr>
+<tr class="even">
+<td align="left">-</td>
+<td align="left">减</td>
+<td align="left">x-y = -10</td>
+</tr>
+<tr class="odd">
+<td align="left">*</td>
+<td align="left">乘</td>
+<td align="left">x*y = 200</td>
+</tr>
+<tr class="even">
+<td align="left">/</td>
+<td align="left">除</td>
+<td align="left">y/x = 2</td>
+</tr>
+<tr class="odd">
+<td align="left">//</td>
+<td align="left">取整数</td>
+<td align="left">z//x = 2</td>
+</tr>
+<tr class="even">
+<td align="left">%</td>
+<td align="left">取余</td>
+<td align="left">z%y = 5</td>
+</tr>
+<tr class="odd">
+<td align="left">**</td>
+<td align="left">指数</td>
+<td align="left">x**5 = 100000</td>
+</tr>
+</tbody>
+</table>
+<p>混合运算时，优先级顺序为：<code>**</code>、<code>*</code> <code>/</code> <code>%</code> <code>//</code>、<code>+</code> <code>-</code>，为了避免歧义，建议使用()来处理运算符优先级。并且，不同类型的数字在进行混合运算时，整数将会转换为浮点数进行运算。</p>
+<div id="算数运算符拓展" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> 算数运算符（拓展）</h3>
+<table>
+<caption><span id="tab:unnamed-chunk-4">Table 2.4: </span>算数运算符（num1 = 3.6415）</caption>
+<thead>
+<tr class="header">
+<th align="left">运算符</th>
+<th align="left">说明</th>
+<th align="left">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">int(num1)</td>
+<td align="left">float转int类型，取整，不四舍五入</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">round(num1)</td>
+<td align="left">取整，四舍五入</td>
+<td align="left">4</td>
+</tr>
+<tr class="odd">
+<td align="left">round(num1,3)</td>
+<td align="left">保留三位小数，四舍五入</td>
+<td align="left">3.642</td>
+</tr>
+</tbody>
+</table>
+<p>要求：num1=3.6415，保留三位小数，不四舍五入</p>
+<p>显然上面的函数都不能满足要求，我们可以通过运算符号来实现目的，代码如下：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="PythonBase.html#cb12-1"></a>num1 <span class="op">=</span> <span class="fl">3.6415</span></span>
+<span id="cb12-2"><a href="PythonBase.html#cb12-2"></a><span class="bu">print</span>(num1<span class="op">*</span><span class="dv">1000</span><span class="op">//</span><span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>)</span>
+<span id="cb12-3"><a href="PythonBase.html#cb12-3"></a><span class="co">### 3.641</span></span></code></pre></div>
+</div>
+</div>
+<div id="ifelifelse" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> if…elif…else</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="PythonBase.html#cb13-1"></a>age <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb13-2"><a href="PythonBase.html#cb13-2"></a></span>
+<span id="cb13-3"><a href="PythonBase.html#cb13-3"></a><span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
+<span id="cb13-4"><a href="PythonBase.html#cb13-4"></a>    <span class="bu">print</span>(<span class="st">&#39;Your age is&#39;</span>, age)</span>
+<span id="cb13-5"><a href="PythonBase.html#cb13-5"></a>    <span class="bu">print</span>(<span class="st">&#39;Adult&#39;</span>)</span>
+<span id="cb13-6"><a href="PythonBase.html#cb13-6"></a><span class="cf">else</span>:</span>
+<span id="cb13-7"><a href="PythonBase.html#cb13-7"></a>    <span class="bu">print</span>(<span class="st">&#39;Your age is&#39;</span>, age)</span>
+<span id="cb13-8"><a href="PythonBase.html#cb13-8"></a>    <span class="bu">print</span>(<span class="st">&#39;Juvenile&#39;</span>)</span></code></pre></div>
+<p>可以用<code>elif</code>做更精细的判断：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="PythonBase.html#cb14-1"></a>age <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb14-2"><a href="PythonBase.html#cb14-2"></a><span class="cf">if</span> age <span class="op">&gt;=</span><span class="dv">18</span>:</span>
+<span id="cb14-3"><a href="PythonBase.html#cb14-3"></a>    <span class="bu">print</span>(<span class="st">&#39;成年&#39;</span>)</span>
+<span id="cb14-4"><a href="PythonBase.html#cb14-4"></a><span class="cf">elif</span> age <span class="op">&gt;=</span><span class="dv">7</span>:</span>
+<span id="cb14-5"><a href="PythonBase.html#cb14-5"></a>    <span class="bu">print</span>(<span class="st">&#39;青少年&#39;</span>)</span>
+<span id="cb14-6"><a href="PythonBase.html#cb14-6"></a><span class="cf">else</span>:</span>
+<span id="cb14-7"><a href="PythonBase.html#cb14-7"></a>    <span class="bu">print</span>(<span class="st">&#39;儿童&#39;</span>)</span></code></pre></div>
+</div>
+<div id="循环语句" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> 循环语句</h2>
+<p>程序的三大执行流程：</p>
+<p>（1）顺序执行</p>
+<p>（2）选择执行</p>
+<p>（3）循环执行</p>
+<div id="while循环" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> while循环</h3>
+<p><strong>死循环</strong>：无限次执行</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="PythonBase.html#cb15-1"></a>num <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb15-2"><a href="PythonBase.html#cb15-2"></a></span>
+<span id="cb15-3"><a href="PythonBase.html#cb15-3"></a><span class="cf">while</span> num <span class="op">&lt;=</span> <span class="dv">5</span>:</span>
+<span id="cb15-4"><a href="PythonBase.html#cb15-4"></a>    <span class="bu">print</span>(num)</span></code></pre></div>
+<p>使用<code>while</code>时，需要指定循环终止条件</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="PythonBase.html#cb16-1"></a>num <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb16-2"><a href="PythonBase.html#cb16-2"></a><span class="cf">while</span> num <span class="op">&lt;=</span> <span class="dv">5</span>:</span>
+<span id="cb16-3"><a href="PythonBase.html#cb16-3"></a>    <span class="bu">print</span>(num)</span>
+<span id="cb16-4"><a href="PythonBase.html#cb16-4"></a>    num <span class="op">=</span> num <span class="op">+</span> <span class="dv">1</span></span></code></pre></div>
+</div>
+<div id="for循环" class="section level3" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> for循环</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="PythonBase.html#cb17-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">5</span>):</span>
+<span id="cb17-2"><a href="PythonBase.html#cb17-2"></a>    <span class="bu">print</span>(i)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="PythonBase.html#cb18-1"></a>names <span class="op">=</span> [<span class="st">&#39;Mike&#39;</span>,<span class="st">&#39;Hua&#39;</span>,<span class="st">&#39;Jan&#39;</span>]</span>
+<span id="cb18-2"><a href="PythonBase.html#cb18-2"></a><span class="cf">for</span> name <span class="kw">in</span> names:</span>
+<span id="cb18-3"><a href="PythonBase.html#cb18-3"></a>    <span class="bu">print</span>(name)</span></code></pre></div>
+</div>
+<div id="break" class="section level3" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> break</h3>
+<p>输出1-10之间的数，</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="PythonBase.html#cb19-1"></a>num <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb19-2"><a href="PythonBase.html#cb19-2"></a><span class="cf">while</span> num <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
+<span id="cb19-3"><a href="PythonBase.html#cb19-3"></a>    <span class="cf">if</span> num <span class="op">&gt;</span> <span class="dv">8</span>:</span>
+<span id="cb19-4"><a href="PythonBase.html#cb19-4"></a>        <span class="cf">break</span> </span>
+<span id="cb19-5"><a href="PythonBase.html#cb19-5"></a>        <span class="co"># break语句会结束当前循环</span></span>
+<span id="cb19-6"><a href="PythonBase.html#cb19-6"></a>        <span class="co"># 如果此条件满足，下面最外层循环里的语句都不再执行</span></span>
+<span id="cb19-7"><a href="PythonBase.html#cb19-7"></a>    <span class="bu">print</span>(num)</span>
+<span id="cb19-8"><a href="PythonBase.html#cb19-8"></a>    num <span class="op">=</span> num <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb19-9"><a href="PythonBase.html#cb19-9"></a><span class="bu">print</span>(<span class="st">&#39;END&#39;</span>)</span></code></pre></div>
+<p>输出：</p>
+<pre><code>1
+2
+3
+4
+5
+6
+7
+8
+END</code></pre>
+</div>
+<div id="continue" class="section level3" number="2.7.4">
+<h3><span class="header-section-number">2.7.4</span> continue</h3>
+<p><strong>死循环</strong>：num永远卡在num=8的时候，最后一个END也不会被输出</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="PythonBase.html#cb21-1"></a>num <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb21-2"><a href="PythonBase.html#cb21-2"></a><span class="cf">while</span> num <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
+<span id="cb21-3"><a href="PythonBase.html#cb21-3"></a>    <span class="cf">if</span> num <span class="op">==</span> <span class="dv">8</span></span>
+<span id="cb21-4"><a href="PythonBase.html#cb21-4"></a>        <span class="cf">continue</span></span>
+<span id="cb21-5"><a href="PythonBase.html#cb21-5"></a>    <span class="co"># num = 8 后下面的代码都不再运行</span></span>
+<span id="cb21-6"><a href="PythonBase.html#cb21-6"></a>    <span class="bu">print</span>(num)</span>
+<span id="cb21-7"><a href="PythonBase.html#cb21-7"></a>    num <span class="op">=</span> num <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb21-8"><a href="PythonBase.html#cb21-8"></a><span class="bu">print</span>(<span class="st">&#39;END&#39;</span>)</span></code></pre></div>
+<p>怎么该代码呢？把累加放在continue前面:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="PythonBase.html#cb22-1"></a>num <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb22-2"><a href="PythonBase.html#cb22-2"></a><span class="cf">while</span> num <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb22-3"><a href="PythonBase.html#cb22-3"></a>    num <span class="op">=</span> num <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb22-4"><a href="PythonBase.html#cb22-4"></a>    <span class="cf">if</span> num <span class="op">==</span> <span class="dv">8</span>:</span>
+<span id="cb22-5"><a href="PythonBase.html#cb22-5"></a>        <span class="cf">continue</span></span>
+<span id="cb22-6"><a href="PythonBase.html#cb22-6"></a>    <span class="bu">print</span>(num)</span>
+<span id="cb22-7"><a href="PythonBase.html#cb22-7"></a><span class="bu">print</span>(<span class="st">&#39;END&#39;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="练习" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> 练习</h2>
+<div id="打印10以内的奇数" class="section level3" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> 打印10以内的奇数</h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="PythonBase.html#cb23-1"></a>num <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb23-2"><a href="PythonBase.html#cb23-2"></a><span class="cf">while</span> num <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb23-3"><a href="PythonBase.html#cb23-3"></a>    num <span class="op">=</span> num <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb23-4"><a href="PythonBase.html#cb23-4"></a>    <span class="cf">if</span> (num<span class="op">%</span><span class="dv">2</span><span class="op">==</span><span class="dv">0</span>):</span>
+<span id="cb23-5"><a href="PythonBase.html#cb23-5"></a>        <span class="cf">continue</span></span>
+<span id="cb23-6"><a href="PythonBase.html#cb23-6"></a>    <span class="bu">print</span>(num)</span>
+<span id="cb23-7"><a href="PythonBase.html#cb23-7"></a><span class="bu">print</span>(<span class="st">&#39;END&#39;</span>)</span></code></pre></div>
+</div>
+<div id="程序输出随机数" class="section level3" number="2.8.2">
+<h3><span class="header-section-number">2.8.2</span> 程序输出随机数</h3>
+<p>产生一个随机4位数：</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="PythonBase.html#cb24-1"></a><span class="im">import</span> random</span>
+<span id="cb24-2"><a href="PythonBase.html#cb24-2"></a>argot <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb24-3"><a href="PythonBase.html#cb24-3"></a><span class="cf">for</span> index <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb24-4"><a href="PythonBase.html#cb24-4"></a>    argot <span class="op">=</span> argot <span class="op">+</span> <span class="bu">str</span>(random.randint(<span class="dv">0</span>,<span class="dv">9</span>))</span>
+<span id="cb24-5"><a href="PythonBase.html#cb24-5"></a><span class="bu">print</span>(argot)</span></code></pre></div>
+<p>要求： 程序随机生成一个个位整数，用户有3次猜的机会，如果3次都没有猜对程序退出，并告知答案，猜对了直接退出。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="PythonBase.html#cb25-1"></a><span class="co"># 生成一个随机个位整数</span></span>
+<span id="cb25-2"><a href="PythonBase.html#cb25-2"></a><span class="im">import</span> random</span>
+<span id="cb25-3"><a href="PythonBase.html#cb25-3"></a>num <span class="op">=</span> random.randint(<span class="dv">0</span>,<span class="dv">10</span>)</span>
+<span id="cb25-4"><a href="PythonBase.html#cb25-4"></a><span class="co"># print(num)</span></span>
+<span id="cb25-5"><a href="PythonBase.html#cb25-5"></a><span class="co"># count 控制答题次数，只有3次机会</span></span>
+<span id="cb25-6"><a href="PythonBase.html#cb25-6"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb25-7"><a href="PythonBase.html#cb25-7"></a><span class="cf">while</span> count <span class="op">&lt;</span> <span class="dv">3</span>:</span>
+<span id="cb25-8"><a href="PythonBase.html#cb25-8"></a>    answer <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">&#39;请输入0-9任意一个整数：&#39;</span>))</span>
+<span id="cb25-9"><a href="PythonBase.html#cb25-9"></a>    <span class="cf">if</span> answer <span class="op">&gt;</span> num:</span>
+<span id="cb25-10"><a href="PythonBase.html#cb25-10"></a>        <span class="bu">print</span>(<span class="st">&#39;大了&#39;</span>)</span>
+<span id="cb25-11"><a href="PythonBase.html#cb25-11"></a>    <span class="cf">elif</span> answer <span class="op">&lt;</span> num:</span>
+<span id="cb25-12"><a href="PythonBase.html#cb25-12"></a>        <span class="bu">print</span>(<span class="st">&#39;小了&#39;</span>)</span>
+<span id="cb25-13"><a href="PythonBase.html#cb25-13"></a>    <span class="cf">elif</span> answer <span class="op">==</span> num:</span>
+<span id="cb25-14"><a href="PythonBase.html#cb25-14"></a>        <span class="bu">print</span>(<span class="st">&#39;恭喜你猜对了&#39;</span>)</span>
+<span id="cb25-15"><a href="PythonBase.html#cb25-15"></a>        <span class="co"># 猜对了，程序直接退出</span></span>
+<span id="cb25-16"><a href="PythonBase.html#cb25-16"></a>        <span class="cf">break</span></span>
+<span id="cb25-17"><a href="PythonBase.html#cb25-17"></a>    count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb25-18"><a href="PythonBase.html#cb25-18"></a><span class="co"># 3次都没猜对，程序给出正确答案</span></span>
+<span id="cb25-19"><a href="PythonBase.html#cb25-19"></a><span class="cf">else</span>:</span>
+<span id="cb25-20"><a href="PythonBase.html#cb25-20"></a>    <span class="bu">print</span>(<span class="st">&#39;很遗憾5次都没猜对，正确答案是：&#39;</span>,<span class="bu">str</span>(num))</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="PythonDataContainers.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-PythonBase.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

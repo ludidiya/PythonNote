@@ -1,0 +1,273 @@
+# Python03-函数与异常处理{#PythonFunctionError}
+
+## 函数定义和调用
+
+通俗讲里面就是某一个'功能'的代码实现， 使用函数的目的对代码进行复用，降低代码冗余。函数就是实现某个功能的代码块，提高代码的复用性
+
+**函数调用顺序**：先定义，再调用
+
+**函数的说明文档**：可以通过`help(函数名)`来查看
+
+```python
+def sum_num(num1, num2):
+    
+    '''函数的功能
+        计算数字和的函数
+        :param num1: 第一个数字
+        :param num2: 第二个数字
+        :return: 返回值
+    '''
+    result = num1 + num2
+    return result
+
+help(sum_num)
+```
+
+## 函数的参数
+
+### 位置参数/必选参数
+
+位置参数也叫做必选参数。使用位置参数方式传参必须按照函数参数的顺序去传参。
+
+```python
+def func(name,age):
+    print(name,age)
+
+func('zs',18)
+# zs 18
+func(18,'zs')
+# 18 zs
+```
+
+从上面两条参数传入的不同写法看出，位置参数的缺点在于无法控制用户输入参数是否与函数定义一一对应。
+
+### 关键字参数
+
+解决上述提到的可能传入参数与定义不太对应的情况，可以使用关键字参数：
+
+```python
+def func(name = 'zc', age = 2):
+    print(name,age)
+```
+
+### 默认参数
+
+定义一个计算`x`的`n`次幂的函数：`x^n`，用户不指定n时默认n=2。
+
+```python
+def power(x, n=2):
+    s = 1
+    while n > 0:
+        n = n - 1
+        s = s*x
+    return s
+
+power(5)
+# 25
+
+power(5, 3)
+# 125
+```
+
+默认参数可以简化函数的调用，有几点需要注意的：
+
+1）必选参数在前，默认参数在后；
+
+2）当函数有多个参数时，把变化大的参数放前面，变化小的参数放后面。变化小的参数就可以作为默认参数。
+
+### 默认参数为空，有坑！！！！{#DefaultParameterBug}
+
+先定义一个函数，传入一个list，添加一个`END`再返回：
+
+```python
+def add_end(L=[]):
+    L.append('END')
+    return L
+    
+add_end([])
+# ['END']
+add_end([])
+# ['END']
+```
+
+当我们不给定输入参数，运行多少遍该函数，就会不停地添加`END`到列表中：
+
+```python
+add_end()
+# ['END']
+add_end()
+# ['END','END']
+```
+
+**解释：**python函数在定义的时候，默认参数L的值就被计算出来了，即`[]`，因为默认参数L也是一个变量，它指向对象`[]`，每次调用该函数，如果改变了`L`的内容，则下次调用时，默认参数的内容就变了，不再是函数定义时的`[]`。
+
+**定义默认参数要牢记一点：默认参数必须指向[不变对象](#VariableAndInvariable)！！
+
+修改上面的例子，我们可以用`None`这个不变对象来实现：
+
+```python
+def add_end(L=None):
+    if L is None:
+        L = []
+    L.append('END')
+    return L
+```
+
+现在，无论调用多少次，都不会有问题：
+
+```python
+add_end()
+# ['END']
+add_end()
+# ['END']
+```
+
+### 可变参数
+
+可变参数就是**传入的参数个数是可变的**，0、1、2或任意个。
+
+定义一个计算一组数字平方和的函数，如给定一组数字`a,b,c,d...`，计算`a^2+b^2+c^2+...`
+
+我们可以把传入的数字写成列表或元组的形式传入函数，再遍历以计算出结果，但是这样有点麻烦。利用可变参数，调用函数可以简化：
+
+```python
+def calc(*numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n*n
+    return sum
+
+calc(1,2,3)
+# 14
+
+calc()
+# 0
+
+# 还能这样传：python允许再list或tuple前面加一个*，把list或tuple的元素变成可变参数传进去
+nums = [1,2,3]
+calc(*nums)
+```
+
+### 命名关键字参数
+
+对于关键字参数，函数的调用者可以传入任意不受限制的关键字参数。至于到底传入了什么，就需要在函数内部通过`**kw`检查。
+
+```python
+def person(name, age, **kw):
+    if 'city' in kw:
+        print("有city参数")
+    if 'job' in kw:
+        print("有job参数")
+    print('name:',name,'age:',age,'other:',kw)
+```
+
+但是调用者仍然可以传入不受限制的关键字参数：
+
+```python
+person('Jack',24,city='Beijing',addr='Chaoyang',zipcode=12344)
+
+# 有city参数
+# name: Jack age: 24 other: {'city': 'Beijing', 'addr': 'Chaoyang', 'zipcode': 12344}
+```
+
+如果要限制关键字参数的名字，就可以用**命名关键字参数**，例如，只接受`city`和`job`作为关键字参数。关键字参数和`**kw`不同，命名关键字参数需要一个特殊的分隔符`*`，`*`后面的参数被视为命名关键字参数。
+
+```python
+def person(name,age,*,city,job):
+    print(name,age,city,job)
+
+person('Jack',24,city='Beijing',job='Engineer')
+# Jack 24 Beijing Engineer
+```
+命名关键字参数在传参的时候一定要写成`参数名=?`的格式；
+
+如果中间的`*`去掉了变成`def person(name,age,city,job)`，则四个参数都是**位置参数**。
+
+如果函数定义中已经有了一个可变参数，后面跟着的命名关键字参数就不再需要一个特殊的分隔符`*`了：
+
+```python
+def person(*args,city,job):
+    print(*args,city,job)
+
+person('Jack',24,city='Beijing',job='Engineer')
+# Jack 24 Beijing Engineer
+```
+
+### 参数组合
+
+python中定义函数，**必选参数、默认参数、可变参数、关键字参数和命名关键字参数**这5中参数可以组合使用。但是注意：
+
+**参数定义的顺序：**位置/必选参数 > 默认参数 > 可变参数 > 命名关键字参数和关键字参数
+
+如定义两个函数，每个函数均包含上述不同的参数类型：
+
+```python
+def f1(a,b,c=0,*args,**kw):
+    print('a =',a,'b =',b,'c =',c,'args =',args,'kw =',kw)
+    
+def f2(a,b,c=0,*,d,**kw):
+    print('a =',a,'b =',b,'c =',c,'d =',d,'kw =',kw)
+```
+
+观察调用后的输出：
+
+```python
+f1(1,2,3,4,5,6,dog=45,cat=45)
+# a = 1 b = 2 c = 3 args = (4, 5, 6) kw = {'dog': 45, 'cat': 45}
+
+f2(1,2,3,d=4,bird=33,width=23)
+# a = 1 b = 2 c = 3 d = 4 kw = {'bird': 33, 'width': 23}
+```
+
+## 函数返回值
+
+### 带有返回值的函数
+
+```python
+def cal(a,b):
+    c = a + b
+    return c
+
+# 调用函数，并保存返回值
+result = cal(100,98)
+print(result)
+# 198
+```
+
+### 多个返回值
+
+**(1) 多个return**
+
+返回多个值，并不是设置多条独立的return语句，函数中第一个return后面的代码不会被执行。因为return除了能够将数据返回之外，还有一个隐藏功能就是结束函数。
+
+**总结：**
+1）一个函数中可以有多个return，可以在不同的条件下执行不同的代码，并执行不同的return以返回不同情况下的结果；
+
+2）同一层循环/条件下的多个return不会报错，但是只有第一个return才会被执行。
+
+```python
+def cal_nums(num):
+    print("-----1-----")
+    if num == 100:
+        print("-----2-----")
+        return num+1
+    else:
+        print("-----3-----")
+        return num+2
+    print("-----4-----")
+```
+
+## 递归函数
+
+## 局部变量与全局变量
+
+### 局部变量
+
+### 全局变量
+
+### 全局变量和局部变量冲突问题
+
+### 修改全局变量
+
+## 捕获异常
+
