@@ -75,25 +75,143 @@ hero.hp = 2600 # 生命值
 # 通过运算符，获取对象的属性
 print("英雄 %s 的生命值：%d" % (hero.name, hero.hp))
 ```
-### 多个对象的self
 
-
-### 初始化方法
+### 通过self获取对象属性
 
 ```python
+class Hero(object):
+    """定义了一个Hero类，可以移动和攻击"""
+    def move(self):
+        """实例方法"""
+        print("正在前往事发地点...")
+    
+    def info(self):
+        """在类的实例方法中，通过self获取该对象的属性"""
+        print("英雄%的生命值：%d" % (self.name, self.hp))
+```
 
+```python
+# 实例化一个对象
+hero = Hero()
 
+# 给对象添加属性，以及对应的属性值
+hero.name = "德玛西亚"  # 名字
+hero.hp = 2600 # 生命值
+
+# 通过.调用类中定义的方法
+hero.info()
+hero.move()
+```
+
+### 初始化方法__init__()
+
+魔法方法： 在python中，有一些内置好的特定的方法，这些方法在进行特定的操作时会自动被调用，称之为魔法方法`__init__()`。
+
+如果类里面没有写`__init__()`方法，Python会自动创建，但是不执行任何操作
+
+如果为了能够完成自己想的功能，可以自己定义`__init__()`方法
+
+所以一个类里面无论自己是否编写`__init__()`，都一定有`__init__()`方法
+
+```python
+class Hero(object):
+    def __init__(self):
+        """方法，用来做变量初始化、赋值操作，在类实例化对象的时候，会被自动调用"""
+        self.name = "hero" # 名字
+        self.hp = 2600 # 生命值
+    
+    def move(self):
+        """实例方法"""
+        print("正在前往事发地点...")
+
+# 实例化一个对象，并自动调用了__init__()方法
+hero = Hero()
+
+# 通过.调用实例方法
+hero.name
+hero.hp
+hero.move()
+```
+
+**总结：**
+
+* `__init__()`方法，在创建一个对象时默认被调用，不需要手动调用
+
+* `__init__(self)`方法中的self参数，不需要开发者传递，Python解释器会自动把当前的对象引用传递过去。
+
+### 有参数的init方法
+
+```python
+class Hero(object):
+    def __init__(self, name, hp):
+        """方法，用来做变量初始化、赋值操作，在类实例化对象的时候，会被自动调用"""
+        # 名字
+        self.name = name
+        # 生命值
+        self.hp = hp
+    
+    def move(self):
+        """实例方法"""
+        print("正在前往事发地点...")
+        
+    def info(self):
+        print("应用%s的生命值：%d" % (self.name, self.hp))
+
+# 实例化一个对象，参数会传递到对象的__init__()方法
+luban = Hero("鲁班", 2600)
+yase = Hero("亚瑟",3000)
+
+# 不同对象的属性值单独保存
+print(id(luban.name))  # 4453209840
+print(id(yase.name))  # 4453210032
+
+# 同一类的不同对象，实例方法共享
+print(id(luban.move()))
+#正在前往事发地点...
+#4386965608
+print(id(yase.move()))
+#正在前往事发地点...
+#4386965608
 ```
 
 ### 私有属性和私有方法
 
-创建的对象不能更改/调用类里面定义的私有属性和私有方法。
+创建的对象不能更改/调用类里面定义的私有属性和私有方法。**子类不能继承父类的私有属性和方法**。
 
 ```python
+class Teacher(object):
+    # 初始化方法
+    def __init__(self,name):
+        # 定义属性
+        self.name = name
+        # 私有属性,外界不能直接访问
+        self.__age = 18
+        
+    # 保留一个实例方法，允许外界更改age
+    def set_age(self,new_age):
+        if new_age < 0:
+            self.__age = 0
+        else:
+            self.__age = new_age
+            
+    def get_age(self):
+        return self.__age
 
+# 实例化一个对象    
+t = Teacher('panda')
+
+t.set_age(10)
+t.get_age()
 ```
 
 ## 继承
+
+* 在程序中，**继承**描述的是多个类之间的所说关系
+
+* 如果一个类A里面的属性和方法可以复用，则可以通过继承的方法，**传递**到类B里
+
+* 那么类A就是**基类**，也叫做**父类**；B就是**派生类**，也叫做**子类**
+
 
 ### 单继承
 
@@ -104,42 +222,352 @@ print("英雄 %s 的生命值：%d" % (hero.name, hero.hp))
 继承的好处：子类可以复用父类的代码，可以减少代码量
 
 ```python
-
+# 定义一个Person类
+class Person(object):
+    def __init__(self);
+        # 属性
+        self.name = "女娲"
+    
+    # 实例方法
+    def make_person(self):
+        print("<%s>造了一个人..."%self.name)
+  
+# 定义Teacher类，继承了Person，则Teacher是子类，Person是父类
+class Teacher(Person):
+    # 子类可继承父类所有的属性和方法，哪怕子类没有自己的属性和方法，也可以使用父类的方法
+    pass
+    
+lili = Teacher() # 创建子类实例对象
+print(lili.name) # 子类对象可以直接使用父类的属性
+lili.make_person() # 子类对象可以直接使用父类的方法
 ```
 
 ### 多继承
 
-继承多个父类
+继承多个父类，`继承链`的顺序遵守`mro`规则
 
 ```python
 class A(object):
+    def show(self):
+        print("我是A类")
+
+class B(object):
+    def show_info(self):
+        print("我是B类")
+        
+    def show(self):
+        print("我是B类")
+        
+class C(A,B):
+    pass
+    
+
+C().show_info()
+C().show()
+# 我是B类
+# 我是A类
+
+print(C.mro()) # mro继承链规则
+# [<class '__main__.C'>, <class '__main__.A'>, <class '__main__.B'>, <class 'object'>]
     
 ```
-
-`继承链`的顺序：遵守`mro`规则
 
 ## 重写和多态{#OverwriteAndPolymorphic}
 
 多态只是调用方法的技巧，不会影响到类的内部设计。
 
+### 重写
+
+重写：子类继承父类，父类的方法满足不了子类的需要可以对父类的方法进行重写
+
+重写的特点: 1. 继承关系， 2. 方法名相同
+
+```python
+class Teacher(object):
+    # 初始化方法
+    def __init__(self):
+        pass
+    def show(self):
+        print('Teacher show')
+
+        
+class MathTeacher(Teacher):
+    
+     def show(self):
+        print(1)
+        print('Teacher show')
+        print(2)
+   
+    
+MathTeacher().show()
+# 1
+# Teacher show
+# 2
+```
+
+### 多态
+
+多态: 不同的子类对象调用相同的父类方法，产生不同的执行结果，可以增加代码的外部调用灵活
+
+多态以**继承**和**重写**父类方法为前提
+
+多态是调用方法的技巧，不会影响到类的内部设计
+
+```python
+class Teacher(object):
+    def run(self):
+        print('Teacher is running...')
+        
+class Animal(object):
+    def run(self):
+        print('Animal is running...')
+        
+class Dog(Animal):
+    def run(self):
+        print('Dog is running...')
+
+class Cat(Animal):
+    def run(self):
+        print('Cat is running...')
+
+# 实例化对象
+dog = Dog()
+cat = Cat()
+t = Teacher()
+        
+# 定义一个方法,动物跑
+def run_twice(animal): 
+        # isinstance用于判断参数是否是某个指定的类
+        if isinstance(animal,Animal):  
+            animal.run() # dog.run()
+
+run_twice(dog)
+run_twice(cat)
+run_twice(t)
+# Dog is running...
+# Cat is running...
+```
 
 ## 模块{#Module}
 
 **模块**：通俗理解一个`.py`文件就是一个模块，模块是管理功能代码的
 
+模块里面可以定义类，定义函数，定义全局变量，执行对应的功能代码操作
+
 **.py文件和.ipynb文件**：
+
+`.py`文件是标准的Python源代码文件，通常情况下，使用`.py`的python源代码文件
+
+`ipynb`文件是使用 Jupyter Notebook 来编写Python程序时的文件。Jupyter Notebook（此前被称为 IPython notebook）是一个交互式笔记本
 
 ### 自定义模块及导入
 
+自定义模块名字与变量名的定义很类似，都是由字母、数字、下划线组成，但是不能以数字开头，否则无法导入该模块。
 
-### 模块的导入方法
+如何自己写一个`.py`文件，并在jupyter里面运行？
 
-
-## 练习题
-
-1）设计一个程序，要求输出刚果狮辛巴在追蜜儿熊维尼
+**py文件：**py代码内容如下，并保存到文件`first_module.py`
 
 ```python
+g_num =100
 
+def show():
+    print('我是show方法')
+    
+class Student(object):
+    def func(self):
+        print('func')
+
+print("first_module")
+show()
 ```
 
+**jupyter加载/运行py文件：**
+
+1. 加载：%load加载后，`first_module.py`中所有的代码都将被加载到jupyter的一个代码框中。
+
+```python
+%load first_module.py
+```
+
+2. 运行：
+
+```python
+%run first_module.py
+
+# first_module
+```
+
+### 模块导入注意点
+
+在jupyter中一行一行运行以下代码，观察输出结果
+
+```python
+import first_module
+# first_module
+# 我是show方法
+
+first_module.show()
+# 我是show方法
+
+first_module.g_num
+# 100
+
+first_module.Student().func()
+# func
+```
+
+发现`import first_module`时也会有输出结果，这是因为大部分开发者在写模块的时候，都会自己测试一下模块，所以py文件内部有很多需要执行的代码。如果在import阶段需要执行的代码耗时过长，这显然是不合理的。可以通过使用`if __name__ == "__main__"`将所有需要执行的代码放在该判断语句下面：
+
+```python
+g_num =100
+
+def show():
+    print('我是show方法')
+    
+class Student(object):
+    def func(self):
+        print('func')
+
+if __name__ == "__main__":
+    print("first_module")
+    show()
+```
+
+修改保存后，再次在jupyter中导入模块，发现最后两句代码不会再运行了。（重新导入时，注意重启一下jupyter服务，清空之前的缓存）
+
+### `__name__`
+
+`__name__`是python提供的一个全局变量
+
+随便在jupyter的一个代码框中运行`print(__name__)`结果是`__main__`
+
+但是当我们在`.py`文件内部添加一行`print(__name__)`：
+
+```python
+g_num =100
+
+def show():
+    print('我是show方法')
+    
+class Student(object):
+    def func(self):
+        print('func')
+
+print(__name__)
+
+if __name__ == "__main__":
+    print("first_module")
+    show()
+```
+
+然后在jupyter代码框中运行以下代码，观察输出：
+
+```python
+print(__name__)
+# __main__
+import first_module
+# first_module
+```
+
+**总结：**
+
+如果当前执行的程序是本文件时候，`print(__name__)`的结果是`__main__`
+
+如果当前文件被用作模块被其他文件导入了， `print(__name__)`的结果是自己的文件名。所以在`first_module`被导入到jupyter中时，`__name__!=__main__`，所以if判断语句下的代码不会被执行。
+
+### 模块导入方式
+
+```python
+# 起别名：使用起来更简洁
+import first_module as fm
+fm.show()
+
+# from module_name import method,object
+from first_module import show,Student
+show()
+Student
+
+# import * (不建议使用)
+from first_module import *
+```
+
+不建议使用`import *`，因为如果有例外一个模块叫`second_module`他的里面可能有一些方法名与`first_module`中的方法一样，这样在调用方法的时候容易混淆。
+
+### 拓展
+
+**1. 查看模块方法**
+
+```python
+# 方法一
+import math
+dir(math)
+
+# 方法二
+# 在终端运行Python，例如： time. + tab键 
+
+# 想要查看每个功能的解释，用help(type(对象名)) 
+a = 'a'
+help(type(a))
+len()
+```
+
+**2. 查看Python全部内置变量和内置函数**
+
+```python
+import builtins
+dir(builtins)
+```
+
+**3. 查看所有安装的模块**
+
+```
+help('modules')
+```
+
+## 常见模块
+
+### math
+
+```python
+import math
+r = math.floor(3.2) # 向下取整
+print(r)
+r = math.ceil(4.5)  # 向上取整
+print(r)
+r = round(3.4999)  # 四舍五入
+print(r)
+r = math.pow(3,4)  # =3**4
+print(r)
+r = math.sqrt(25)  # 开平方
+print(r)
+r = math.fabs(-0.23) # 绝对值(小数)
+print(r)
+r = abs(-2)     # 绝对值
+print(r)
+```
+
+### time
+
+```python
+import time
+
+# 1. 生成当前时间戳(返回从1970年1970年1月1日0点整到现在过了多少秒)
+# print(time.time())
+
+# # 2.作用是格式化时间戳为本地的时间
+struct_time = time.localtime(time.time())
+print(struct_time)
+# # 获取对应的年与日时间等信息
+print(struct_time.tm_hour)
+
+# # 格式化成2020-07-08 17:35:47形式
+print(time.strftime("%Y-%m-%d %H:%M:%S", struct_time))
+
+tss1 = '2020-07-08 23:40:01'
+timeArray = time.strptime(tss1, "%Y-%m-%d %H:%M:%S")
+       
+print('将字符串的时间转成struct_time',timeArray)
+       
+print('将struct_time转换为时间戳',time.mktime(timeArray))
+```
