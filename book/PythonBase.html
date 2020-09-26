@@ -24,7 +24,7 @@
 <meta name="author" content="LUDI Ling" />
 
 
-<meta name="date" content="2020-09-25" />
+<meta name="date" content="2020-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,7 +225,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#带有返回值的函数"><i class="fa fa-check"></i><b>4.3.1</b> 带有返回值的函数</a></li>
 <li class="chapter" data-level="4.3.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#多个返回值"><i class="fa fa-check"></i><b>4.3.2</b> 多个返回值</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#递归函数"><i class="fa fa-check"></i><b>4.4</b> 递归函数</a></li>
+<li class="chapter" data-level="4.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#递归函数"><i class="fa fa-check"></i><b>4.4</b> 递归函数</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#栈溢出"><i class="fa fa-check"></i><b>4.4.1</b> 栈溢出</a></li>
+<li class="chapter" data-level="4.4.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#尾递归"><i class="fa fa-check"></i><b>4.4.2</b> 尾递归</a></li>
+</ul></li>
 <li class="chapter" data-level="4.5" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#局部变量与全局变量"><i class="fa fa-check"></i><b>4.5</b> 局部变量与全局变量</a>
 <ul>
 <li class="chapter" data-level="4.5.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#局部变量"><i class="fa fa-check"></i><b>4.5.1</b> 局部变量</a></li>
@@ -717,7 +721,7 @@ END</code></pre>
 <span id="cb21-6"><a href="PythonBase.html#cb21-6"></a>    <span class="bu">print</span>(num)</span>
 <span id="cb21-7"><a href="PythonBase.html#cb21-7"></a>    num <span class="op">=</span> num <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb21-8"><a href="PythonBase.html#cb21-8"></a><span class="bu">print</span>(<span class="st">&#39;END&#39;</span>)</span></code></pre></div>
-<p>怎么该代码呢？把累加放在continue前面:</p>
+<p>怎么改代码呢？把累加放在continue前面:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="PythonBase.html#cb22-1"></a>num <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb22-2"><a href="PythonBase.html#cb22-2"></a><span class="cf">while</span> num <span class="op">&lt;</span> <span class="dv">10</span>:</span>
 <span id="cb22-3"><a href="PythonBase.html#cb22-3"></a>    num <span class="op">=</span> num <span class="op">+</span> <span class="dv">1</span></span>
@@ -748,26 +752,28 @@ END</code></pre>
 <span id="cb24-4"><a href="PythonBase.html#cb24-4"></a>    argot <span class="op">=</span> argot <span class="op">+</span> <span class="bu">str</span>(random.randint(<span class="dv">0</span>,<span class="dv">9</span>))</span>
 <span id="cb24-5"><a href="PythonBase.html#cb24-5"></a><span class="bu">print</span>(argot)</span></code></pre></div>
 <p>要求： 程序随机生成一个个位整数，用户有3次猜的机会，如果3次都没有猜对程序退出，并告知答案，猜对了直接退出。</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="PythonBase.html#cb25-1"></a><span class="co"># 生成一个随机个位整数</span></span>
-<span id="cb25-2"><a href="PythonBase.html#cb25-2"></a><span class="im">import</span> random</span>
-<span id="cb25-3"><a href="PythonBase.html#cb25-3"></a>num <span class="op">=</span> random.randint(<span class="dv">0</span>,<span class="dv">10</span>)</span>
-<span id="cb25-4"><a href="PythonBase.html#cb25-4"></a><span class="co"># print(num)</span></span>
-<span id="cb25-5"><a href="PythonBase.html#cb25-5"></a><span class="co"># count 控制答题次数，只有3次机会</span></span>
-<span id="cb25-6"><a href="PythonBase.html#cb25-6"></a>count <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb25-7"><a href="PythonBase.html#cb25-7"></a><span class="cf">while</span> count <span class="op">&lt;</span> <span class="dv">3</span>:</span>
-<span id="cb25-8"><a href="PythonBase.html#cb25-8"></a>    answer <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">&#39;请输入0-9任意一个整数：&#39;</span>))</span>
-<span id="cb25-9"><a href="PythonBase.html#cb25-9"></a>    <span class="cf">if</span> answer <span class="op">&gt;</span> num:</span>
-<span id="cb25-10"><a href="PythonBase.html#cb25-10"></a>        <span class="bu">print</span>(<span class="st">&#39;大了&#39;</span>)</span>
-<span id="cb25-11"><a href="PythonBase.html#cb25-11"></a>    <span class="cf">elif</span> answer <span class="op">&lt;</span> num:</span>
-<span id="cb25-12"><a href="PythonBase.html#cb25-12"></a>        <span class="bu">print</span>(<span class="st">&#39;小了&#39;</span>)</span>
-<span id="cb25-13"><a href="PythonBase.html#cb25-13"></a>    <span class="cf">elif</span> answer <span class="op">==</span> num:</span>
-<span id="cb25-14"><a href="PythonBase.html#cb25-14"></a>        <span class="bu">print</span>(<span class="st">&#39;恭喜你猜对了&#39;</span>)</span>
-<span id="cb25-15"><a href="PythonBase.html#cb25-15"></a>        <span class="co"># 猜对了，程序直接退出</span></span>
-<span id="cb25-16"><a href="PythonBase.html#cb25-16"></a>        <span class="cf">break</span></span>
-<span id="cb25-17"><a href="PythonBase.html#cb25-17"></a>    count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb25-18"><a href="PythonBase.html#cb25-18"></a><span class="co"># 3次都没猜对，程序给出正确答案</span></span>
-<span id="cb25-19"><a href="PythonBase.html#cb25-19"></a><span class="cf">else</span>:</span>
-<span id="cb25-20"><a href="PythonBase.html#cb25-20"></a>    <span class="bu">print</span>(<span class="st">&#39;很遗憾5次都没猜对，正确答案是：&#39;</span>,<span class="bu">str</span>(num))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="PythonBase.html#cb25-1"></a><span class="co"># 程序随机生成一个两位数</span></span>
+<span id="cb25-2"><a href="PythonBase.html#cb25-2"></a>numtemp <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb25-3"><a href="PythonBase.html#cb25-3"></a><span class="cf">for</span> index <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb25-4"><a href="PythonBase.html#cb25-4"></a>    numtemp <span class="op">=</span> numtemp <span class="op">+</span> <span class="bu">str</span>(random.randint(<span class="dv">0</span>,<span class="dv">9</span>))</span>
+<span id="cb25-5"><a href="PythonBase.html#cb25-5"></a>num <span class="op">=</span> <span class="bu">int</span>(numtemp)</span>
+<span id="cb25-6"><a href="PythonBase.html#cb25-6"></a></span>
+<span id="cb25-7"><a href="PythonBase.html#cb25-7"></a><span class="co"># count 控制答题次数，只有5次机会</span></span>
+<span id="cb25-8"><a href="PythonBase.html#cb25-8"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb25-9"><a href="PythonBase.html#cb25-9"></a><span class="cf">while</span> count <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb25-10"><a href="PythonBase.html#cb25-10"></a>    answer <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">&#39;请输入100以内任意一个两位数：&#39;</span>))</span>
+<span id="cb25-11"><a href="PythonBase.html#cb25-11"></a>    <span class="cf">if</span> answer <span class="op">&gt;</span> num:</span>
+<span id="cb25-12"><a href="PythonBase.html#cb25-12"></a>        <span class="bu">print</span>(<span class="st">&#39;大了&#39;</span>)</span>
+<span id="cb25-13"><a href="PythonBase.html#cb25-13"></a>    <span class="cf">elif</span> answer <span class="op">&lt;</span> num:</span>
+<span id="cb25-14"><a href="PythonBase.html#cb25-14"></a>        <span class="bu">print</span>(<span class="st">&#39;小了&#39;</span>)</span>
+<span id="cb25-15"><a href="PythonBase.html#cb25-15"></a>    <span class="cf">elif</span> answer <span class="op">==</span> num:</span>
+<span id="cb25-16"><a href="PythonBase.html#cb25-16"></a>        <span class="bu">print</span>(<span class="st">&#39;恭喜你猜对了&#39;</span>)</span>
+<span id="cb25-17"><a href="PythonBase.html#cb25-17"></a>        <span class="co"># 猜对了，程序直接退出</span></span>
+<span id="cb25-18"><a href="PythonBase.html#cb25-18"></a>        <span class="cf">break</span></span>
+<span id="cb25-19"><a href="PythonBase.html#cb25-19"></a>    count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb25-20"><a href="PythonBase.html#cb25-20"></a><span class="co"># 3次都没猜对，程序给出正确答案</span></span>
+<span id="cb25-21"><a href="PythonBase.html#cb25-21"></a><span class="cf">else</span>:</span>
+<span id="cb25-22"><a href="PythonBase.html#cb25-22"></a>    <span class="bu">print</span>(<span class="st">&#39;很遗憾5次都没猜对，正确答案是：&#39;</span>,<span class="bu">str</span>(num))</span></code></pre></div>
 
 </div>
 </div>

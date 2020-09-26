@@ -43,3 +43,5 @@ description: ""
 
 [Python字典常见函数](#DicBuildInFunctions)
 
+[Python所有的标准异常类](#PythonError)
+

@@ -436,7 +436,7 @@ while num <= 10:
 print('END')
 ```
 
-怎么该代码呢？把累加放在continue前面:
+怎么改代码呢？把累加放在continue前面:
 
 ```python
 num = 1
@@ -477,14 +477,16 @@ print(argot)
 要求： 程序随机生成一个个位整数，用户有3次猜的机会，如果3次都没有猜对程序退出，并告知答案，猜对了直接退出。
 
 ```python
-# 生成一个随机个位整数
-import random
-num = random.randint(0,10)
-# print(num)
-# count 控制答题次数，只有3次机会
+# 程序随机生成一个两位数
+numtemp = ''
+for index in range(2):
+    numtemp = numtemp + str(random.randint(0,9))
+num = int(numtemp)
+
+# count 控制答题次数，只有5次机会
 count = 0
-while count < 3:
-    answer = int(input('请输入0-9任意一个整数：'))
+while count < 5:
+    answer = int(input('请输入100以内任意一个两位数：'))
     if answer > num:
         print('大了')
     elif answer < num:

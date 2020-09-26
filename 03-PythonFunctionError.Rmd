@@ -6,6 +6,8 @@
 
 **函数调用顺序**：先定义，再调用
 
+### 函数说明文档
+
 **函数的说明文档**：可以通过`help(函数名)`来查看
 
 ```python
@@ -122,11 +124,43 @@ add_end()
 # ['END']
 ```
 
-### 可变参数
+### 不定长位置参数
 
 可变参数就是**传入的参数个数是可变的**，0、1、2或任意个。
 
-定义一个计算一组数字平方和的函数，如给定一组数字`a,b,c,d...`，计算`a^2+b^2+c^2+...`
+可以分为：
+
+* 不定长位置形式参数：`def func(*args)`
+
+* 不定长关键字形式参数：`def func(**kwargs)`
+
+首先看一下**不定长位置形式参数**：
+
+```python
+def func(*args):
+    
+    result = 0
+    for value in args:
+        result += value
+
+    print(args,type(args))  
+    # (1, 2, 3, 4, 5, 6, 7) <class 'tuple'>
+    
+    return result
+    
+# 调用函数
+func(1,2,3,4,5,6)
+```
+
+**总结**：
+
+* 定义代码中使用一个`*`
+
+* 参数直接像位置参数一样传入函数
+
+* 这一系列参数被存储到一个元组中
+
+具体来看一个例子：定义一个计算一组数字平方和的函数，如给定一组数字`a,b,c,d...`，计算`a^2+b^2+c^2+...`
 
 我们可以把传入的数字写成列表或元组的形式传入函数，再遍历以计算出结果，但是这样有点麻烦。利用可变参数，调用函数可以简化：
 
@@ -148,9 +182,48 @@ nums = [1,2,3]
 calc(*nums)
 ```
 
+### 不定长关键字参数
+
+如果我们想通过关键字向上面不定长位置函数中传入参数：
+
+```python
+def func(*args):
+    
+    result = 0
+    for value in args:
+        result += value
+
+    return result
+    
+# 调用函数
+func(1,2,3,4,5,6,a=7)
+```
+
+会发现报错：
+
+```
+TypeError: func() got an unexpected keyword argument 'a'
+```
+
+根据报错提醒，函数中定义的是位置参数，而我们传入的却是关键字参数。更改的办法是重新定义关键字参数，基本形式是在函数定义时使用两个`**`，并且传入的关键字参数被存储到字典中。
+
+```python
+def func(**kwargs):
+    
+    print(kwargs, type(kwargs)) # {'a': 10, 'b': 20, 'c': 30} <class 'dict'>
+    
+    for key, value in kwargs.items():
+        print(key, value)
+        # a 10
+        # b 20
+        # c 30
+
+func(a=10,b=20,c=30)
+```
+
 ### 命名关键字参数
 
-对于关键字参数，函数的调用者可以传入任意不受限制的关键字参数。至于到底传入了什么，就需要在函数内部通过`**kw`检查。
+对于不定长关键字参数，函数的调用者可以传入任意不受限制的关键字参数。至于到底传入了什么，就需要在函数内部通过`**kw`检查。
 
 ```python
 def person(name, age, **kw):
@@ -273,6 +346,39 @@ print(result)
 ```
 
 ## 递归函数
+
+### 函数嵌套
+
+类似与条件语句中，if条件语句中还能嵌套if语句。同样的，函数内部也能嵌套函数。
+
+思考：下面的语句中结果是什么？
+
+```python
+def func():
+    print("func")
+    def show():
+        print("show")
+
+func()
+```
+
+运行试试，发现输出结果只有`func`，这说明`show()`函数没有被调用。
+
+**注意**：一个函数必须要被调用了才会执行里面的语句，如果想要同时输出func和show，需要在`func()`函数内部调用`show()`
+
+```python
+def func():
+    print("func")
+    def show():
+        print("show")
+    show()
+
+func()
+# func
+# show
+```
+
+### 递归函数
 
 在函数内部，可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是**递归函数**。
 
@@ -446,3 +552,180 @@ x = 200
 
 ## 捕获异常
 
+**异常**：当前使用python解释器去执行代码的时候，遇到了错误，在控制台输出错误信息，这个错误信息就是异常
+
+一旦错误，还要一级一级上报，知道某个函数可以处理该错误。高级语言通常都内置了一套`try...wxcept...finally...`的**错误处理机制**，python也不例外：
+
+```python
+try:
+    print("try...")
+    r = 10/0
+    print("result:",r) # 不会被执行
+except ZeroDivisionError as e:
+    print("except:",e)
+finally:
+    print("finally...")
+print("END")
+```
+
+当我们认为某些代码可能会出错时，就可以用`try`来运行这段代码，如果执行出错，则**后续代码不会继续执行**，而是直接跳转至错误处理代码，即`except`语句块，执行完`except`后，如果有`finally`语句块，则执行`finally`语句块，至此，执行完毕。
+
+上面的代码在计算`10/0`时会产生以恶搞运算错误：
+
+```python
+try...
+except:division by zero
+finally...
+END
+```
+
+`print("result:",r)`不会执行，把除数0改成2之后，执行结果如下：
+
+```python
+try...
+result: 5
+finally...
+END
+```
+
+### 错误种类
+
+错误的种类有很多，如果发生不同类型的错误，应该由不同的`except`语句块处理。
+
+int()函数可能会抛出`valueError`
+
+除数为0可能会抛出运算错误`ZeroDivisionError`
+
+变量a如果没有事先定义可能会抛出`NameError`
+
+分别用对应的except来捕获不同类型的错误。
+
+此外，如果没有错误发生，可以在`except`语句块后面加一个`else`，当没有错误发生时，会自动执行`else`语句：
+
+```python
+try:
+        print('try...')
+        r = 10 / int(a)
+        print('result:',r)
+except valueError as e:
+        print('valueError:',e)
+except ZeroDivisionError as e:
+        print('ZeroDivisionError:',e)
+except NameError as e:
+        print('NameError:',e)
+else:
+        print('No Error')
+finally:
+        print('Finally')
+print('END')
+```
+
+python的错误其实也是`class`，所有的错误类型都继承自`BaseException`，所以在使用`except`时需要注意的是，它不但捕获该类型的错误，还把其子类也‘一网打尽’，比如：
+
+```python
+try:
+        foo()
+except Exception as e:
+        print('Exception')
+except TypeError as e:
+        print('TyprError')
+finally:
+        print('Finally...')
+```
+
+第二个`except`永远也捕获不到`TypeError`，因为TypeError是Exception的子类，如果有，也被第一个except给捕获了。
+
+Python所有的错误都是从`BaseException`类派生的，[常见的错误类型和继承关系看这里](https://docs.python.org/3/library/exceptions.html#exception-hierarchy)
+
+使用`try...except...`捕获错误有一个巨大的好处，就是可以跨越多层调用，比如`main()`调用了`foo()`，`foo()`调用了`bar()`，结果`bar()`出错了，这时，只要`main()`捕获到了，就可以处理：
+
+```python
+def foo(s):
+        return 10/int(s)
+
+def bar(s):
+        return foo(s) * 2
+
+def main():
+        try:
+                bar('0')
+        except Exception as e:
+                print('Error:',e)
+        finally:
+                print('Finally...')
+
+main()
+```
+
+也就是说，不需要在每个可能出错的地方都去捕获错误，只要在合适的层次去捕获错误就好了，这样，可以大大减少写`try...except...finally`。
+
+### Python所有的标准异常类{#PythonError}
+
+  
+```{r, eval=TRUE, echo=FALSE}
+knitr::kable(
+ data.frame(异常名称=c("BaseException","SystemExit","KeyboardInterrupt","Exception","StopIteration","GeneratorExit","StandardError","ArithmeticError","FloatingPointError","OverflowError","ZeroDivisionError","AssertionError","AtributeError","EOFError","environmentError"
+                   
+ ), 
+            描述=c("所有异常的基类","Python解释器请求退出","用户终端执行（通常是输入^C）","常见错误的基类","迭代器没有更多的值","生成器（generator）发生异常来通知退出","所有的内建标准异常的基类","所有数值计算错误的基类","浮点计算错误","数值运算超出最大限制","除/取模零（所有数据类型）","断言语句失败","对象没有这个属性","没有内建输入，到达EOF标记","操作系统错误的基类"
+            )),
+ booktabs = TRUE,
+ caption = 'Python所有的标准异常类'
+)
+```
+
+## 练习
+
+### 保留小数封装成函数
+
+将数保留至三位小数（不需要四舍五入）
+
+```python
+def cut():
+    num = float(input("请输入想要转化的小数："))
+    n = int(input("保留几位小数："))
+    m = 10**n
+    return int(num*m)/m
+
+cut()
+```
+
+### 字符串组成统计
+
+定义一个函数， 统计字符串中有几个字母，几个数字，几个空格，几个其他字符，并返回结果
+
+**提示：**
+
+```python
+遍历 for 
+判断 if 
+    isdigit()
+    isalpha()
+    isspace()
+unicode  '\u4e00'- '\u9fff'
+dic = {'num':0,'alpha':0, 'space':0,'other':0}
+```
+
+```python
+def func(s):
+    dic = {'num':0,
+            'alpha':0,
+            'space':0,
+           'other':0}
+    for i in s:
+        
+        if i.isdigit(): # 数字
+            dic['num'] += 1
+            
+        elif i.isalpha(): # 字母
+            dic['alpha'] += 1
+            
+        elif i.isspace(): # 空格
+            dic['space'] += 1
+        
+        else:
+            dic['other'] += 1
+            
+    return dic
+print(func('+1-2 abcde 345 fg'))
+```

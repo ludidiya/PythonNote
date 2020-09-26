@@ -24,7 +24,7 @@
 <meta name="author" content="LUDI Ling" />
 
 
-<meta name="date" content="2020-09-25" />
+<meta name="date" content="2020-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,7 +225,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#带有返回值的函数"><i class="fa fa-check"></i><b>4.3.1</b> 带有返回值的函数</a></li>
 <li class="chapter" data-level="4.3.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#多个返回值"><i class="fa fa-check"></i><b>4.3.2</b> 多个返回值</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#递归函数"><i class="fa fa-check"></i><b>4.4</b> 递归函数</a></li>
+<li class="chapter" data-level="4.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#递归函数"><i class="fa fa-check"></i><b>4.4</b> 递归函数</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#栈溢出"><i class="fa fa-check"></i><b>4.4.1</b> 栈溢出</a></li>
+<li class="chapter" data-level="4.4.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#尾递归"><i class="fa fa-check"></i><b>4.4.2</b> 尾递归</a></li>
+</ul></li>
 <li class="chapter" data-level="4.5" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#局部变量与全局变量"><i class="fa fa-check"></i><b>4.5</b> 局部变量与全局变量</a>
 <ul>
 <li class="chapter" data-level="4.5.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#局部变量"><i class="fa fa-check"></i><b>4.5.1</b> 局部变量</a></li>
@@ -637,7 +641,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-2"><a href="PythonDataContainers.html#cb13-2"></a><span class="co"># 方法一： 切片</span></span>
 <span id="cb13-3"><a href="PythonDataContainers.html#cb13-3"></a><span class="bu">print</span>(<span class="st">&quot;切片：&quot;</span><span class="op">+</span>mystr[::<span class="op">-</span><span class="dv">1</span>])</span>
 <span id="cb13-4"><a href="PythonDataContainers.html#cb13-4"></a></span>
-<span id="cb13-5"><a href="PythonDataContainers.html#cb13-5"></a><span class="co"># 方法二： reverse()函数，现转化为list再reverse</span></span>
+<span id="cb13-5"><a href="PythonDataContainers.html#cb13-5"></a><span class="co"># 方法二： reverse()函数，先转化为list再reverse</span></span>
 <span id="cb13-6"><a href="PythonDataContainers.html#cb13-6"></a>lst <span class="op">=</span> <span class="bu">list</span>(mystr)</span>
 <span id="cb13-7"><a href="PythonDataContainers.html#cb13-7"></a>lst.reverse()</span>
 <span id="cb13-8"><a href="PythonDataContainers.html#cb13-8"></a><span class="bu">print</span>(<span class="st">&#39;&#39;</span>.join(lst))</span>
@@ -661,13 +665,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-6"><a href="PythonDataContainers.html#cb14-6"></a><span class="cf">for</span> key <span class="kw">in</span> myset:</span>
 <span id="cb14-7"><a href="PythonDataContainers.html#cb14-7"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb14-8"><a href="PythonDataContainers.html#cb14-8"></a>    value <span class="op">=</span> []</span>
-<span id="cb14-9"><a href="PythonDataContainers.html#cb14-9"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(<span class="bu">list</span>)):</span>
-<span id="cb14-10"><a href="PythonDataContainers.html#cb14-10"></a>        <span class="cf">if</span> <span class="bu">list</span>[i] <span class="op">==</span> key:</span>
-<span id="cb14-11"><a href="PythonDataContainers.html#cb14-11"></a>            value.append(i)</span>
-<span id="cb14-12"><a href="PythonDataContainers.html#cb14-12"></a>        i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb14-13"><a href="PythonDataContainers.html#cb14-13"></a>    dic[key] <span class="op">=</span> value</span>
-<span id="cb14-14"><a href="PythonDataContainers.html#cb14-14"></a></span>
-<span id="cb14-15"><a href="PythonDataContainers.html#cb14-15"></a><span class="bu">print</span>(dic)</span></code></pre></div>
+<span id="cb14-9"><a href="PythonDataContainers.html#cb14-9"></a>    <span class="co"># i计算原始列表中元素索引</span></span>
+<span id="cb14-10"><a href="PythonDataContainers.html#cb14-10"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(<span class="bu">list</span>)):</span>
+<span id="cb14-11"><a href="PythonDataContainers.html#cb14-11"></a>        <span class="cf">if</span> <span class="bu">list</span>[i] <span class="op">==</span> key:</span>
+<span id="cb14-12"><a href="PythonDataContainers.html#cb14-12"></a>            value.append(i)</span>
+<span id="cb14-13"><a href="PythonDataContainers.html#cb14-13"></a>        i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb14-14"><a href="PythonDataContainers.html#cb14-14"></a>    dic[key] <span class="op">=</span> value</span>
+<span id="cb14-15"><a href="PythonDataContainers.html#cb14-15"></a></span>
+<span id="cb14-16"><a href="PythonDataContainers.html#cb14-16"></a><span class="bu">print</span>(dic)</span></code></pre></div>
 
 </div>
 </div>

@@ -339,7 +339,7 @@ mystr = input("Please type a string: ")
 # 方法一： 切片
 print("切片："+mystr[::-1])
 
-# 方法二： reverse()函数，现转化为list再reverse
+# 方法二： reverse()函数，先转化为list再reverse
 lst = list(mystr)
 lst.reverse()
 print(''.join(lst))
@@ -366,6 +366,7 @@ myset = set(list) # 去重
 for key in myset:
     i = 0
     value = []
+    # i计算原始列表中元素索引
     for i in range(len(list)):
         if list[i] == key:
             value.append(i)
