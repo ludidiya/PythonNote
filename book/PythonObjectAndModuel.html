@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 面向对象与模块 | Python学习笔记</title>
+  <meta name="description" content="Chapter 5 面向对象与模块 | Python学习笔记" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 面向对象与模块 | Python学习笔记" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 面向对象与模块 | Python学习笔记" />
+  
+  
+  
+
+<meta name="author" content="LUDI Ling" />
+
+
+<meta name="date" content="2020-09-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="PythonFunctionError.html"/>
+<link rel="next" href="PythonExcelWorld.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Python学习笔记</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 目录</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#python基础"><i class="fa fa-check"></i><b>1.1</b> python基础</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#python-cheat-sheet"><i class="fa fa-check"></i><b>1.2</b> Python Cheat Sheet</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="PythonBase.html"><a href="PythonBase.html"><i class="fa fa-check"></i><b>2</b> Python基础</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="PythonBase.html"><a href="PythonBase.html#anaconda与jupyter"><i class="fa fa-check"></i><b>2.1</b> Anaconda与Jupyter</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="PythonBase.html"><a href="PythonBase.html#anaconda"><i class="fa fa-check"></i><b>2.1.1</b> Anaconda</a></li>
+<li class="chapter" data-level="2.1.2" data-path="PythonBase.html"><a href="PythonBase.html#jupyter"><i class="fa fa-check"></i><b>2.1.2</b> Jupyter</a></li>
+<li class="chapter" data-level="2.1.3" data-path="PythonBase.html"><a href="PythonBase.html#安装jupyter-notebook拓展"><i class="fa fa-check"></i><b>2.1.3</b> 安装Jupyter Notebook拓展</a></li>
+<li class="chapter" data-level="2.1.4" data-path="PythonBase.html"><a href="PythonBase.html#jupyter中常用操作"><i class="fa fa-check"></i><b>2.1.4</b> Jupyter中常用操作</a></li>
+<li class="chapter" data-level="2.1.5" data-path="PythonBase.html"><a href="PythonBase.html#注意事项"><i class="fa fa-check"></i><b>2.1.5</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="PythonBase.html"><a href="PythonBase.html#语句与注释"><i class="fa fa-check"></i><b>2.2</b> 语句与注释</a></li>
+<li class="chapter" data-level="2.3" data-path="PythonBase.html"><a href="PythonBase.html#变量与赋值"><i class="fa fa-check"></i><b>2.3</b> 变量与赋值</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="PythonBase.html"><a href="PythonBase.html#变量的定义"><i class="fa fa-check"></i><b>2.3.1</b> 变量的定义</a></li>
+<li class="chapter" data-level="2.3.2" data-path="PythonBase.html"><a href="PythonBase.html#变量的命名规则"><i class="fa fa-check"></i><b>2.3.2</b> 变量的命名规则</a></li>
+<li class="chapter" data-level="2.3.3" data-path="PythonBase.html"><a href="PythonBase.html#关键字"><i class="fa fa-check"></i><b>2.3.3</b> 关键字</a></li>
+<li class="chapter" data-level="2.3.4" data-path="PythonBase.html"><a href="PythonBase.html#PythonDataType"><i class="fa fa-check"></i><b>2.3.4</b> 常用的数据类型转换</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="PythonBase.html"><a href="PythonBase.html#输入和输出"><i class="fa fa-check"></i><b>2.4</b> 输入和输出</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="PythonBase.html"><a href="PythonBase.html#python中的输出"><i class="fa fa-check"></i><b>2.4.1</b> Python中的输出</a></li>
+<li class="chapter" data-level="2.4.2" data-path="PythonBase.html"><a href="PythonBase.html#FormattingOutPut"><i class="fa fa-check"></i><b>2.4.2</b> 格式化输出</a></li>
+<li class="chapter" data-level="2.4.3" data-path="PythonBase.html"><a href="PythonBase.html#python中的输入"><i class="fa fa-check"></i><b>2.4.3</b> Python中的输入</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="PythonBase.html"><a href="PythonBase.html#PythonMathOperator"><i class="fa fa-check"></i><b>2.5</b> 运算符</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="PythonBase.html"><a href="PythonBase.html#算数运算符拓展"><i class="fa fa-check"></i><b>2.5.1</b> 算数运算符（拓展）</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="PythonBase.html"><a href="PythonBase.html#ifelifelse"><i class="fa fa-check"></i><b>2.6</b> if…elif…else</a></li>
+<li class="chapter" data-level="2.7" data-path="PythonBase.html"><a href="PythonBase.html#循环语句"><i class="fa fa-check"></i><b>2.7</b> 循环语句</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="PythonBase.html"><a href="PythonBase.html#while循环"><i class="fa fa-check"></i><b>2.7.1</b> while循环</a></li>
+<li class="chapter" data-level="2.7.2" data-path="PythonBase.html"><a href="PythonBase.html#for循环"><i class="fa fa-check"></i><b>2.7.2</b> for循环</a></li>
+<li class="chapter" data-level="2.7.3" data-path="PythonBase.html"><a href="PythonBase.html#break"><i class="fa fa-check"></i><b>2.7.3</b> break</a></li>
+<li class="chapter" data-level="2.7.4" data-path="PythonBase.html"><a href="PythonBase.html#continue"><i class="fa fa-check"></i><b>2.7.4</b> continue</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="PythonBase.html"><a href="PythonBase.html#练习"><i class="fa fa-check"></i><b>2.8</b> 练习</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="PythonBase.html"><a href="PythonBase.html#打印10以内的奇数"><i class="fa fa-check"></i><b>2.8.1</b> 打印10以内的奇数</a></li>
+<li class="chapter" data-level="2.8.2" data-path="PythonBase.html"><a href="PythonBase.html#程序输出随机数"><i class="fa fa-check"></i><b>2.8.2</b> 程序输出随机数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html"><i class="fa fa-check"></i><b>3</b> Python数据容器</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#字符串str"><i class="fa fa-check"></i><b>3.1</b> 字符串（str）</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#下标和切片"><i class="fa fa-check"></i><b>3.1.1</b> 下标和切片</a></li>
+<li class="chapter" data-level="3.1.2" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#StrBuildInFunctions"><i class="fa fa-check"></i><b>3.1.2</b> 字符串常见内置函数</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#列表list"><i class="fa fa-check"></i><b>3.2</b> 列表（list）</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#ListBuildInFunctions"><i class="fa fa-check"></i><b>3.2.1</b> 列表常用操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#元组tuple"><i class="fa fa-check"></i><b>3.3</b> 元组（tuple）</a></li>
+<li class="chapter" data-level="3.4" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#字典dict"><i class="fa fa-check"></i><b>3.4</b> 字典（dict）</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#DicBuildInFunctions"><i class="fa fa-check"></i><b>3.4.1</b> 字典常见操作</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#集合set"><i class="fa fa-check"></i><b>3.5</b> 集合（set）</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#交集并集"><i class="fa fa-check"></i><b>3.5.1</b> 交集/并集</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#VariableAndInvariable"><i class="fa fa-check"></i><b>3.6</b> 拓展：可变类型&amp;不可变类型</a></li>
+<li class="chapter" data-level="3.7" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#练习-1"><i class="fa fa-check"></i><b>3.7</b> 练习</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#字符串遍历"><i class="fa fa-check"></i><b>3.7.1</b> 字符串遍历</a></li>
+<li class="chapter" data-level="3.7.2" data-path="PythonDataContainers.html"><a href="PythonDataContainers.html#获取列表中相同元素对应的索引并保存到字典中"><i class="fa fa-check"></i><b>3.7.2</b> 获取列表中相同元素对应的索引，并保存到字典中</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html"><i class="fa fa-check"></i><b>4</b> 函数与异常处理</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数定义和调用"><i class="fa fa-check"></i><b>4.1</b> 函数定义和调用</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数说明文档"><i class="fa fa-check"></i><b>4.1.1</b> 函数说明文档</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数的参数"><i class="fa fa-check"></i><b>4.2</b> 函数的参数</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#位置参数必选参数"><i class="fa fa-check"></i><b>4.2.1</b> 位置参数/必选参数</a></li>
+<li class="chapter" data-level="4.2.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#关键字参数"><i class="fa fa-check"></i><b>4.2.2</b> 关键字参数</a></li>
+<li class="chapter" data-level="4.2.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#默认参数"><i class="fa fa-check"></i><b>4.2.3</b> 默认参数</a></li>
+<li class="chapter" data-level="4.2.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#DefaultParameterBug"><i class="fa fa-check"></i><b>4.2.4</b> 默认参数为空，有坑！！！！</a></li>
+<li class="chapter" data-level="4.2.5" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#不定长位置参数"><i class="fa fa-check"></i><b>4.2.5</b> 不定长位置参数</a></li>
+<li class="chapter" data-level="4.2.6" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#不定长关键字参数"><i class="fa fa-check"></i><b>4.2.6</b> 不定长关键字参数</a></li>
+<li class="chapter" data-level="4.2.7" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#命名关键字参数"><i class="fa fa-check"></i><b>4.2.7</b> 命名关键字参数</a></li>
+<li class="chapter" data-level="4.2.8" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#参数组合"><i class="fa fa-check"></i><b>4.2.8</b> 参数组合</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数返回值"><i class="fa fa-check"></i><b>4.3</b> 函数返回值</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#带有返回值的函数"><i class="fa fa-check"></i><b>4.3.1</b> 带有返回值的函数</a></li>
+<li class="chapter" data-level="4.3.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#多个返回值"><i class="fa fa-check"></i><b>4.3.2</b> 多个返回值</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#递归函数"><i class="fa fa-check"></i><b>4.4</b> 递归函数</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#函数嵌套"><i class="fa fa-check"></i><b>4.4.1</b> 函数嵌套</a></li>
+<li class="chapter" data-level="4.4.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#递归函数-1"><i class="fa fa-check"></i><b>4.4.2</b> 递归函数</a></li>
+<li class="chapter" data-level="4.4.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#栈溢出"><i class="fa fa-check"></i><b>4.4.3</b> 栈溢出</a></li>
+<li class="chapter" data-level="4.4.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#尾递归"><i class="fa fa-check"></i><b>4.4.4</b> 尾递归</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#局部变量与全局变量"><i class="fa fa-check"></i><b>4.5</b> 局部变量与全局变量</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#局部变量"><i class="fa fa-check"></i><b>4.5.1</b> 局部变量</a></li>
+<li class="chapter" data-level="4.5.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#全局变量"><i class="fa fa-check"></i><b>4.5.2</b> 全局变量</a></li>
+<li class="chapter" data-level="4.5.3" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#全局变量和局部变量冲突问题"><i class="fa fa-check"></i><b>4.5.3</b> 全局变量和局部变量冲突问题</a></li>
+<li class="chapter" data-level="4.5.4" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#修改全局变量"><i class="fa fa-check"></i><b>4.5.4</b> 修改全局变量</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#捕获异常"><i class="fa fa-check"></i><b>4.6</b> 捕获异常</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#错误种类"><i class="fa fa-check"></i><b>4.6.1</b> 错误种类</a></li>
+<li class="chapter" data-level="4.6.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#PythonError"><i class="fa fa-check"></i><b>4.6.2</b> Python所有的标准异常类</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#练习-2"><i class="fa fa-check"></i><b>4.7</b> 练习</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#保留小数封装成函数"><i class="fa fa-check"></i><b>4.7.1</b> 保留小数封装成函数</a></li>
+<li class="chapter" data-level="4.7.2" data-path="PythonFunctionError.html"><a href="PythonFunctionError.html#字符串组成统计"><i class="fa fa-check"></i><b>4.7.2</b> 字符串组成统计</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html"><i class="fa fa-check"></i><b>5</b> 面向对象与模块</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#面向过程和面向对象"><i class="fa fa-check"></i><b>5.1</b> 面向过程和面向对象</a></li>
+<li class="chapter" data-level="5.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#类和对象"><i class="fa fa-check"></i><b>5.2</b> 类和对象</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#定义类和创建对象"><i class="fa fa-check"></i><b>5.2.1</b> 定义类和创建对象</a></li>
+<li class="chapter" data-level="5.2.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#添加和获取对象的属性"><i class="fa fa-check"></i><b>5.2.2</b> 添加和获取对象的属性</a></li>
+<li class="chapter" data-level="5.2.3" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#通过self获取对象属性"><i class="fa fa-check"></i><b>5.2.3</b> 通过self获取对象属性</a></li>
+<li class="chapter" data-level="5.2.4" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#初始化方法__init__"><i class="fa fa-check"></i><b>5.2.4</b> 初始化方法__init__()</a></li>
+<li class="chapter" data-level="5.2.5" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#有参数的init方法"><i class="fa fa-check"></i><b>5.2.5</b> 有参数的init方法</a></li>
+<li class="chapter" data-level="5.2.6" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#私有属性和私有方法"><i class="fa fa-check"></i><b>5.2.6</b> 私有属性和私有方法</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#继承"><i class="fa fa-check"></i><b>5.3</b> 继承</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#单继承"><i class="fa fa-check"></i><b>5.3.1</b> 单继承</a></li>
+<li class="chapter" data-level="5.3.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#多继承"><i class="fa fa-check"></i><b>5.3.2</b> 多继承</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#OverwriteAndPolymorphic"><i class="fa fa-check"></i><b>5.4</b> 重写和多态</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#重写"><i class="fa fa-check"></i><b>5.4.1</b> 重写</a></li>
+<li class="chapter" data-level="5.4.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#多态"><i class="fa fa-check"></i><b>5.4.2</b> 多态</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#Module"><i class="fa fa-check"></i><b>5.5</b> 模块</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#自定义模块及导入"><i class="fa fa-check"></i><b>5.5.1</b> 自定义模块及导入</a></li>
+<li class="chapter" data-level="5.5.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#模块导入注意点"><i class="fa fa-check"></i><b>5.5.2</b> 模块导入注意点</a></li>
+<li class="chapter" data-level="5.5.3" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#name__"><i class="fa fa-check"></i><b>5.5.3</b> <code>__name__</code></a></li>
+<li class="chapter" data-level="5.5.4" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#模块导入方式"><i class="fa fa-check"></i><b>5.5.4</b> 模块导入方式</a></li>
+<li class="chapter" data-level="5.5.5" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#拓展"><i class="fa fa-check"></i><b>5.5.5</b> 拓展</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#常见模块"><i class="fa fa-check"></i><b>5.6</b> 常见模块</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#math"><i class="fa fa-check"></i><b>5.6.1</b> math</a></li>
+<li class="chapter" data-level="5.6.2" data-path="PythonObjectAndModuel.html"><a href="PythonObjectAndModuel.html#time"><i class="fa fa-check"></i><b>5.6.2</b> time</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html"><i class="fa fa-check"></i><b>6</b> 文件操作Excel/World</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#openpyxl简介"><i class="fa fa-check"></i><b>6.1</b> OpenPyXL简介</a></li>
+<li class="chapter" data-level="6.2" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#创建工作簿和表"><i class="fa fa-check"></i><b>6.2</b> 创建工作簿和表</a></li>
+<li class="chapter" data-level="6.3" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#读取文件和表达内容"><i class="fa fa-check"></i><b>6.3</b> 读取文件和表达内容</a></li>
+<li class="chapter" data-level="6.4" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#openpyxl案例"><i class="fa fa-check"></i><b>6.4</b> OpenPyXL案例</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#添加列数据"><i class="fa fa-check"></i><b>6.4.1</b> 添加列数据</a></li>
+<li class="chapter" data-level="6.4.2" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#绘制图形"><i class="fa fa-check"></i><b>6.4.2</b> 绘制图形</a></li>
+<li class="chapter" data-level="6.4.3" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#添加图片"><i class="fa fa-check"></i><b>6.4.3</b> 添加图片</a></li>
+<li class="chapter" data-level="6.4.4" data-path="PythonExcelWorld.html"><a href="PythonExcelWorld.html#修改单元格样式"><i class="fa fa-check"></i><b>6.4.4</b> 修改单元格样式</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="-.html"><a href="-.html"><i class="fa fa-check"></i><b>7</b> 爬虫基础</a></li>
+<li class="chapter" data-level="8" data-path="-.html"><a href="-.html#数据爬取常用库"><i class="fa fa-check"></i><b>8</b> 数据爬取常用库</a></li>
+<li class="chapter" data-level="9" data-path="matplotlib.html"><a href="matplotlib.html"><i class="fa fa-check"></i><b>9</b> matplotlib</a></li>
+<li class="chapter" data-level="10" data-path="NumPy.html"><a href="NumPy.html"><i class="fa fa-check"></i><b>10</b> NumPy</a></li>
+<li class="chapter" data-level="11" data-path="pandas-pandas01.html"><a href="pandas-pandas01.html"><i class="fa fa-check"></i><b>11</b> Pandas 上{Pandas01}</a></li>
+<li class="chapter" data-level="12" data-path="Pandas02.html"><a href="Pandas02.html"><i class="fa fa-check"></i><b>12</b> Pandas 下</a></li>
+<li class="chapter" data-level="13" data-path="python-.html"><a href="python-.html"><i class="fa fa-check"></i><b>13</b> Python常见问题及代码</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="python-.html"><a href="python-.html#python保留指定位数的小数"><i class="fa fa-check"></i><b>13.1</b> Python保留指定位数的小数</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="python-.html"><a href="python-.html#ff"><i class="fa fa-check"></i><b>13.1.1</b> ‘%.2f’%f</a></li>
+<li class="chapter" data-level="13.1.2" data-path="python-.html"><a href="python-.html#format函数"><i class="fa fa-check"></i><b>13.1.2</b> format函数</a></li>
+<li class="chapter" data-level="13.1.3" data-path="python-.html"><a href="python-.html#round函数"><i class="fa fa-check"></i><b>13.1.3</b> round函数</a></li>
+<li class="chapter" data-level="13.1.4" data-path="python-.html"><a href="python-.html#不四舍五入"><i class="fa fa-check"></i><b>13.1.4</b> 不四舍五入</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="python-.html"><a href="python-.html#小数点后补0整数前补0字符串前后补充空格"><i class="fa fa-check"></i><b>13.2</b> 小数点后补0，整数前补0，字符串前后补充空格</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="python-.html"><a href="python-.html#小数点后补0"><i class="fa fa-check"></i><b>13.2.1</b> 小数点后补0</a></li>
+<li class="chapter" data-level="13.2.2" data-path="python-.html"><a href="python-.html#整数前补0"><i class="fa fa-check"></i><b>13.2.2</b> 整数前补0</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Python学习笔记</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="PythonObjectAndModuel" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> 面向对象与模块</h1>
+<p>面向对象的三大特征：封装、继承、多态</p>
+<div id="面向过程和面向对象" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> 面向过程和面向对象</h2>
+<p>面向对象和面向过程都是开发程序的模式：</p>
+<ul>
+<li><p>面向过程：一系列函数按照某个过程顺次被调用，如：摘菜——洗菜——准备佐料——炒菜——出菜</p></li>
+<li><p>面向对象：找一个功能对象来完成整个过程，如：找个厨师能做上面所有事。面向对象的三大特征：封装、继承、多态。</p></li>
+</ul>
+</div>
+<div id="类和对象" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> 类和对象</h2>
+<p>面向对象编程，是一种通过对象的方式，把现实世界映射到计算机模型的一种编程方法。</p>
+<p>现实世界中，我们定义了“人”这种抽象概念，而具体的人则是“小明”、“小红”、“小军”等一个个具体的人。所以，“人”可以定义为一个类（class），而具体的人则是实例（instance）。</p>
+<div id="定义类和创建对象" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> 定义类和创建对象</h3>
+<p><strong>说明：</strong></p>
+<ul>
+<li><p>定义类：class 类名()</p></li>
+<li><p><code>object</code>是Python里所有类的最顶级父类</p></li>
+<li><p>类名的命名规则按照“大驼峰命名法”</p></li>
+<li><p><code>eat</code>, <code>run</code>分别是实例的方法，第一个蚕食一般是<code>self</code>，表示实例对象本身，当然也可以将<code>self</code>换成其他的名字，其作用是一个变量，这个变量指向了实例对象。</p></li>
+<li><p>python中，可以根据已经定义的类去穿件出一个或多个对象。</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="PythonObjectAndModuel.html#cb1-1"></a><span class="co"># 定义类</span></span>
+<span id="cb1-2"><a href="PythonObjectAndModuel.html#cb1-2"></a><span class="kw">class</span> Teacher(<span class="bu">object</span>):</span>
+<span id="cb1-3"><a href="PythonObjectAndModuel.html#cb1-3"></a>  <span class="co">#定义类的功能/方法: 函数放在类里面以此来定义类的功能</span></span>
+<span id="cb1-4"><a href="PythonObjectAndModuel.html#cb1-4"></a>  <span class="co">#方法1</span></span>
+<span id="cb1-5"><a href="PythonObjectAndModuel.html#cb1-5"></a>  <span class="kw">def</span> eat(<span class="va">self</span>):</span>
+<span id="cb1-6"><a href="PythonObjectAndModuel.html#cb1-6"></a>    <span class="bu">print</span>(<span class="st">&#39;eat&#39;</span>)</span>
+<span id="cb1-7"><a href="PythonObjectAndModuel.html#cb1-7"></a>  <span class="co">#方法2</span></span>
+<span id="cb1-8"><a href="PythonObjectAndModuel.html#cb1-8"></a>  <span class="kw">def</span> run(<span class="va">self</span>):</span>
+<span id="cb1-9"><a href="PythonObjectAndModuel.html#cb1-9"></a>    <span class="bu">print</span>(<span class="st">&#39;run&#39;</span>)</span>
+<span id="cb1-10"><a href="PythonObjectAndModuel.html#cb1-10"></a>    </span>
+<span id="cb1-11"><a href="PythonObjectAndModuel.html#cb1-11"></a><span class="co"># 根据类创建对象</span></span>
+<span id="cb1-12"><a href="PythonObjectAndModuel.html#cb1-12"></a>t <span class="op">=</span> Teacher()</span>
+<span id="cb1-13"><a href="PythonObjectAndModuel.html#cb1-13"></a></span>
+<span id="cb1-14"><a href="PythonObjectAndModuel.html#cb1-14"></a><span class="co"># 用对象调用方法</span></span>
+<span id="cb1-15"><a href="PythonObjectAndModuel.html#cb1-15"></a><span class="co"># .表示选择属性或方法</span></span>
+<span id="cb1-16"><a href="PythonObjectAndModuel.html#cb1-16"></a>t.eat()</span>
+<span id="cb1-17"><a href="PythonObjectAndModuel.html#cb1-17"></a></span>
+<span id="cb1-18"><a href="PythonObjectAndModuel.html#cb1-18"></a><span class="co"># 给对象添加属性</span></span>
+<span id="cb1-19"><a href="PythonObjectAndModuel.html#cb1-19"></a>t.name <span class="op">=</span> <span class="st">&#39;XiaoMing&#39;</span></span>
+<span id="cb1-20"><a href="PythonObjectAndModuel.html#cb1-20"></a>t.age <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb1-21"><a href="PythonObjectAndModuel.html#cb1-21"></a></span>
+<span id="cb1-22"><a href="PythonObjectAndModuel.html#cb1-22"></a><span class="co"># 调用属性</span></span>
+<span id="cb1-23"><a href="PythonObjectAndModuel.html#cb1-23"></a><span class="bu">print</span>(t.name, t.age)</span></code></pre></div>
+</div>
+<div id="添加和获取对象的属性" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> 添加和获取对象的属性</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="PythonObjectAndModuel.html#cb2-1"></a><span class="kw">class</span> Hero(<span class="bu">object</span>):</span>
+<span id="cb2-2"><a href="PythonObjectAndModuel.html#cb2-2"></a>    <span class="co">&quot;&quot;&quot;定义了一个Hero类，可以移动和攻击&quot;&quot;&quot;</span></span>
+<span id="cb2-3"><a href="PythonObjectAndModuel.html#cb2-3"></a>    <span class="kw">def</span> move(<span class="va">self</span>):</span>
+<span id="cb2-4"><a href="PythonObjectAndModuel.html#cb2-4"></a>        <span class="co">&quot;&quot;&quot;实例方法&quot;&quot;&quot;</span></span>
+<span id="cb2-5"><a href="PythonObjectAndModuel.html#cb2-5"></a>        <span class="bu">print</span>(<span class="st">&quot;正在前往事发地点...&quot;</span>)</span>
+<span id="cb2-6"><a href="PythonObjectAndModuel.html#cb2-6"></a>        </span>
+<span id="cb2-7"><a href="PythonObjectAndModuel.html#cb2-7"></a><span class="co"># 实例化一个英雄对象</span></span>
+<span id="cb2-8"><a href="PythonObjectAndModuel.html#cb2-8"></a>hero <span class="op">=</span> Hero()</span>
+<span id="cb2-9"><a href="PythonObjectAndModuel.html#cb2-9"></a></span>
+<span id="cb2-10"><a href="PythonObjectAndModuel.html#cb2-10"></a><span class="co"># 给对象添加属性，以及对应的属性值</span></span>
+<span id="cb2-11"><a href="PythonObjectAndModuel.html#cb2-11"></a>hero.name <span class="op">=</span> <span class="st">&quot;德玛西亚&quot;</span>  <span class="co"># 名字</span></span>
+<span id="cb2-12"><a href="PythonObjectAndModuel.html#cb2-12"></a>hero.hp <span class="op">=</span> <span class="dv">2600</span> <span class="co"># 生命值</span></span>
+<span id="cb2-13"><a href="PythonObjectAndModuel.html#cb2-13"></a></span>
+<span id="cb2-14"><a href="PythonObjectAndModuel.html#cb2-14"></a><span class="co"># 通过运算符，获取对象的属性</span></span>
+<span id="cb2-15"><a href="PythonObjectAndModuel.html#cb2-15"></a><span class="bu">print</span>(<span class="st">&quot;英雄 </span><span class="sc">%s</span><span class="st"> 的生命值：</span><span class="sc">%d</span><span class="st">&quot;</span> <span class="op">%</span> (hero.name, hero.hp))</span></code></pre></div>
+</div>
+<div id="通过self获取对象属性" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> 通过self获取对象属性</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="PythonObjectAndModuel.html#cb3-1"></a><span class="kw">class</span> Hero(<span class="bu">object</span>):</span>
+<span id="cb3-2"><a href="PythonObjectAndModuel.html#cb3-2"></a>    <span class="co">&quot;&quot;&quot;定义了一个Hero类，可以移动和攻击&quot;&quot;&quot;</span></span>
+<span id="cb3-3"><a href="PythonObjectAndModuel.html#cb3-3"></a>    <span class="kw">def</span> move(<span class="va">self</span>):</span>
+<span id="cb3-4"><a href="PythonObjectAndModuel.html#cb3-4"></a>        <span class="co">&quot;&quot;&quot;实例方法&quot;&quot;&quot;</span></span>
+<span id="cb3-5"><a href="PythonObjectAndModuel.html#cb3-5"></a>        <span class="bu">print</span>(<span class="st">&quot;正在前往事发地点...&quot;</span>)</span>
+<span id="cb3-6"><a href="PythonObjectAndModuel.html#cb3-6"></a>    </span>
+<span id="cb3-7"><a href="PythonObjectAndModuel.html#cb3-7"></a>    <span class="kw">def</span> info(<span class="va">self</span>):</span>
+<span id="cb3-8"><a href="PythonObjectAndModuel.html#cb3-8"></a>        <span class="co">&quot;&quot;&quot;在类的实例方法中，通过self获取该对象的属性&quot;&quot;&quot;</span></span>
+<span id="cb3-9"><a href="PythonObjectAndModuel.html#cb3-9"></a>        <span class="bu">print</span>(<span class="st">&quot;英雄%的生命值：</span><span class="sc">%d</span><span class="st">&quot;</span> <span class="op">%</span> (<span class="va">self</span>.name, <span class="va">self</span>.hp))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="PythonObjectAndModuel.html#cb4-1"></a><span class="co"># 实例化一个对象</span></span>
+<span id="cb4-2"><a href="PythonObjectAndModuel.html#cb4-2"></a>hero <span class="op">=</span> Hero()</span>
+<span id="cb4-3"><a href="PythonObjectAndModuel.html#cb4-3"></a></span>
+<span id="cb4-4"><a href="PythonObjectAndModuel.html#cb4-4"></a><span class="co"># 给对象添加属性，以及对应的属性值</span></span>
+<span id="cb4-5"><a href="PythonObjectAndModuel.html#cb4-5"></a>hero.name <span class="op">=</span> <span class="st">&quot;德玛西亚&quot;</span>  <span class="co"># 名字</span></span>
+<span id="cb4-6"><a href="PythonObjectAndModuel.html#cb4-6"></a>hero.hp <span class="op">=</span> <span class="dv">2600</span> <span class="co"># 生命值</span></span>
+<span id="cb4-7"><a href="PythonObjectAndModuel.html#cb4-7"></a></span>
+<span id="cb4-8"><a href="PythonObjectAndModuel.html#cb4-8"></a><span class="co"># 通过.调用类中定义的方法</span></span>
+<span id="cb4-9"><a href="PythonObjectAndModuel.html#cb4-9"></a>hero.info()</span>
+<span id="cb4-10"><a href="PythonObjectAndModuel.html#cb4-10"></a>hero.move()</span></code></pre></div>
+</div>
+<div id="初始化方法__init__" class="section level3" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> 初始化方法__init__()</h3>
+<p>魔法方法： 在python中，有一些内置好的特定的方法，这些方法在进行特定的操作时会自动被调用，称之为魔法方法<code>__init__()</code>。</p>
+<p>如果类里面没有写<code>__init__()</code>方法，Python会自动创建，但是不执行任何操作</p>
+<p>如果为了能够完成自己想的功能，可以自己定义<code>__init__()</code>方法</p>
+<p>所以一个类里面无论自己是否编写<code>__init__()</code>，都一定有<code>__init__()</code>方法</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="PythonObjectAndModuel.html#cb5-1"></a><span class="kw">class</span> Hero(<span class="bu">object</span>):</span>
+<span id="cb5-2"><a href="PythonObjectAndModuel.html#cb5-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb5-3"><a href="PythonObjectAndModuel.html#cb5-3"></a>        <span class="co">&quot;&quot;&quot;方法，用来做变量初始化、赋值操作，在类实例化对象的时候，会被自动调用&quot;&quot;&quot;</span></span>
+<span id="cb5-4"><a href="PythonObjectAndModuel.html#cb5-4"></a>        <span class="va">self</span>.name <span class="op">=</span> <span class="st">&quot;hero&quot;</span> <span class="co"># 名字</span></span>
+<span id="cb5-5"><a href="PythonObjectAndModuel.html#cb5-5"></a>        <span class="va">self</span>.hp <span class="op">=</span> <span class="dv">2600</span> <span class="co"># 生命值</span></span>
+<span id="cb5-6"><a href="PythonObjectAndModuel.html#cb5-6"></a>    </span>
+<span id="cb5-7"><a href="PythonObjectAndModuel.html#cb5-7"></a>    <span class="kw">def</span> move(<span class="va">self</span>):</span>
+<span id="cb5-8"><a href="PythonObjectAndModuel.html#cb5-8"></a>        <span class="co">&quot;&quot;&quot;实例方法&quot;&quot;&quot;</span></span>
+<span id="cb5-9"><a href="PythonObjectAndModuel.html#cb5-9"></a>        <span class="bu">print</span>(<span class="st">&quot;正在前往事发地点...&quot;</span>)</span>
+<span id="cb5-10"><a href="PythonObjectAndModuel.html#cb5-10"></a></span>
+<span id="cb5-11"><a href="PythonObjectAndModuel.html#cb5-11"></a><span class="co"># 实例化一个对象，并自动调用了__init__()方法</span></span>
+<span id="cb5-12"><a href="PythonObjectAndModuel.html#cb5-12"></a>hero <span class="op">=</span> Hero()</span>
+<span id="cb5-13"><a href="PythonObjectAndModuel.html#cb5-13"></a></span>
+<span id="cb5-14"><a href="PythonObjectAndModuel.html#cb5-14"></a><span class="co"># 通过.调用实例方法</span></span>
+<span id="cb5-15"><a href="PythonObjectAndModuel.html#cb5-15"></a>hero.name</span>
+<span id="cb5-16"><a href="PythonObjectAndModuel.html#cb5-16"></a>hero.hp</span>
+<span id="cb5-17"><a href="PythonObjectAndModuel.html#cb5-17"></a>hero.move()</span></code></pre></div>
+<p><strong>总结：</strong></p>
+<ul>
+<li><p><code>__init__()</code>方法，在创建一个对象时默认被调用，不需要手动调用</p></li>
+<li><p><code>__init__(self)</code>方法中的self参数，不需要开发者传递，Python解释器会自动把当前的对象引用传递过去。</p></li>
+</ul>
+</div>
+<div id="有参数的init方法" class="section level3" number="5.2.5">
+<h3><span class="header-section-number">5.2.5</span> 有参数的init方法</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="PythonObjectAndModuel.html#cb6-1"></a><span class="kw">class</span> Hero(<span class="bu">object</span>):</span>
+<span id="cb6-2"><a href="PythonObjectAndModuel.html#cb6-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, hp):</span>
+<span id="cb6-3"><a href="PythonObjectAndModuel.html#cb6-3"></a>        <span class="co">&quot;&quot;&quot;方法，用来做变量初始化、赋值操作，在类实例化对象的时候，会被自动调用&quot;&quot;&quot;</span></span>
+<span id="cb6-4"><a href="PythonObjectAndModuel.html#cb6-4"></a>        <span class="co"># 名字</span></span>
+<span id="cb6-5"><a href="PythonObjectAndModuel.html#cb6-5"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb6-6"><a href="PythonObjectAndModuel.html#cb6-6"></a>        <span class="co"># 生命值</span></span>
+<span id="cb6-7"><a href="PythonObjectAndModuel.html#cb6-7"></a>        <span class="va">self</span>.hp <span class="op">=</span> hp</span>
+<span id="cb6-8"><a href="PythonObjectAndModuel.html#cb6-8"></a>    </span>
+<span id="cb6-9"><a href="PythonObjectAndModuel.html#cb6-9"></a>    <span class="kw">def</span> move(<span class="va">self</span>):</span>
+<span id="cb6-10"><a href="PythonObjectAndModuel.html#cb6-10"></a>        <span class="co">&quot;&quot;&quot;实例方法&quot;&quot;&quot;</span></span>
+<span id="cb6-11"><a href="PythonObjectAndModuel.html#cb6-11"></a>        <span class="bu">print</span>(<span class="st">&quot;正在前往事发地点...&quot;</span>)</span>
+<span id="cb6-12"><a href="PythonObjectAndModuel.html#cb6-12"></a>        </span>
+<span id="cb6-13"><a href="PythonObjectAndModuel.html#cb6-13"></a>    <span class="kw">def</span> info(<span class="va">self</span>):</span>
+<span id="cb6-14"><a href="PythonObjectAndModuel.html#cb6-14"></a>        <span class="bu">print</span>(<span class="st">&quot;应用</span><span class="sc">%s</span><span class="st">的生命值：</span><span class="sc">%d</span><span class="st">&quot;</span> <span class="op">%</span> (<span class="va">self</span>.name, <span class="va">self</span>.hp))</span>
+<span id="cb6-15"><a href="PythonObjectAndModuel.html#cb6-15"></a></span>
+<span id="cb6-16"><a href="PythonObjectAndModuel.html#cb6-16"></a><span class="co"># 实例化一个对象，参数会传递到对象的__init__()方法</span></span>
+<span id="cb6-17"><a href="PythonObjectAndModuel.html#cb6-17"></a>luban <span class="op">=</span> Hero(<span class="st">&quot;鲁班&quot;</span>, <span class="dv">2600</span>)</span>
+<span id="cb6-18"><a href="PythonObjectAndModuel.html#cb6-18"></a>yase <span class="op">=</span> Hero(<span class="st">&quot;亚瑟&quot;</span>,<span class="dv">3000</span>)</span>
+<span id="cb6-19"><a href="PythonObjectAndModuel.html#cb6-19"></a></span>
+<span id="cb6-20"><a href="PythonObjectAndModuel.html#cb6-20"></a><span class="co"># 不同对象的属性值单独保存</span></span>
+<span id="cb6-21"><a href="PythonObjectAndModuel.html#cb6-21"></a><span class="bu">print</span>(<span class="bu">id</span>(luban.name))  <span class="co"># 4453209840</span></span>
+<span id="cb6-22"><a href="PythonObjectAndModuel.html#cb6-22"></a><span class="bu">print</span>(<span class="bu">id</span>(yase.name))  <span class="co"># 4453210032</span></span>
+<span id="cb6-23"><a href="PythonObjectAndModuel.html#cb6-23"></a></span>
+<span id="cb6-24"><a href="PythonObjectAndModuel.html#cb6-24"></a><span class="co"># 同一类的不同对象，实例方法共享</span></span>
+<span id="cb6-25"><a href="PythonObjectAndModuel.html#cb6-25"></a><span class="bu">print</span>(<span class="bu">id</span>(luban.move()))</span>
+<span id="cb6-26"><a href="PythonObjectAndModuel.html#cb6-26"></a><span class="co">#正在前往事发地点...</span></span>
+<span id="cb6-27"><a href="PythonObjectAndModuel.html#cb6-27"></a><span class="co">#4386965608</span></span>
+<span id="cb6-28"><a href="PythonObjectAndModuel.html#cb6-28"></a><span class="bu">print</span>(<span class="bu">id</span>(yase.move()))</span>
+<span id="cb6-29"><a href="PythonObjectAndModuel.html#cb6-29"></a><span class="co">#正在前往事发地点...</span></span>
+<span id="cb6-30"><a href="PythonObjectAndModuel.html#cb6-30"></a><span class="co">#4386965608</span></span></code></pre></div>
+</div>
+<div id="私有属性和私有方法" class="section level3" number="5.2.6">
+<h3><span class="header-section-number">5.2.6</span> 私有属性和私有方法</h3>
+<p>创建的对象不能更改/调用类里面定义的私有属性和私有方法。<strong>子类不能继承父类的私有属性和方法</strong>。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="PythonObjectAndModuel.html#cb7-1"></a><span class="kw">class</span> Teacher(<span class="bu">object</span>):</span>
+<span id="cb7-2"><a href="PythonObjectAndModuel.html#cb7-2"></a>    <span class="co"># 初始化方法</span></span>
+<span id="cb7-3"><a href="PythonObjectAndModuel.html#cb7-3"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name):</span>
+<span id="cb7-4"><a href="PythonObjectAndModuel.html#cb7-4"></a>        <span class="co"># 定义属性</span></span>
+<span id="cb7-5"><a href="PythonObjectAndModuel.html#cb7-5"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb7-6"><a href="PythonObjectAndModuel.html#cb7-6"></a>        <span class="co"># 私有属性,外界不能直接访问</span></span>
+<span id="cb7-7"><a href="PythonObjectAndModuel.html#cb7-7"></a>        <span class="va">self</span>.__age <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb7-8"><a href="PythonObjectAndModuel.html#cb7-8"></a>        </span>
+<span id="cb7-9"><a href="PythonObjectAndModuel.html#cb7-9"></a>    <span class="co"># 保留一个实例方法，允许外界更改age</span></span>
+<span id="cb7-10"><a href="PythonObjectAndModuel.html#cb7-10"></a>    <span class="kw">def</span> set_age(<span class="va">self</span>,new_age):</span>
+<span id="cb7-11"><a href="PythonObjectAndModuel.html#cb7-11"></a>        <span class="cf">if</span> new_age <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb7-12"><a href="PythonObjectAndModuel.html#cb7-12"></a>            <span class="va">self</span>.__age <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-13"><a href="PythonObjectAndModuel.html#cb7-13"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-14"><a href="PythonObjectAndModuel.html#cb7-14"></a>            <span class="va">self</span>.__age <span class="op">=</span> new_age</span>
+<span id="cb7-15"><a href="PythonObjectAndModuel.html#cb7-15"></a>            </span>
+<span id="cb7-16"><a href="PythonObjectAndModuel.html#cb7-16"></a>    <span class="kw">def</span> get_age(<span class="va">self</span>):</span>
+<span id="cb7-17"><a href="PythonObjectAndModuel.html#cb7-17"></a>        <span class="cf">return</span> <span class="va">self</span>.__age</span>
+<span id="cb7-18"><a href="PythonObjectAndModuel.html#cb7-18"></a></span>
+<span id="cb7-19"><a href="PythonObjectAndModuel.html#cb7-19"></a><span class="co"># 实例化一个对象    </span></span>
+<span id="cb7-20"><a href="PythonObjectAndModuel.html#cb7-20"></a>t <span class="op">=</span> Teacher(<span class="st">&#39;panda&#39;</span>)</span>
+<span id="cb7-21"><a href="PythonObjectAndModuel.html#cb7-21"></a></span>
+<span id="cb7-22"><a href="PythonObjectAndModuel.html#cb7-22"></a>t.set_age(<span class="dv">10</span>)</span>
+<span id="cb7-23"><a href="PythonObjectAndModuel.html#cb7-23"></a>t.get_age()</span></code></pre></div>
+</div>
+</div>
+<div id="继承" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> 继承</h2>
+<ul>
+<li><p>在程序中，<strong>继承</strong>描述的是多个类之间的所说关系</p></li>
+<li><p>如果一个类A里面的属性和方法可以复用，则可以通过继承的方法，<strong>传递</strong>到类B里</p></li>
+<li><p>那么类A就是<strong>基类</strong>，也叫做<strong>父类</strong>；B就是<strong>派生类</strong>，也叫做<strong>子类</strong></p></li>
+</ul>
+<div id="单继承" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> 单继承</h3>
+<p>单继承：子类只继承一个父类</p>
+<p>子类继承父类可以使用父类的方法和属性</p>
+<p>继承的好处：子类可以复用父类的代码，可以减少代码量</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="PythonObjectAndModuel.html#cb8-1"></a><span class="co"># 定义一个Person类</span></span>
+<span id="cb8-2"><a href="PythonObjectAndModuel.html#cb8-2"></a><span class="kw">class</span> Person(<span class="bu">object</span>):</span>
+<span id="cb8-3"><a href="PythonObjectAndModuel.html#cb8-3"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>)<span class="op">;</span></span>
+<span id="cb8-4"><a href="PythonObjectAndModuel.html#cb8-4"></a>        <span class="co"># 属性</span></span>
+<span id="cb8-5"><a href="PythonObjectAndModuel.html#cb8-5"></a>        <span class="va">self</span>.name <span class="op">=</span> <span class="st">&quot;女娲&quot;</span></span>
+<span id="cb8-6"><a href="PythonObjectAndModuel.html#cb8-6"></a>    </span>
+<span id="cb8-7"><a href="PythonObjectAndModuel.html#cb8-7"></a>    <span class="co"># 实例方法</span></span>
+<span id="cb8-8"><a href="PythonObjectAndModuel.html#cb8-8"></a>    <span class="kw">def</span> make_person(<span class="va">self</span>):</span>
+<span id="cb8-9"><a href="PythonObjectAndModuel.html#cb8-9"></a>        <span class="bu">print</span>(<span class="st">&quot;&lt;</span><span class="sc">%s</span><span class="st">&gt;造了一个人...&quot;</span><span class="op">%</span><span class="va">self</span>.name)</span>
+<span id="cb8-10"><a href="PythonObjectAndModuel.html#cb8-10"></a>  </span>
+<span id="cb8-11"><a href="PythonObjectAndModuel.html#cb8-11"></a><span class="co"># 定义Teacher类，继承了Person，则Teacher是子类，Person是父类</span></span>
+<span id="cb8-12"><a href="PythonObjectAndModuel.html#cb8-12"></a><span class="kw">class</span> Teacher(Person):</span>
+<span id="cb8-13"><a href="PythonObjectAndModuel.html#cb8-13"></a>    <span class="co"># 子类可继承父类所有的属性和方法，哪怕子类没有自己的属性和方法，也可以使用父类的方法</span></span>
+<span id="cb8-14"><a href="PythonObjectAndModuel.html#cb8-14"></a>    <span class="cf">pass</span></span>
+<span id="cb8-15"><a href="PythonObjectAndModuel.html#cb8-15"></a>    </span>
+<span id="cb8-16"><a href="PythonObjectAndModuel.html#cb8-16"></a>lili <span class="op">=</span> Teacher() <span class="co"># 创建子类实例对象</span></span>
+<span id="cb8-17"><a href="PythonObjectAndModuel.html#cb8-17"></a><span class="bu">print</span>(lili.name) <span class="co"># 子类对象可以直接使用父类的属性</span></span>
+<span id="cb8-18"><a href="PythonObjectAndModuel.html#cb8-18"></a>lili.make_person() <span class="co"># 子类对象可以直接使用父类的方法</span></span></code></pre></div>
+</div>
+<div id="多继承" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> 多继承</h3>
+<p>继承多个父类，<code>继承链</code>的顺序遵守<code>mro</code>规则</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="PythonObjectAndModuel.html#cb9-1"></a><span class="kw">class</span> A(<span class="bu">object</span>):</span>
+<span id="cb9-2"><a href="PythonObjectAndModuel.html#cb9-2"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb9-3"><a href="PythonObjectAndModuel.html#cb9-3"></a>        <span class="bu">print</span>(<span class="st">&quot;我是A类&quot;</span>)</span>
+<span id="cb9-4"><a href="PythonObjectAndModuel.html#cb9-4"></a></span>
+<span id="cb9-5"><a href="PythonObjectAndModuel.html#cb9-5"></a><span class="kw">class</span> B(<span class="bu">object</span>):</span>
+<span id="cb9-6"><a href="PythonObjectAndModuel.html#cb9-6"></a>    <span class="kw">def</span> show_info(<span class="va">self</span>):</span>
+<span id="cb9-7"><a href="PythonObjectAndModuel.html#cb9-7"></a>        <span class="bu">print</span>(<span class="st">&quot;我是B类&quot;</span>)</span>
+<span id="cb9-8"><a href="PythonObjectAndModuel.html#cb9-8"></a>        </span>
+<span id="cb9-9"><a href="PythonObjectAndModuel.html#cb9-9"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb9-10"><a href="PythonObjectAndModuel.html#cb9-10"></a>        <span class="bu">print</span>(<span class="st">&quot;我是B类&quot;</span>)</span>
+<span id="cb9-11"><a href="PythonObjectAndModuel.html#cb9-11"></a>        </span>
+<span id="cb9-12"><a href="PythonObjectAndModuel.html#cb9-12"></a><span class="kw">class</span> C(A,B):</span>
+<span id="cb9-13"><a href="PythonObjectAndModuel.html#cb9-13"></a>    <span class="cf">pass</span></span>
+<span id="cb9-14"><a href="PythonObjectAndModuel.html#cb9-14"></a>    </span>
+<span id="cb9-15"><a href="PythonObjectAndModuel.html#cb9-15"></a></span>
+<span id="cb9-16"><a href="PythonObjectAndModuel.html#cb9-16"></a>C().show_info()</span>
+<span id="cb9-17"><a href="PythonObjectAndModuel.html#cb9-17"></a>C().show()</span>
+<span id="cb9-18"><a href="PythonObjectAndModuel.html#cb9-18"></a><span class="co"># 我是B类</span></span>
+<span id="cb9-19"><a href="PythonObjectAndModuel.html#cb9-19"></a><span class="co"># 我是A类</span></span>
+<span id="cb9-20"><a href="PythonObjectAndModuel.html#cb9-20"></a></span>
+<span id="cb9-21"><a href="PythonObjectAndModuel.html#cb9-21"></a><span class="bu">print</span>(C.mro()) <span class="co"># mro继承链规则</span></span>
+<span id="cb9-22"><a href="PythonObjectAndModuel.html#cb9-22"></a><span class="co"># [&lt;class &#39;__main__.C&#39;&gt;, &lt;class &#39;__main__.A&#39;&gt;, &lt;class &#39;__main__.B&#39;&gt;, &lt;class &#39;object&#39;&gt;]</span></span>
+<span id="cb9-23"><a href="PythonObjectAndModuel.html#cb9-23"></a>    </span></code></pre></div>
+</div>
+</div>
+<div id="OverwriteAndPolymorphic" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> 重写和多态</h2>
+<p>多态只是调用方法的技巧，不会影响到类的内部设计。</p>
+<div id="重写" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> 重写</h3>
+<p>重写：子类继承父类，父类的方法满足不了子类的需要可以对父类的方法进行重写</p>
+<p>重写的特点: 1. 继承关系， 2. 方法名相同</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="PythonObjectAndModuel.html#cb10-1"></a><span class="kw">class</span> Teacher(<span class="bu">object</span>):</span>
+<span id="cb10-2"><a href="PythonObjectAndModuel.html#cb10-2"></a>    <span class="co"># 初始化方法</span></span>
+<span id="cb10-3"><a href="PythonObjectAndModuel.html#cb10-3"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb10-4"><a href="PythonObjectAndModuel.html#cb10-4"></a>        <span class="cf">pass</span></span>
+<span id="cb10-5"><a href="PythonObjectAndModuel.html#cb10-5"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb10-6"><a href="PythonObjectAndModuel.html#cb10-6"></a>        <span class="bu">print</span>(<span class="st">&#39;Teacher show&#39;</span>)</span>
+<span id="cb10-7"><a href="PythonObjectAndModuel.html#cb10-7"></a></span>
+<span id="cb10-8"><a href="PythonObjectAndModuel.html#cb10-8"></a>        </span>
+<span id="cb10-9"><a href="PythonObjectAndModuel.html#cb10-9"></a><span class="kw">class</span> MathTeacher(Teacher):</span>
+<span id="cb10-10"><a href="PythonObjectAndModuel.html#cb10-10"></a>    </span>
+<span id="cb10-11"><a href="PythonObjectAndModuel.html#cb10-11"></a>     <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb10-12"><a href="PythonObjectAndModuel.html#cb10-12"></a>        <span class="bu">print</span>(<span class="dv">1</span>)</span>
+<span id="cb10-13"><a href="PythonObjectAndModuel.html#cb10-13"></a>        <span class="bu">print</span>(<span class="st">&#39;Teacher show&#39;</span>)</span>
+<span id="cb10-14"><a href="PythonObjectAndModuel.html#cb10-14"></a>        <span class="bu">print</span>(<span class="dv">2</span>)</span>
+<span id="cb10-15"><a href="PythonObjectAndModuel.html#cb10-15"></a>   </span>
+<span id="cb10-16"><a href="PythonObjectAndModuel.html#cb10-16"></a>    </span>
+<span id="cb10-17"><a href="PythonObjectAndModuel.html#cb10-17"></a>MathTeacher().show()</span>
+<span id="cb10-18"><a href="PythonObjectAndModuel.html#cb10-18"></a><span class="co"># 1</span></span>
+<span id="cb10-19"><a href="PythonObjectAndModuel.html#cb10-19"></a><span class="co"># Teacher show</span></span>
+<span id="cb10-20"><a href="PythonObjectAndModuel.html#cb10-20"></a><span class="co"># 2</span></span></code></pre></div>
+</div>
+<div id="多态" class="section level3" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> 多态</h3>
+<p>多态: 不同的子类对象调用相同的父类方法，产生不同的执行结果，可以增加代码的外部调用灵活</p>
+<p>多态以<strong>继承</strong>和<strong>重写</strong>父类方法为前提</p>
+<p>多态是调用方法的技巧，不会影响到类的内部设计</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="PythonObjectAndModuel.html#cb11-1"></a><span class="kw">class</span> Teacher(<span class="bu">object</span>):</span>
+<span id="cb11-2"><a href="PythonObjectAndModuel.html#cb11-2"></a>    <span class="kw">def</span> run(<span class="va">self</span>):</span>
+<span id="cb11-3"><a href="PythonObjectAndModuel.html#cb11-3"></a>        <span class="bu">print</span>(<span class="st">&#39;Teacher is running...&#39;</span>)</span>
+<span id="cb11-4"><a href="PythonObjectAndModuel.html#cb11-4"></a>        </span>
+<span id="cb11-5"><a href="PythonObjectAndModuel.html#cb11-5"></a><span class="kw">class</span> Animal(<span class="bu">object</span>):</span>
+<span id="cb11-6"><a href="PythonObjectAndModuel.html#cb11-6"></a>    <span class="kw">def</span> run(<span class="va">self</span>):</span>
+<span id="cb11-7"><a href="PythonObjectAndModuel.html#cb11-7"></a>        <span class="bu">print</span>(<span class="st">&#39;Animal is running...&#39;</span>)</span>
+<span id="cb11-8"><a href="PythonObjectAndModuel.html#cb11-8"></a>        </span>
+<span id="cb11-9"><a href="PythonObjectAndModuel.html#cb11-9"></a><span class="kw">class</span> Dog(Animal):</span>
+<span id="cb11-10"><a href="PythonObjectAndModuel.html#cb11-10"></a>    <span class="kw">def</span> run(<span class="va">self</span>):</span>
+<span id="cb11-11"><a href="PythonObjectAndModuel.html#cb11-11"></a>        <span class="bu">print</span>(<span class="st">&#39;Dog is running...&#39;</span>)</span>
+<span id="cb11-12"><a href="PythonObjectAndModuel.html#cb11-12"></a></span>
+<span id="cb11-13"><a href="PythonObjectAndModuel.html#cb11-13"></a><span class="kw">class</span> Cat(Animal):</span>
+<span id="cb11-14"><a href="PythonObjectAndModuel.html#cb11-14"></a>    <span class="kw">def</span> run(<span class="va">self</span>):</span>
+<span id="cb11-15"><a href="PythonObjectAndModuel.html#cb11-15"></a>        <span class="bu">print</span>(<span class="st">&#39;Cat is running...&#39;</span>)</span>
+<span id="cb11-16"><a href="PythonObjectAndModuel.html#cb11-16"></a></span>
+<span id="cb11-17"><a href="PythonObjectAndModuel.html#cb11-17"></a><span class="co"># 实例化对象</span></span>
+<span id="cb11-18"><a href="PythonObjectAndModuel.html#cb11-18"></a>dog <span class="op">=</span> Dog()</span>
+<span id="cb11-19"><a href="PythonObjectAndModuel.html#cb11-19"></a>cat <span class="op">=</span> Cat()</span>
+<span id="cb11-20"><a href="PythonObjectAndModuel.html#cb11-20"></a>t <span class="op">=</span> Teacher()</span>
+<span id="cb11-21"><a href="PythonObjectAndModuel.html#cb11-21"></a>        </span>
+<span id="cb11-22"><a href="PythonObjectAndModuel.html#cb11-22"></a><span class="co"># 定义一个方法,动物跑</span></span>
+<span id="cb11-23"><a href="PythonObjectAndModuel.html#cb11-23"></a><span class="kw">def</span> run_twice(animal): </span>
+<span id="cb11-24"><a href="PythonObjectAndModuel.html#cb11-24"></a>        <span class="co"># isinstance用于判断参数是否是某个指定的类</span></span>
+<span id="cb11-25"><a href="PythonObjectAndModuel.html#cb11-25"></a>        <span class="cf">if</span> <span class="bu">isinstance</span>(animal,Animal):  </span>
+<span id="cb11-26"><a href="PythonObjectAndModuel.html#cb11-26"></a>            animal.run() <span class="co"># dog.run()</span></span>
+<span id="cb11-27"><a href="PythonObjectAndModuel.html#cb11-27"></a></span>
+<span id="cb11-28"><a href="PythonObjectAndModuel.html#cb11-28"></a>run_twice(dog)</span>
+<span id="cb11-29"><a href="PythonObjectAndModuel.html#cb11-29"></a>run_twice(cat)</span>
+<span id="cb11-30"><a href="PythonObjectAndModuel.html#cb11-30"></a>run_twice(t)</span>
+<span id="cb11-31"><a href="PythonObjectAndModuel.html#cb11-31"></a><span class="co"># Dog is running...</span></span>
+<span id="cb11-32"><a href="PythonObjectAndModuel.html#cb11-32"></a><span class="co"># Cat is running...</span></span></code></pre></div>
+</div>
+</div>
+<div id="Module" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> 模块</h2>
+<p><strong>模块</strong>：通俗理解一个<code>.py</code>文件就是一个模块，模块是管理功能代码的</p>
+<p>模块里面可以定义类，定义函数，定义全局变量，执行对应的功能代码操作</p>
+<p><strong>.py文件和.ipynb文件</strong>：</p>
+<p><code>.py</code>文件是标准的Python源代码文件，通常情况下，使用<code>.py</code>的python源代码文件</p>
+<p><code>ipynb</code>文件是使用 Jupyter Notebook 来编写Python程序时的文件。Jupyter Notebook（此前被称为 IPython notebook）是一个交互式笔记本</p>
+<div id="自定义模块及导入" class="section level3" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> 自定义模块及导入</h3>
+<p>自定义模块名字与变量名的定义很类似，都是由字母、数字、下划线组成，但是不能以数字开头，否则无法导入该模块。</p>
+<p>如何自己写一个<code>.py</code>文件，并在jupyter里面运行？</p>
+<p><strong>py文件：</strong>py代码内容如下，并保存到文件<code>first_module.py</code></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="PythonObjectAndModuel.html#cb12-1"></a>g_num <span class="op">=</span><span class="dv">100</span></span>
+<span id="cb12-2"><a href="PythonObjectAndModuel.html#cb12-2"></a></span>
+<span id="cb12-3"><a href="PythonObjectAndModuel.html#cb12-3"></a><span class="kw">def</span> show():</span>
+<span id="cb12-4"><a href="PythonObjectAndModuel.html#cb12-4"></a>    <span class="bu">print</span>(<span class="st">&#39;我是show方法&#39;</span>)</span>
+<span id="cb12-5"><a href="PythonObjectAndModuel.html#cb12-5"></a>    </span>
+<span id="cb12-6"><a href="PythonObjectAndModuel.html#cb12-6"></a><span class="kw">class</span> Student(<span class="bu">object</span>):</span>
+<span id="cb12-7"><a href="PythonObjectAndModuel.html#cb12-7"></a>    <span class="kw">def</span> func(<span class="va">self</span>):</span>
+<span id="cb12-8"><a href="PythonObjectAndModuel.html#cb12-8"></a>        <span class="bu">print</span>(<span class="st">&#39;func&#39;</span>)</span>
+<span id="cb12-9"><a href="PythonObjectAndModuel.html#cb12-9"></a></span>
+<span id="cb12-10"><a href="PythonObjectAndModuel.html#cb12-10"></a><span class="bu">print</span>(<span class="st">&quot;first_module&quot;</span>)</span>
+<span id="cb12-11"><a href="PythonObjectAndModuel.html#cb12-11"></a>show()</span></code></pre></div>
+<p><strong>jupyter加载/运行py文件：</strong></p>
+<ol style="list-style-type: decimal">
+<li>加载：%load加载后，<code>first_module.py</code>中所有的代码都将被加载到jupyter的一个代码框中。</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="PythonObjectAndModuel.html#cb13-1"></a><span class="op">%</span>load first_module.py</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>运行：</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="PythonObjectAndModuel.html#cb14-1"></a><span class="op">%</span>run first_module.py</span>
+<span id="cb14-2"><a href="PythonObjectAndModuel.html#cb14-2"></a></span>
+<span id="cb14-3"><a href="PythonObjectAndModuel.html#cb14-3"></a><span class="co"># first_module</span></span></code></pre></div>
+</div>
+<div id="模块导入注意点" class="section level3" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> 模块导入注意点</h3>
+<p>在jupyter中一行一行运行以下代码，观察输出结果</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="PythonObjectAndModuel.html#cb15-1"></a><span class="im">import</span> first_module</span>
+<span id="cb15-2"><a href="PythonObjectAndModuel.html#cb15-2"></a><span class="co"># first_module</span></span>
+<span id="cb15-3"><a href="PythonObjectAndModuel.html#cb15-3"></a><span class="co"># 我是show方法</span></span>
+<span id="cb15-4"><a href="PythonObjectAndModuel.html#cb15-4"></a></span>
+<span id="cb15-5"><a href="PythonObjectAndModuel.html#cb15-5"></a>first_module.show()</span>
+<span id="cb15-6"><a href="PythonObjectAndModuel.html#cb15-6"></a><span class="co"># 我是show方法</span></span>
+<span id="cb15-7"><a href="PythonObjectAndModuel.html#cb15-7"></a></span>
+<span id="cb15-8"><a href="PythonObjectAndModuel.html#cb15-8"></a>first_module.g_num</span>
+<span id="cb15-9"><a href="PythonObjectAndModuel.html#cb15-9"></a><span class="co"># 100</span></span>
+<span id="cb15-10"><a href="PythonObjectAndModuel.html#cb15-10"></a></span>
+<span id="cb15-11"><a href="PythonObjectAndModuel.html#cb15-11"></a>first_module.Student().func()</span>
+<span id="cb15-12"><a href="PythonObjectAndModuel.html#cb15-12"></a><span class="co"># func</span></span></code></pre></div>
+<p>发现<code>import first_module</code>时也会有输出结果，这是因为大部分开发者在写模块的时候，都会自己测试一下模块，所以py文件内部有很多需要执行的代码。如果在import阶段需要执行的代码耗时过长，这显然是不合理的。可以通过使用<code>if __name__ == "__main__"</code>将所有需要执行的代码放在该判断语句下面：</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="PythonObjectAndModuel.html#cb16-1"></a>g_num <span class="op">=</span><span class="dv">100</span></span>
+<span id="cb16-2"><a href="PythonObjectAndModuel.html#cb16-2"></a></span>
+<span id="cb16-3"><a href="PythonObjectAndModuel.html#cb16-3"></a><span class="kw">def</span> show():</span>
+<span id="cb16-4"><a href="PythonObjectAndModuel.html#cb16-4"></a>    <span class="bu">print</span>(<span class="st">&#39;我是show方法&#39;</span>)</span>
+<span id="cb16-5"><a href="PythonObjectAndModuel.html#cb16-5"></a>    </span>
+<span id="cb16-6"><a href="PythonObjectAndModuel.html#cb16-6"></a><span class="kw">class</span> Student(<span class="bu">object</span>):</span>
+<span id="cb16-7"><a href="PythonObjectAndModuel.html#cb16-7"></a>    <span class="kw">def</span> func(<span class="va">self</span>):</span>
+<span id="cb16-8"><a href="PythonObjectAndModuel.html#cb16-8"></a>        <span class="bu">print</span>(<span class="st">&#39;func&#39;</span>)</span>
+<span id="cb16-9"><a href="PythonObjectAndModuel.html#cb16-9"></a></span>
+<span id="cb16-10"><a href="PythonObjectAndModuel.html#cb16-10"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb16-11"><a href="PythonObjectAndModuel.html#cb16-11"></a>    <span class="bu">print</span>(<span class="st">&quot;first_module&quot;</span>)</span>
+<span id="cb16-12"><a href="PythonObjectAndModuel.html#cb16-12"></a>    show()</span></code></pre></div>
+<p>修改保存后，再次在jupyter中导入模块，发现最后两句代码不会再运行了。（重新导入时，注意重启一下jupyter服务，清空之前的缓存）</p>
+</div>
+<div id="name__" class="section level3" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> <code>__name__</code></h3>
+<p><code>__name__</code>是python提供的一个全局变量</p>
+<p>随便在jupyter的一个代码框中运行<code>print(__name__)</code>结果是<code>__main__</code></p>
+<p>但是当我们在<code>.py</code>文件内部添加一行<code>print(__name__)</code>：</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="PythonObjectAndModuel.html#cb17-1"></a>g_num <span class="op">=</span><span class="dv">100</span></span>
+<span id="cb17-2"><a href="PythonObjectAndModuel.html#cb17-2"></a></span>
+<span id="cb17-3"><a href="PythonObjectAndModuel.html#cb17-3"></a><span class="kw">def</span> show():</span>
+<span id="cb17-4"><a href="PythonObjectAndModuel.html#cb17-4"></a>    <span class="bu">print</span>(<span class="st">&#39;我是show方法&#39;</span>)</span>
+<span id="cb17-5"><a href="PythonObjectAndModuel.html#cb17-5"></a>    </span>
+<span id="cb17-6"><a href="PythonObjectAndModuel.html#cb17-6"></a><span class="kw">class</span> Student(<span class="bu">object</span>):</span>
+<span id="cb17-7"><a href="PythonObjectAndModuel.html#cb17-7"></a>    <span class="kw">def</span> func(<span class="va">self</span>):</span>
+<span id="cb17-8"><a href="PythonObjectAndModuel.html#cb17-8"></a>        <span class="bu">print</span>(<span class="st">&#39;func&#39;</span>)</span>
+<span id="cb17-9"><a href="PythonObjectAndModuel.html#cb17-9"></a></span>
+<span id="cb17-10"><a href="PythonObjectAndModuel.html#cb17-10"></a><span class="bu">print</span>(<span class="va">__name__</span>)</span>
+<span id="cb17-11"><a href="PythonObjectAndModuel.html#cb17-11"></a></span>
+<span id="cb17-12"><a href="PythonObjectAndModuel.html#cb17-12"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb17-13"><a href="PythonObjectAndModuel.html#cb17-13"></a>    <span class="bu">print</span>(<span class="st">&quot;first_module&quot;</span>)</span>
+<span id="cb17-14"><a href="PythonObjectAndModuel.html#cb17-14"></a>    show()</span></code></pre></div>
+<p>然后在jupyter代码框中运行以下代码，观察输出：</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="PythonObjectAndModuel.html#cb18-1"></a><span class="bu">print</span>(<span class="va">__name__</span>)</span>
+<span id="cb18-2"><a href="PythonObjectAndModuel.html#cb18-2"></a><span class="co"># __main__</span></span>
+<span id="cb18-3"><a href="PythonObjectAndModuel.html#cb18-3"></a><span class="im">import</span> first_module</span>
+<span id="cb18-4"><a href="PythonObjectAndModuel.html#cb18-4"></a><span class="co"># first_module</span></span></code></pre></div>
+<p><strong>总结：</strong></p>
+<p>如果当前执行的程序是本文件时候，<code>print(__name__)</code>的结果是<code>__main__</code></p>
+<p>如果当前文件被用作模块被其他文件导入了， <code>print(__name__)</code>的结果是自己的文件名。所以在<code>first_module</code>被导入到jupyter中时，<code>__name__!=__main__</code>，所以if判断语句下的代码不会被执行。</p>
+</div>
+<div id="模块导入方式" class="section level3" number="5.5.4">
+<h3><span class="header-section-number">5.5.4</span> 模块导入方式</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="PythonObjectAndModuel.html#cb19-1"></a><span class="co"># 起别名：使用起来更简洁</span></span>
+<span id="cb19-2"><a href="PythonObjectAndModuel.html#cb19-2"></a><span class="im">import</span> first_module <span class="im">as</span> fm</span>
+<span id="cb19-3"><a href="PythonObjectAndModuel.html#cb19-3"></a>fm.show()</span>
+<span id="cb19-4"><a href="PythonObjectAndModuel.html#cb19-4"></a></span>
+<span id="cb19-5"><a href="PythonObjectAndModuel.html#cb19-5"></a><span class="co"># from module_name import method,object</span></span>
+<span id="cb19-6"><a href="PythonObjectAndModuel.html#cb19-6"></a><span class="im">from</span> first_module <span class="im">import</span> show,Student</span>
+<span id="cb19-7"><a href="PythonObjectAndModuel.html#cb19-7"></a>show()</span>
+<span id="cb19-8"><a href="PythonObjectAndModuel.html#cb19-8"></a>Student</span>
+<span id="cb19-9"><a href="PythonObjectAndModuel.html#cb19-9"></a></span>
+<span id="cb19-10"><a href="PythonObjectAndModuel.html#cb19-10"></a><span class="co"># import * (不建议使用)</span></span>
+<span id="cb19-11"><a href="PythonObjectAndModuel.html#cb19-11"></a><span class="im">from</span> first_module <span class="im">import</span> <span class="op">*</span></span></code></pre></div>
+<p>不建议使用<code>import *</code>，因为如果有例外一个模块叫<code>second_module</code>他的里面可能有一些方法名与<code>first_module</code>中的方法一样，这样在调用方法的时候容易混淆。</p>
+</div>
+<div id="拓展" class="section level3" number="5.5.5">
+<h3><span class="header-section-number">5.5.5</span> 拓展</h3>
+<p><strong>1. 查看模块方法</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="PythonObjectAndModuel.html#cb20-1"></a><span class="co"># 方法一</span></span>
+<span id="cb20-2"><a href="PythonObjectAndModuel.html#cb20-2"></a><span class="im">import</span> math</span>
+<span id="cb20-3"><a href="PythonObjectAndModuel.html#cb20-3"></a><span class="bu">dir</span>(math)</span>
+<span id="cb20-4"><a href="PythonObjectAndModuel.html#cb20-4"></a></span>
+<span id="cb20-5"><a href="PythonObjectAndModuel.html#cb20-5"></a><span class="co"># 方法二</span></span>
+<span id="cb20-6"><a href="PythonObjectAndModuel.html#cb20-6"></a><span class="co"># 在终端运行Python，例如： time. + tab键 </span></span>
+<span id="cb20-7"><a href="PythonObjectAndModuel.html#cb20-7"></a></span>
+<span id="cb20-8"><a href="PythonObjectAndModuel.html#cb20-8"></a><span class="co"># 想要查看每个功能的解释，用help(type(对象名)) </span></span>
+<span id="cb20-9"><a href="PythonObjectAndModuel.html#cb20-9"></a>a <span class="op">=</span> <span class="st">&#39;a&#39;</span></span>
+<span id="cb20-10"><a href="PythonObjectAndModuel.html#cb20-10"></a><span class="bu">help</span>(<span class="bu">type</span>(a))</span>
+<span id="cb20-11"><a href="PythonObjectAndModuel.html#cb20-11"></a><span class="bu">len</span>()</span></code></pre></div>
+<p><strong>2. 查看Python全部内置变量和内置函数</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="PythonObjectAndModuel.html#cb21-1"></a><span class="im">import</span> builtins</span>
+<span id="cb21-2"><a href="PythonObjectAndModuel.html#cb21-2"></a><span class="bu">dir</span>(builtins)</span></code></pre></div>
+<p><strong>3. 查看所有安装的模块</strong></p>
+<pre><code>help(&#39;modules&#39;)</code></pre>
+</div>
+</div>
+<div id="常见模块" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> 常见模块</h2>
+<div id="math" class="section level3" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> math</h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="PythonObjectAndModuel.html#cb23-1"></a><span class="im">import</span> math</span>
+<span id="cb23-2"><a href="PythonObjectAndModuel.html#cb23-2"></a>r <span class="op">=</span> math.floor(<span class="fl">3.2</span>) <span class="co"># 向下取整</span></span>
+<span id="cb23-3"><a href="PythonObjectAndModuel.html#cb23-3"></a><span class="bu">print</span>(r)</span>
+<span id="cb23-4"><a href="PythonObjectAndModuel.html#cb23-4"></a>r <span class="op">=</span> math.ceil(<span class="fl">4.5</span>)  <span class="co"># 向上取整</span></span>
+<span id="cb23-5"><a href="PythonObjectAndModuel.html#cb23-5"></a><span class="bu">print</span>(r)</span>
+<span id="cb23-6"><a href="PythonObjectAndModuel.html#cb23-6"></a>r <span class="op">=</span> <span class="bu">round</span>(<span class="fl">3.4999</span>)  <span class="co"># 四舍五入</span></span>
+<span id="cb23-7"><a href="PythonObjectAndModuel.html#cb23-7"></a><span class="bu">print</span>(r)</span>
+<span id="cb23-8"><a href="PythonObjectAndModuel.html#cb23-8"></a>r <span class="op">=</span> math.<span class="bu">pow</span>(<span class="dv">3</span>,<span class="dv">4</span>)  <span class="co"># =3**4</span></span>
+<span id="cb23-9"><a href="PythonObjectAndModuel.html#cb23-9"></a><span class="bu">print</span>(r)</span>
+<span id="cb23-10"><a href="PythonObjectAndModuel.html#cb23-10"></a>r <span class="op">=</span> math.sqrt(<span class="dv">25</span>)  <span class="co"># 开平方</span></span>
+<span id="cb23-11"><a href="PythonObjectAndModuel.html#cb23-11"></a><span class="bu">print</span>(r)</span>
+<span id="cb23-12"><a href="PythonObjectAndModuel.html#cb23-12"></a>r <span class="op">=</span> math.fabs(<span class="op">-</span><span class="fl">0.23</span>) <span class="co"># 绝对值(小数)</span></span>
+<span id="cb23-13"><a href="PythonObjectAndModuel.html#cb23-13"></a><span class="bu">print</span>(r)</span>
+<span id="cb23-14"><a href="PythonObjectAndModuel.html#cb23-14"></a>r <span class="op">=</span> <span class="bu">abs</span>(<span class="op">-</span><span class="dv">2</span>)     <span class="co"># 绝对值</span></span>
+<span id="cb23-15"><a href="PythonObjectAndModuel.html#cb23-15"></a><span class="bu">print</span>(r)</span></code></pre></div>
+</div>
+<div id="time" class="section level3" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span> time</h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="PythonObjectAndModuel.html#cb24-1"></a><span class="im">import</span> time</span>
+<span id="cb24-2"><a href="PythonObjectAndModuel.html#cb24-2"></a></span>
+<span id="cb24-3"><a href="PythonObjectAndModuel.html#cb24-3"></a><span class="co"># 1. 生成当前时间戳(返回从1970年1970年1月1日0点整到现在过了多少秒)</span></span>
+<span id="cb24-4"><a href="PythonObjectAndModuel.html#cb24-4"></a><span class="co"># print(time.time())</span></span>
+<span id="cb24-5"><a href="PythonObjectAndModuel.html#cb24-5"></a></span>
+<span id="cb24-6"><a href="PythonObjectAndModuel.html#cb24-6"></a><span class="co"># # 2.作用是格式化时间戳为本地的时间</span></span>
+<span id="cb24-7"><a href="PythonObjectAndModuel.html#cb24-7"></a>struct_time <span class="op">=</span> time.localtime(time.time())</span>
+<span id="cb24-8"><a href="PythonObjectAndModuel.html#cb24-8"></a><span class="bu">print</span>(struct_time)</span>
+<span id="cb24-9"><a href="PythonObjectAndModuel.html#cb24-9"></a><span class="co"># # 获取对应的年与日时间等信息</span></span>
+<span id="cb24-10"><a href="PythonObjectAndModuel.html#cb24-10"></a><span class="bu">print</span>(struct_time.tm_hour)</span>
+<span id="cb24-11"><a href="PythonObjectAndModuel.html#cb24-11"></a></span>
+<span id="cb24-12"><a href="PythonObjectAndModuel.html#cb24-12"></a><span class="co"># # 格式化成2020-07-08 17:35:47形式</span></span>
+<span id="cb24-13"><a href="PythonObjectAndModuel.html#cb24-13"></a><span class="bu">print</span>(time.strftime(<span class="st">&quot;%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S&quot;</span>, struct_time))</span>
+<span id="cb24-14"><a href="PythonObjectAndModuel.html#cb24-14"></a></span>
+<span id="cb24-15"><a href="PythonObjectAndModuel.html#cb24-15"></a>tss1 <span class="op">=</span> <span class="st">&#39;2020-07-08 23:40:01&#39;</span></span>
+<span id="cb24-16"><a href="PythonObjectAndModuel.html#cb24-16"></a>timeArray <span class="op">=</span> time.strptime(tss1, <span class="st">&quot;%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S&quot;</span>)</span>
+<span id="cb24-17"><a href="PythonObjectAndModuel.html#cb24-17"></a>       </span>
+<span id="cb24-18"><a href="PythonObjectAndModuel.html#cb24-18"></a><span class="bu">print</span>(<span class="st">&#39;将字符串的时间转成struct_time&#39;</span>,timeArray)</span>
+<span id="cb24-19"><a href="PythonObjectAndModuel.html#cb24-19"></a>       </span>
+<span id="cb24-20"><a href="PythonObjectAndModuel.html#cb24-20"></a><span class="bu">print</span>(<span class="st">&#39;将struct_time转换为时间戳&#39;</span>,time.mktime(timeArray))</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="PythonFunctionError.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="PythonExcelWorld.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-PythonObjectModule.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
