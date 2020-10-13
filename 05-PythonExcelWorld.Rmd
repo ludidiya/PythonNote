@@ -16,9 +16,167 @@
 pip install openpyxl
 ```
 
-## 创建工作簿和表
+### 常用属性和方法{#openpyxl_load_workbook}
 
-## 读取文件和表达内容
+
+
+## 创建工作簿和表`workbook`方法
+
+`openpyxl`中的`workbook`方法可以根据路径创建一个新的Excel文件
+
+**导入模块的两种方法**：
+
+```python
+import openpyxl
+from openpyxl import workbook
+```
+
+### Excel文件创建和保存
+
+```python
+# 1. 创建空白工作薄并保存
+wb = workbook()
+wb.save('./datafile/work1.xlsx)
+```
+
+### 默认激活sheet
+
+```python
+# 创建空白工作簿并保存
+wb = workbook()
+
+# 获得默认激活的worksheet的名字
+ws = wb.active
+print(ws)
+# <Worksheet "Sheet">
+
+# 修改默认表的名字
+ws.title = '激活'
+print(ws)
+# <Worksheet "激活">
+
+# 保存文件
+wb.save('./datafile/work1.xlsx')
+```
+
+### worksheet的顺序
+
+```python
+wb = workbook() # 默认有一个表
+
+ws1 = wb.create_sheet('ws1',1) # 放在第二位
+
+ws2 = wb.create_sheet('ws2',0) # 放在第三位
+
+ws3 = wb.create_sheet('ws3') # 默认在最后追加一个worksheet
+
+wb.save('./datafile/work2.xlsx')
+# 现在worksheet的顺序应该是ws2, Sheet, ws1, ws3
+print(wb.sheetnames)
+# ['ws2', 'Sheet', 'ws1', 'ws3']
+
+ws = wb.active
+print(ws) 
+# 结果是‘ws’，所以wb.active获取的是第一位置上worksheet的名字
+```
+
+### 练习(创建100张表)
+
+创建一个工作簿，然后创建100张工作表。
+
+```python
+wb = workbook()
+
+# 删除默认激活的那张表
+sheet = wb.active
+wb.remove(sheet)
+
+# 循环创建100张表
+for i in range(1,101):
+    wb.create_sheet(f'第{i}张表')
+
+wb.save('./datafile/test1.xlsx')
+```
+
+## 读取文件和表达内容`load_workbook()`方法
+
+可以根据`openpyxl`的`laod_workbook()`方法读取本地文件。
+
+```python
+from openpyxl import load_workbook
+```
+
+
+### worksheet信息及修改
+
+```python
+wb = load_workbook('./datafile/work2.xlsx')
+print(wb.sheetnames) # ['ws2', 'Sheet', 'ws1', 'ws3']
+
+# 根据表名获取表
+sheet = wb['ws3']
+sheet.title = "表3"
+print(wb.sheetnames) # ['ws2', 'Sheet', 'ws1', '表3']
+
+# 在设置属性（如修改表名）后记得保存，不然Excel文件内并不会更改
+wb.save('./datafile/work2.xlsx')
+```
+
+### 读取表中数据
+
+```python
+from openpyxl import load_workbook
+wb  = load_workbook('./datafile/读写.xlsx')
+
+# 查看有哪些worksheet
+print(wb.sheetnames) # ['读', '写']
+
+# 获取对应的表
+sheet = wb['读']
+
+# 获取行列数
+print(sheet.max_row,"行") # 7 行
+print(sheet.max_column,"列") # 2 列
+
+# 读取一列
+one_column = sheet['A']
+print(one_column)
+# (<Cell '读'.A1>, <Cell '读'.A2>, <Cell '读'.A3>, <Cell '读'.A4>, <Cell '读'.A5>, <Cell '读'.A6>, <Cell '读'.A7>)
+
+# 读取一行
+one_row = sheet['1']
+print(one_row)
+# (<Cell '读'.A1>, <Cell '读'.B1>)
+
+# 读取一个单元格
+one_cell = sheet['A1']
+print(one_cell) # <Cell '读'.A1>
+print(one_cell.value) # 获取单元格的值: 1
+
+# 使用数字这种形式获取值 
+print(sheet.cell(row=1,column=1).value)  # 1
+```
+
+### 写入数据
+
+写入数据的基本代码：`sheet['A1'].value = 'A1'`
+
+```python
+from openpyxl import load_workbook
+wb = load_workbook('./datafile/读写.xlsx')
+sheet = wb['写']
+# sheet['A1'].value = 'A1'
+
+#写入一列
+for i in range(1,11):
+    sheet[f'A{i}'].value = i
+    
+# 写入一行
+for j in range(1,11):
+    sheet.cell(row=11,column=j,value=j)
+
+wb.save('./datafile/读写.xlsx')
+```
 
 ## OpenPyXL案例
 
@@ -30,10 +188,4 @@ pip install openpyxl
 
 ### 修改单元格样式
 
-```{r}
-a=68
-b=36
-c = 24
-print(10*c-2*a-2*b)
-```
 
