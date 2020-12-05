@@ -1,3 +1,21 @@
+- [Python数据容器{#PythonDataContainers}](#python------pythondatacontainers-)
+  * [字符串（str）](#----str-)
+    + [下标和切片](#-----)
+    + [字符串常见内置函数{#StrBuildInFunctions}](#-----------strbuildinfunctions-)
+  * [列表（list）](#---list-)
+    + [列表常用操作{#ListBuildInFunctions}](#--------listbuildinfunctions-)
+  * [元组（tuple）](#---tuple-)
+  * [字典（dict）](#---dict-)
+    + [字典常见操作{#DicBuildInFunctions}](#--------dicbuildinfunctions-)
+  * [集合（set）](#---set-)
+    + [交集/并集](#-----)
+  * [拓展：可变类型&不可变类型{#VariableAndInvariable}](#---------------variableandinvariable-)
+  * [练习](#--)
+    + [字符串遍历](#-----)
+    + [获取列表中相同元素对应的索引，并保存到字典中](#----------------------)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 # Python数据容器{#PythonDataContainers}
 
 ## 字符串（str）
